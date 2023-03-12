@@ -1884,13 +1884,16 @@ class Ui_MainWindow(object):
     def HistoryData(self):
         # Retrieve the currently logged in username from the cache
         username = "User1"
+        print("Test2")
         # Query the database for appointments for the current user
         query = QSqlQuery(db)
         query.prepare(
                 "SELECT AppointmentID, DonationType, BloodType, Date, Time FROM Appointments WHERE Username = ?")
         query.addBindValue(username)
         if query.exec():
+                print("Test1")
                 # Loop over the results and populate the table widget with appointment data
+                self.tableWidget.setRowCount(0)
                 row = 0
                 while query.next():
                         appointment_id = query.value(0)
@@ -1898,7 +1901,10 @@ class Ui_MainWindow(object):
                         blood_type = query.value(2)
                         date = query.value(3)
                         time = query.value(4)
+                        print("Test3")
+                        print(time)
 
+                        self.tableWidget.insertRow(row)
                         self.tableWidget.setItem(row, 0, QTableWidgetItem(str(appointment_id)))
                         self.tableWidget.setItem(row, 1, QTableWidgetItem(donation_type))
                         self.tableWidget.setItem(row, 2, QTableWidgetItem(blood_type))
