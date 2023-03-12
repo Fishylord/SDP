@@ -1697,6 +1697,31 @@ class Ui_MainWindow(object):
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
+        self.pushButton_22.clicked.connect(self.Q1)
+        self.pushButton_23.clicked.connect(self.Q1)
+        self.pushButton_24.clicked.connect(self.Q1)
+        self.pushButton_25.clicked.connect(self.Q1)
+        self.pushButton_26.clicked.connect(self.Q1)
+        self.pushButton_27.clicked.connect(self.Q2)
+        self.pushButton_28.clicked.connect(self.Q2)
+        self.pushButton_29.clicked.connect(self.Q2)
+        self.pushButton_30.clicked.connect(self.Q2)
+        self.pushButton_31.clicked.connect(self.Q2)
+        self.pushButton_32.clicked.connect(self.Q3)
+        self.pushButton_33.clicked.connect(self.Q3)
+        self.pushButton_34.clicked.connect(self.Q3)
+        self.pushButton_35.clicked.connect(self.Q3)
+        self.pushButton_36.clicked.connect(self.Q3)
+        self.pushButton_37.clicked.connect(self.Q4)
+        self.pushButton_38.clicked.connect(self.Q4)
+        self.pushButton_39.clicked.connect(self.Q4)
+        self.pushButton_40.clicked.connect(self.Q4)
+        self.pushButton_41.clicked.connect(self.Q4)
+        self.pushButton_42.clicked.connect(self.Q5)
+        self.pushButton_43.clicked.connect(self.Q5)
+        self.pushButton_44.clicked.connect(self.Q5)
+        self.pushButton_45.clicked.connect(self.Q5)
+        self.pushButton_46.clicked.connect(self.Q5)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1753,6 +1778,9 @@ class Ui_MainWindow(object):
 
     def donation(self):
         print("Bruh")
+
+    def feedback(self):
+            print("Bruh")
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'
