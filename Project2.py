@@ -1789,7 +1789,7 @@ class Ui_MainWindow(object):
                 query.addBindValue(log_Password)
                 if query.exec():
                         if query.first():
-                                self.label_8.setText("Login Succesful")
+                                self.stackedWidget.setCurrentIndex(3)
                         else:
                                 self.label_8.setText("Login failed")
                 else:
@@ -1824,7 +1824,7 @@ class Ui_MainWindow(object):
             print("Bruh")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'  #LAPTOP-C59P4B6M
+        SERVER_NAME = 'LAPTOP-C59P4B6M'  #LAPTOP-C59P4B6M #LAPTOP-Q1SP2NU1
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
