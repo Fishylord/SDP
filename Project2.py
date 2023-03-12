@@ -1789,7 +1789,7 @@ class Ui_MainWindow(object):
                 query.addBindValue(log_Password)
                 if query.exec():
                         if query.first():
-                                self.label_8.setText("Login Succesful")
+                                self.stackedWidget.setCurrentIndex(3)
                         else:
                                 self.label_8.setText("Login failed")
                 else:
