@@ -1706,32 +1706,32 @@ class Ui_MainWindow(object):
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(self.Q1)
-        self.pushButton_23.clicked.connect(self.Q1)
-        self.pushButton_24.clicked.connect(self.Q1)
-        self.pushButton_25.clicked.connect(self.Q1)
-        self.pushButton_26.clicked.connect(self.Q1)
-        self.pushButton_27.clicked.connect(self.Q2)
-        self.pushButton_28.clicked.connect(self.Q2)
-        self.pushButton_29.clicked.connect(self.Q2)
-        self.pushButton_30.clicked.connect(self.Q2)
-        self.pushButton_31.clicked.connect(self.Q2)
-        self.pushButton_32.clicked.connect(self.Q3)
-        self.pushButton_33.clicked.connect(self.Q3)
-        self.pushButton_34.clicked.connect(self.Q3)
-        self.pushButton_35.clicked.connect(self.Q3)
-        self.pushButton_36.clicked.connect(self.Q3)
-        self.pushButton_37.clicked.connect(self.Q4)
-        self.pushButton_38.clicked.connect(self.Q4)
-        self.pushButton_39.clicked.connect(self.Q4)
-        self.pushButton_40.clicked.connect(self.Q4)
-        self.pushButton_41.clicked.connect(self.Q4)
-        self.pushButton_42.clicked.connect(self.Q5)
-        self.pushButton_43.clicked.connect(self.Q5)
-        self.pushButton_44.clicked.connect(self.Q5)
-        self.pushButton_45.clicked.connect(self.Q5)
-        self.pushButton_46.clicked.connect(self.Q5)
-        self.pushButton_47.clicked.connect(self.FeedbackSubmit)
+        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
+        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
+        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
+        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
+        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
+        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
+        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
+        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
+        self.pushButton_30.clicked.connect(lambda:self.Q2(4))
+        self.pushButton_31.clicked.connect(lambda:self.Q2(5))
+        self.pushButton_32.clicked.connect(lambda:self.Q3(2))
+        self.pushButton_33.clicked.connect(lambda:self.Q3(2))
+        self.pushButton_34.clicked.connect(lambda:self.Q3(3))
+        self.pushButton_35.clicked.connect(lambda:self.Q3(4))
+        self.pushButton_36.clicked.connect(lambda:self.Q3(5))
+        self.pushButton_37.clicked.connect(lambda:self.Q4(1))
+        self.pushButton_38.clicked.connect(lambda:self.Q4(2))
+        self.pushButton_39.clicked.connect(lambda:self.Q4(3))
+        self.pushButton_40.clicked.connect(lambda:self.Q4(4))
+        self.pushButton_41.clicked.connect(lambda:self.Q4(5))
+        self.pushButton_42.clicked.connect(lambda:self.Q5(1))
+        self.pushButton_43.clicked.connect(lambda:self.Q5(2))
+        self.pushButton_44.clicked.connect(lambda:self.Q5(3))
+        self.pushButton_45.clicked.connect(lambda:self.Q5(4))
+        self.pushButton_46.clicked.connect(lambda:self.Q5(5))
+        self.pushButton_47.clicked.connect(lambda:self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1844,20 +1844,20 @@ class Ui_MainWindow(object):
     def FeedbackSubmit(self):
             print("Bruh")
 
-    def Q1(self):
-            print("Bruh")
+    def Q1(self,button_num):
+        print(f"Button {button_num} was clicked")
 
     def Q2(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q3(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q4(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q5(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
