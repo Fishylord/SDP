@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
+from PyQt6.QtWidgets import QTableWidgetItem
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1489,15 +1490,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "History"))
         self.label_4.setText(_translate("MainWindow", "Previous Donations"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Donation Date"))
+        item.setText(_translate("MainWindow", "Appointment ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Hospital"))
+        item.setText(_translate("MainWindow", "DonationType"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Donation Type"))
+        item.setText(_translate("MainWindow", "BloodType"))
         item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "New Column"))
+        item.setText(_translate("MainWindow", "Date"))
         item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Points Recieved"))
+        item.setText(_translate("MainWindow", "Time"))
         self.pushButton_2.setText(_translate("MainWindow", "Home Page"))
         self.label_21.setText(_translate("MainWindow", "ID: "))
         self.label_9.setText(_translate("MainWindow", "Name: "))
@@ -1688,6 +1689,7 @@ class Ui_MainWindow(object):
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
+        self.HistoryData()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -1879,6 +1881,33 @@ class Ui_MainWindow(object):
             print('connection failed')
             return False
 
+    def HistoryData(self):
+        # Retrieve the currently logged in username from the cache
+        username = "User1"
+        # Query the database for appointments for the current user
+        query = QSqlQuery(db)
+        query.prepare(
+                "SELECT AppointmentID, DonationType, BloodType, Date, Time FROM Appointments WHERE Username = ?")
+        query.addBindValue(username)
+        if query.exec():
+                # Loop over the results and populate the table widget with appointment data
+                row = 0
+                while query.next():
+                        appointment_id = query.value(0)
+                        donation_type = query.value(1)
+                        blood_type = query.value(2)
+                        date = query.value(3)
+                        time = query.value(4)
+
+                        self.tableWidget.setItem(row, 0, QTableWidgetItem(str(appointment_id)))
+                        self.tableWidget.setItem(row, 1, QTableWidgetItem(donation_type))
+                        self.tableWidget.setItem(row, 2, QTableWidgetItem(blood_type))
+                        self.tableWidget.setItem(row, 3, QTableWidgetItem(str(date)))
+                        self.tableWidget.setItem(row, 4, QTableWidgetItem(str(time)))
+                        row += 1
+
+        else:
+                print(query.lastError().text())
 
 if __name__ == "__main__":
     import sys
