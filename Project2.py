@@ -1748,6 +1748,7 @@ class Ui_MainWindow(object):
 
     def register(self):
         print("Bruh")
+        print("1")
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'
