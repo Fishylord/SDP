@@ -1763,6 +1763,7 @@ class Ui_MainWindow(object):
         self.HButton_7.clicked.connect(self.logout)
         self.HButton_8.clicked.connect(self.SideMenuOpen)
 
+        #Initial variables
 
     def SideMenuClose(self):
         self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
@@ -1791,6 +1792,7 @@ class Ui_MainWindow(object):
                 self.centralwidget.setMaximumSize(QtCore.QSize(1080, 16777215))
                 MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
                 MainWindow.resize(1080, 720)
+        username = " "
 
     def login(self):
         log_Username = self.lineEdit_12.text()
