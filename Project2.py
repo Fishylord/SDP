@@ -7,14 +7,9 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
-from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
-
-
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1280, 720)
@@ -163,30 +158,7 @@ class Ui_MainWindow(object):
         self.UserProfile_2 = QtWidgets.QWidget()
         self.UserProfile_2.setObjectName("UserProfile_2")
         self.frame_20 = QtWidgets.QFrame(self.UserProfile_2)
-        self.frame_20.setGeometry(QtCore.QRect(0, 0, 1131, 761))
-        self.frame_20.setStyleSheet("#frame_20{\n"
-                                    "    background-color:white;\n"
-                                    "}\n"
-                                    "\n"
-                                    "#frame_20 QLabel{\n"
-                                    "    background-color: transparent;\n"
-                                    "}\n"
-                                    "\n"
-                                    "QPushButton {\n"
-                                    "  background-color: transparent;\n"
-                                    "  border-radius: 10px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 3px;\n"
-                                    "}\n"
-                                    "\n"
-                                    "QTextEdit{\n"
-                                    " background-color: transparent;\n"
-                                    "  border-radius: 3px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 4px;\n"
-                                    "}\n"
-                                    "\n"
-                                    "")
+        self.frame_20.setGeometry(QtCore.QRect(0, -20, 1131, 761))
         self.frame_20.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
@@ -194,135 +166,56 @@ class Ui_MainWindow(object):
         self.pushButton_8.setGeometry(QtCore.QRect(950, 680, 75, 23))
         self.pushButton_8.setObjectName("pushButton_8")
         self.label_8 = QtWidgets.QLabel(self.frame_20)
-        self.label_8.setGeometry(QtCore.QRect(100, 220, 111, 16))
+        self.label_8.setGeometry(QtCore.QRect(540, 380, 111, 16))
         self.label_8.setObjectName("label_8")
         self.textEdit = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit.setGeometry(QtCore.QRect(100, 250, 211, 41))
+        self.textEdit.setGeometry(QtCore.QRect(320, 170, 331, 31))
         self.textEdit.setObjectName("textEdit")
         self.textEdit_2 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_2.setGeometry(QtCore.QRect(100, 300, 211, 41))
+        self.textEdit_2.setGeometry(QtCore.QRect(320, 210, 331, 31))
         self.textEdit_2.setObjectName("textEdit_2")
         self.textEdit_3 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_3.setGeometry(QtCore.QRect(100, 350, 211, 41))
+        self.textEdit_3.setGeometry(QtCore.QRect(320, 260, 331, 31))
         self.textEdit_3.setObjectName("textEdit_3")
         self.textEdit_4 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_4.setGeometry(QtCore.QRect(100, 400, 211, 41))
+        self.textEdit_4.setGeometry(QtCore.QRect(320, 310, 331, 31))
         self.textEdit_4.setObjectName("textEdit_4")
-        self.label_58 = QtWidgets.QLabel(self.frame_20)
-        self.label_58.setGeometry(QtCore.QRect(520, 210, 71, 16))
-        self.label_58.setObjectName("label_58")
         self.textEdit_5 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_5.setGeometry(QtCore.QRect(520, 240, 91, 41))
+        self.textEdit_5.setGeometry(QtCore.QRect(300, 420, 561, 271))
         self.textEdit_5.setObjectName("textEdit_5")
-        self.textEdit_7 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_7.setGeometry(QtCore.QRect(520, 290, 71, 41))
-        self.textEdit_7.setObjectName("textEdit_7")
-        self.textEdit_8 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_8.setGeometry(QtCore.QRect(520, 350, 81, 41))
-        self.textEdit_8.setObjectName("textEdit_8")
-        self.textEdit_9 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_9.setGeometry(QtCore.QRect(520, 400, 211, 61))
-        self.textEdit_9.setObjectName("textEdit_9")
-        self.textEdit_10 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_10.setGeometry(QtCore.QRect(520, 470, 211, 71))
-        self.textEdit_10.setObjectName("textEdit_10")
-        self.textEdit_11 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_11.setGeometry(QtCore.QRect(520, 550, 211, 71))
-        self.textEdit_11.setObjectName("textEdit_11")
-        self.frame_43 = QtWidgets.QFrame(self.frame_20)
-        self.frame_43.setGeometry(QtCore.QRect(0, 0, 1081, 161))
-        self.frame_43.setStyleSheet("#frame_43{\n"
-                                    "    background-color: qlineargradient(spread:pad, x1:0.5, y1:0.7, x2:0.5, y2:1, stop:0.570621 rgba(46, 46, 46, 255), stop:1 rgba(109, 109, 109, 255));\n"
-                                    "}\n"
-                                    "\n"
-                                    "#frame_43 QLabel{\n"
-                                    "    background-color: transparent;\n"
-                                    "    text-color: white;\n"
-                                    "}\n"
-                                    "\n"
-                                    "QPushButton {\n"
-                                    "  background-color: white;\n"
-                                    "  border-radius: 10px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 3px;\n"
-                                    "}\n"
-                                    "")
-        self.frame_43.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_43.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_43.setObjectName("frame_43")
-        self.pushButton_7 = QtWidgets.QPushButton(self.frame_43)
-        self.pushButton_7.setGeometry(QtCore.QRect(10, 20, 91, 31))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_7.setIcon(icon)
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.label = QtWidgets.QLabel(self.frame_43)
-        self.label.setGeometry(QtCore.QRect(460, 60, 111, 31))
+        self.label = QtWidgets.QLabel(self.frame_20)
+        self.label.setGeometry(QtCore.QRect(466, 53, 211, 31))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
-        self.label.setStyleSheet("color: rgb(255,255,255);")
         self.label.setObjectName("label")
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame_43)
-        self.pushButton_6.setGeometry(QtCore.QRect(1040, 0, 41, 31))
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_20)
+        self.pushButton_6.setGeometry(QtCore.QRect(1040, 20, 41, 31))
         self.pushButton_6.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_6.setIcon(icon1)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_6.setIcon(icon)
         self.pushButton_6.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.frame_20)
+        self.pushButton_7.setGeometry(QtCore.QRect(0, 20, 91, 31))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_7.setIcon(icon1)
+        self.pushButton_7.setObjectName("pushButton_7")
         self.stackedWidget.addWidget(self.UserProfile_2)
         self.Reward = QtWidgets.QWidget()
         self.Reward.setObjectName("Reward")
         self.frame_14 = QtWidgets.QFrame(self.Reward)
         self.frame_14.setGeometry(QtCore.QRect(0, 0, 1101, 751))
-        self.frame_14.setStyleSheet("#frame_14{\n"
-                                    "    background-color:white;\n"
-                                    "}\n"
-                                    "\n"
-                                    "#frame_14 QLabel{\n"
-                                    "    background-color: transparent;\n"
-                                    "}\n"
-                                    "\n"
-                                    "QPushButton {\n"
-                                    "  background-color: transparent;\n"
-                                    "  border-radius: 10px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 3px;\n"
-                                    "}\n"
-                                    "\n"
-                                    "QTextEdit{\n"
-                                    " background-color: transparent;\n"
-                                    "  border-radius: 3px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 4px;\n"
-                                    "}\n"
-                                    "\n"
-                                    "")
         self.frame_14.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_14.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_14.setObjectName("frame_14")
         self.Header = QtWidgets.QFrame(self.frame_14)
         self.Header.setGeometry(QtCore.QRect(0, 0, 1111, 111))
-        self.Header.setStyleSheet("#Header{\n"
-                                  "    background-color: qlineargradient(spread:pad, x1:0.5, y1:0.7, x2:0.5, y2:1, stop:0.570621 rgba(46, 46, 46, 255), stop:1 rgba(109, 109, 109, 255));\n"
-                                  "}\n"
-                                  "\n"
-                                  "#Header QLabel{\n"
-                                  "    background-color: transparent;\n"
-                                  "    text-color: white;\n"
-                                  "}\n"
-                                  "\n"
-                                  "QPushButton {\n"
-                                  "  background-color: white;\n"
-                                  "  border-radius: 10px;\n"
-                                  "  border: 2px solid black;\n"
-                                  "  padding: 3px;\n"
-                                  "}\n"
-                                  "")
         self.Header.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.Header.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.Header.setObjectName("Header")
@@ -334,113 +227,73 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_5.setFont(font)
-        self.label_5.setStyleSheet("color: rgb(255,255,255);")
         self.label_5.setObjectName("label_5")
         self.pushButton_9 = QtWidgets.QPushButton(self.Header)
         self.pushButton_9.setGeometry(QtCore.QRect(950, 0, 91, 31))
-        self.pushButton_9.setIcon(icon)
+        self.pushButton_9.setIcon(icon1)
         self.pushButton_9.setObjectName("pushButton_9")
-        self.pushButton_10 = QtWidgets.QPushButton(self.Header)
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(600, 230, 421, 80))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(100, 230, 421, 80))
+        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_5.setSpacing(0)
+        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.verticalLayoutWidget_3 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(100, 330, 421, 80))
+        self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_6.setSpacing(0)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(100, 430, 421, 80))
+        self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_7.setSpacing(0)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.verticalLayoutWidget_5 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_5.setGeometry(QtCore.QRect(100, 530, 421, 80))
+        self.verticalLayoutWidget_5.setObjectName("verticalLayoutWidget_5")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
+        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_12.setSpacing(0)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.verticalLayoutWidget_6 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_6.setGeometry(QtCore.QRect(600, 330, 421, 80))
+        self.verticalLayoutWidget_6.setObjectName("verticalLayoutWidget_6")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_6)
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.verticalLayoutWidget_8 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_8.setGeometry(QtCore.QRect(600, 430, 421, 80))
+        self.verticalLayoutWidget_8.setObjectName("verticalLayoutWidget_8")
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_8)
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName("verticalLayout_15")
+        self.verticalLayoutWidget_9 = QtWidgets.QWidget(self.frame_14)
+        self.verticalLayoutWidget_9.setGeometry(QtCore.QRect(600, 530, 421, 80))
+        self.verticalLayoutWidget_9.setObjectName("verticalLayoutWidget_9")
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_9)
+        self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_16.setSpacing(0)
+        self.verticalLayout_16.setObjectName("verticalLayout_16")
+        self.pushButton_10 = QtWidgets.QPushButton(self.Reward)
         self.pushButton_10.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_10.setText("")
-        self.pushButton_10.setIcon(icon1)
+        self.pushButton_10.setIcon(icon)
         self.pushButton_10.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_10.setObjectName("pushButton_10")
-        self.frame_44 = QtWidgets.QFrame(self.frame_14)
-        self.frame_44.setGeometry(QtCore.QRect(30, 170, 1021, 531))
-        self.frame_44.setStyleSheet("background-color: rgb(236, 224, 193);\n"
-                                    "  border-radius: 20px;\n"
-                                    "  border: 2px solid black;\n"
-                                    "  padding: 4px;\n"
-                                    "\n"
-                                    "\n"
-                                    "")
-        self.frame_44.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_44.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_44.setObjectName("frame_44")
-        self.frame_45 = QtWidgets.QFrame(self.frame_44)
-        self.frame_45.setGeometry(QtCore.QRect(15, 15, 493, 163))
-        self.frame_45.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_45.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_45.setObjectName("frame_45")
-        self.label_59 = QtWidgets.QLabel(self.frame_45)
-        self.label_59.setGeometry(QtCore.QRect(20, 10, 81, 21))
-        self.label_59.setObjectName("label_59")
-        self.label_65 = QtWidgets.QLabel(self.frame_45)
-        self.label_65.setGeometry(QtCore.QRect(200, 60, 81, 61))
-        self.label_65.setObjectName("label_65")
-        self.frame_46 = QtWidgets.QFrame(self.frame_44)
-        self.frame_46.setGeometry(QtCore.QRect(15, 184, 493, 163))
-        self.frame_46.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_46.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_46.setObjectName("frame_46")
-        self.label_60 = QtWidgets.QLabel(self.frame_46)
-        self.label_60.setGeometry(QtCore.QRect(20, 10, 91, 21))
-        self.label_60.setObjectName("label_60")
-        self.label_67 = QtWidgets.QLabel(self.frame_46)
-        self.label_67.setGeometry(QtCore.QRect(120, 60, 231, 61))
-        self.label_67.setObjectName("label_67")
-        self.frame_47 = QtWidgets.QFrame(self.frame_44)
-        self.frame_47.setGeometry(QtCore.QRect(15, 353, 493, 163))
-        self.frame_47.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_47.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_47.setObjectName("frame_47")
-        self.label_61 = QtWidgets.QLabel(self.frame_47)
-        self.label_61.setGeometry(QtCore.QRect(20, 10, 91, 21))
-        self.label_61.setObjectName("label_61")
-        self.label_69 = QtWidgets.QLabel(self.frame_47)
-        self.label_69.setGeometry(QtCore.QRect(130, 60, 191, 61))
-        self.label_69.setObjectName("label_69")
-        self.frame_52 = QtWidgets.QFrame(self.frame_44)
-        self.frame_52.setGeometry(QtCore.QRect(514, 15, 492, 163))
-        self.frame_52.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_52.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_52.setObjectName("frame_52")
-        self.label_62 = QtWidgets.QLabel(self.frame_52)
-        self.label_62.setGeometry(QtCore.QRect(20, 10, 91, 21))
-        self.label_62.setObjectName("label_62")
-        self.label_66 = QtWidgets.QLabel(self.frame_52)
-        self.label_66.setGeometry(QtCore.QRect(220, 60, 91, 61))
-        self.label_66.setObjectName("label_66")
-        self.frame_53 = QtWidgets.QFrame(self.frame_44)
-        self.frame_53.setGeometry(QtCore.QRect(514, 184, 492, 163))
-        self.frame_53.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_53.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_53.setObjectName("frame_53")
-        self.label_63 = QtWidgets.QLabel(self.frame_53)
-        self.label_63.setGeometry(QtCore.QRect(20, 10, 91, 21))
-        self.label_63.setObjectName("label_63")
-        self.label_68 = QtWidgets.QLabel(self.frame_53)
-        self.label_68.setGeometry(QtCore.QRect(180, 60, 171, 61))
-        self.label_68.setObjectName("label_68")
-        self.frame_54 = QtWidgets.QFrame(self.frame_44)
-        self.frame_54.setGeometry(QtCore.QRect(514, 353, 492, 163))
-        self.frame_54.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
-        self.frame_54.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
-        self.frame_54.setObjectName("frame_54")
-        self.label_64 = QtWidgets.QLabel(self.frame_54)
-        self.label_64.setGeometry(QtCore.QRect(20, 10, 91, 21))
-        self.label_64.setObjectName("label_64")
-        self.label_70 = QtWidgets.QLabel(self.frame_54)
-        self.label_70.setGeometry(QtCore.QRect(120, 60, 281, 61))
-        self.label_70.setObjectName("label_70")
-        self.label_57 = QtWidgets.QLabel(self.frame_14)
-        self.label_57.setGeometry(QtCore.QRect(420, 130, 271, 21))
-        font = QtGui.QFont()
-        font.setFamily("Arial")
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_57.setFont(font)
-        self.label_57.setStyleSheet("color: rgb(30, 89, 165);")
-        self.label_57.setObjectName("label_57")
-        self.label_71 = QtWidgets.QLabel(self.frame_14)
-        self.label_71.setGeometry(QtCore.QRect(50, 130, 151, 21))
-        font = QtGui.QFont()
-        font.setFamily("Lucida Bright")
-        font.setPointSize(12)
-        self.label_71.setFont(font)
-        self.label_71.setObjectName("label_71")
         self.stackedWidget.addWidget(self.Reward)
         self.Home_Page = QtWidgets.QWidget()
         self.Home_Page.setStyleSheet("background-color: grey")
@@ -650,11 +503,11 @@ class Ui_MainWindow(object):
         self.pushButton_16 = QtWidgets.QPushButton(self.Appointment_List)
         self.pushButton_16.setGeometry(QtCore.QRect(170, 210, 161, 51))
         self.pushButton_16.setObjectName("pushButton_16")
-        self.table_user_appointments_widget = QtWidgets.QTableWidget(self.Appointment_List)
-        self.table_user_appointments_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
-        self.table_user_appointments_widget.setObjectName("table_user_appointments_widget")
-        self.table_user_appointments_widget.setColumnCount(0)
-        self.table_user_appointments_widget.setRowCount(0)
+        self.table_widget = QtWidgets.QTableWidget(self.Appointment_List)
+        self.table_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
+        self.table_widget.setObjectName("table_widget")
+        self.table_widget.setColumnCount(0)
+        self.table_widget.setRowCount(0)
         self.tabWidget.addTab(self.Appointment_List, "")
         self.User_Management = QtWidgets.QWidget()
         self.User_Management.setObjectName("User_Management")
@@ -873,7 +726,7 @@ class Ui_MainWindow(object):
         self.tableWidget_2 = QtWidgets.QTableWidget(self.frame_18)
         self.tableWidget_2.setGeometry(QtCore.QRect(10, 150, 1071, 531))
         self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(4)
+        self.tableWidget_2.setColumnCount(3)
         self.tableWidget_2.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -899,14 +752,6 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setFamily("Segoe UI Black")
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
-        self.tableWidget_2.setHorizontalHeaderItem(3, item)
         self.pushButton_15 = QtWidgets.QPushButton(self.Hospital_User)
         self.pushButton_15.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_15.setText("")
@@ -1622,62 +1467,15 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Password</p></body></html>"))
-        self.label_58.setText(_translate("MainWindow", "USER RECORD"))
-        self.textEdit_5.setHtml(_translate("MainWindow",
-                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                           "p, li { white-space: pre-wrap; }\n"
-                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Gender</p></body></html>"))
-        self.textEdit_7.setHtml(_translate("MainWindow",
-                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                           "p, li { white-space: pre-wrap; }\n"
-                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Age</p></body></html>"))
-        self.textEdit_8.setHtml(_translate("MainWindow",
-                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                           "p, li { white-space: pre-wrap; }\n"
-                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Blood Type</p></body></html>"))
-        self.textEdit_9.setHtml(_translate("MainWindow",
-                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                           "p, li { white-space: pre-wrap; }\n"
-                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Disease</p></body></html>"))
-        self.textEdit_10.setHtml(_translate("MainWindow",
-                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                            "p, li { white-space: pre-wrap; }\n"
-                                            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Diagnosis</p></body></html>"))
-        self.textEdit_11.setHtml(_translate("MainWindow",
-                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                            "p, li { white-space: pre-wrap; }\n"
-                                            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Medication</p></body></html>"))
+        self.textEdit_5.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User Record</p></body></html>"))
         self.label.setText(_translate("MainWindow", "Profile"))
         self.pushButton_7.setText(_translate("MainWindow", "Home Page"))
-        self.label.setText(_translate("MainWindow", "Profile"))
         self.label_5.setText(_translate("MainWindow", "Rewards Available"))
         self.pushButton_9.setText(_translate("MainWindow", "Home Page"))
-        self.label_59.setText(_translate("MainWindow", "First Donation"))
-        self.label_65.setText(_translate("MainWindow", "Donor Plaque"))
-        self.label_60.setText(_translate("MainWindow", "Tenth Donation"))
-        self.label_67.setText(_translate("MainWindow", "Gift Card RM 10 & Double Chocolate Cookies"))
-        self.label_61.setText(_translate("MainWindow", "50th Donation"))
-        self.label_69.setText(_translate("MainWindow", "Gift Card RM 50 & Free Consultation"))
-        self.label_62.setText(_translate("MainWindow", "Fifth Donation"))
-        self.label_66.setText(_translate("MainWindow", "Gift card RM 5"))
-        self.label_63.setText(_translate("MainWindow", "25th Donation"))
-        self.label_68.setText(_translate("MainWindow", "Gift Card RM 25 & Termal Flask"))
-        self.label_64.setText(_translate("MainWindow", "100th Donation"))
-        self.label_70.setText(_translate("MainWindow", "Spin the Wheel to stand a chance to win a proton saga"))
-        self.label_57.setText(_translate("MainWindow", "Rewards Milestones"))
-        self.label_71.setText(_translate("MainWindow", "Your Donations:"))
         self.Hlabel_1.setText(_translate("MainWindow", "Home Page"))
         self.Hlabel_2.setText(_translate("MainWindow", "Fishy\'s Blood Donation"))
         self.HButton_7.setText(_translate("MainWindow", "Log out"))
@@ -1690,15 +1488,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "History"))
         self.label_4.setText(_translate("MainWindow", "Previous Donations"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Appointment ID"))
+        item.setText(_translate("MainWindow", "Donation Date"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "DonationType"))
+        item.setText(_translate("MainWindow", "Hospital"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "BloodType"))
+        item.setText(_translate("MainWindow", "Donation Type"))
         item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Date"))
+        item.setText(_translate("MainWindow", "New Column"))
         item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Time"))
+        item.setText(_translate("MainWindow", "Points Recieved"))
         self.pushButton_2.setText(_translate("MainWindow", "Home Page"))
         self.label_21.setText(_translate("MainWindow", "ID: "))
         self.label_9.setText(_translate("MainWindow", "Name: "))
@@ -1729,12 +1527,10 @@ class Ui_MainWindow(object):
         self.lineEdit_7.setText(_translate("MainWindow", "Enter hospital name."))
         self.pushButton_3.setText(_translate("MainWindow", "Home Page"))
         item = self.tableWidget_2.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Hospital Name"))
+        item.setText(_translate("MainWindow", "Hospital No"))
         item = self.tableWidget_2.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Hospital ID"))
-        item = self.tableWidget_2.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "City"))
-        item = self.tableWidget_2.horizontalHeaderItem(3)
+        item = self.tableWidget_2.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "Address"))
         self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1888,21 +1684,9 @@ class Ui_MainWindow(object):
         self.pushButton_53.setText(_translate("MainWindow", "More About us!"))
         self.pushButton_54.setText(_translate("MainWindow", "Rewards"))
 
-        #Item Attribute Change
-        self.tableWidget.setColumnWidth(0, 175)
-        self.tableWidget.setColumnWidth(1, 175)
-        self.tableWidget.setColumnWidth(2, 175)
-        self.tableWidget.setColumnWidth(3, 175)
-        self.tableWidget.setColumnWidth(4, 175)
-
-        self.tableWidget_2.setColumnWidth(0, 200)
-        self.tableWidget_2.setColumnWidth(1, 200)
-        self.tableWidget_2.setColumnWidth(2, 200)
-        self.tableWidget_2.setColumnWidth(3, 200)
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
-        self.HistoryData()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -1910,41 +1694,39 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_5.clicked.connect(self.SideMenuOpen)
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
-        self.pushButton_7.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
+
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
-        self.pushButton_11.clicked.connect(self.register)
         self.pushButton_13.clicked.connect(self.login)
-        self.pushButton_14.clicked.connect(lambda: self.stackedWidget_3.setCurrentIndex(0))
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
-        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
-        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
-        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
-        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
-        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
-        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
-        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
-        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
-        self.pushButton_32.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
-        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
-        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
-        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
-        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
-        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
-        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
-        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
-        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
-        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
-        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
-        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
-        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
-        self.pushButton_47.clicked.connect(lambda: self.FeedbackSubmit)
+        self.pushButton_22.clicked.connect(self.Q1)
+        self.pushButton_23.clicked.connect(self.Q1)
+        self.pushButton_24.clicked.connect(self.Q1)
+        self.pushButton_25.clicked.connect(self.Q1)
+        self.pushButton_26.clicked.connect(self.Q1)
+        self.pushButton_27.clicked.connect(self.Q2)
+        self.pushButton_28.clicked.connect(self.Q2)
+        self.pushButton_29.clicked.connect(self.Q2)
+        self.pushButton_30.clicked.connect(self.Q2)
+        self.pushButton_31.clicked.connect(self.Q2)
+        self.pushButton_32.clicked.connect(self.Q3)
+        self.pushButton_33.clicked.connect(self.Q3)
+        self.pushButton_34.clicked.connect(self.Q3)
+        self.pushButton_35.clicked.connect(self.Q3)
+        self.pushButton_36.clicked.connect(self.Q3)
+        self.pushButton_37.clicked.connect(self.Q4)
+        self.pushButton_38.clicked.connect(self.Q4)
+        self.pushButton_39.clicked.connect(self.Q4)
+        self.pushButton_40.clicked.connect(self.Q4)
+        self.pushButton_41.clicked.connect(self.Q4)
+        self.pushButton_42.clicked.connect(self.Q5)
+        self.pushButton_43.clicked.connect(self.Q5)
+        self.pushButton_44.clicked.connect(self.Q5)
+        self.pushButton_45.clicked.connect(self.Q5)
+        self.pushButton_46.clicked.connect(self.Q5)
+        self.pushButton_47.clicked.connect(self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1969,7 +1751,6 @@ class Ui_MainWindow(object):
         self.HButton_7.clicked.connect(self.logout)
         self.HButton_8.clicked.connect(self.SideMenuOpen)
 
-        #Initial variables
 
     def SideMenuClose(self):
         self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
@@ -1989,24 +1770,10 @@ class Ui_MainWindow(object):
                     MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
                     MainWindow.resize(1080, 720)
 
-        #Initialise
-    def __init__(self):
-        self.last_click_button_q1 = None
-        self.last_click_button_q5 = None
-        self.last_click_button_q4 = None
-        self.last_click_button_q3 = None
-        self.last_click_button_q2 = None
-        self.last_click_button_q1 = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_3.setCurrentIndex(1)
-        if self.frame.maximumWidth() > 0:  #
-                self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
-                self.centralwidget.setMaximumSize(QtCore.QSize(1080, 16777215))
-                MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
-                MainWindow.resize(1080, 720)
-        username = " "
 
     def login(self):
         log_Username = self.lineEdit_12.text()
@@ -2022,8 +1789,6 @@ class Ui_MainWindow(object):
                 query.addBindValue(log_Password)
                 if query.exec():
                         if query.first():
-                                global username
-                                username = log_Username
                                 self.stackedWidget.setCurrentIndex(3)
                         else:
                                 self.label_8.setText("Login failed")
@@ -2031,87 +1796,35 @@ class Ui_MainWindow(object):
                         print(query.lastError().text())
 
     def register(self):
-        log_Username = self.lineEdit_4.text()
-        log_Password = self.lineEdit_5.text()
-        log_ConfPassword = self.lineEdit_6.text()
-
-        if log_Password != log_ConfPassword:
-                self.pushButton_11.setText("Passwords do not match")
-                return True
-
-        query = QSqlQuery(db)
-        is_valid_query = query.prepare("SELECT COUNT(*) FROM Users WHERE Username = ?")
-        if is_valid_query:
-                query.addBindValue(log_Username)
-                if query.exec() and query.first():
-                        count = query.value(0)
-                        if count > 0:
-                                self.pushButton_11.setText("Username already exist")
-                                QTimer.singleShot(3500, lambda: self.pushButton_11.setText("Register"))
-                                return True
-                else:
-                        print(query.lastError().text())
-                        return True
-
-        query = QSqlQuery(db)
-        is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass) VALUES (?, ?)")
-        if is_valid_query:
-                query.addBindValue(log_Username)
-                query.addBindValue(log_Password)
-                if query.exec():
-                        self.stackedWidget.setCurrentIndex(3)
-                else:
-                        print(query.lastError().text())
-        else:
-                print(query.lastError().text())
+        print("Bruh")
+        print("2")
 
     def donation(self):
         print("Bruh")
 
+    def feedback(self):
+            print("Bruh")
 
     def FeedbackSubmit(self):
-        q1_value = str(self.last_click_button_q1)
-        q2_value = str(self.last_click_button_q2)
-        q3_value = str(self.last_click_button_q3)
-        q4_value = str(self.last_click_button_q4)
-        q5_value = str(self.last_click_button_q5)
-        q6_value = str(self.feedback_q6)
+            print("Bruh")
 
-        query = QSqlQuery()
-        query.prepare("INSERT INTO feedback (FeedbackID, username, q1, q2, q3, q4, q5, q6) VALUES (:q1, :q2, :q3, :q4, :q5, :q6)")
-        query.bindValue(":q1", q1_value)
-        query.bindValue(":q2", q2_value)
-        query.bindValue(":q3", q3_value)
-        query.bindValue(":q4", q4_value)
-        query.bindValue(":q5", q5_value)
-        query.bindValue(":q6", q6_value)
+    def Q1(self):
+            print("Bruh")
 
-
-    def Q1(self,button_num):
-        self.last_click_button_q1 = button_num
-        print(f"Button {button_num} was clicked")
-
-    def Q2(self,button_num):
-        self.last_click_button_q2 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q2(self):
+            print("Bruh")
 
     def Q3(self):
-        self.last_click_button_q3 = button_num
-        print(f"Button {button_num} was clicked")
+            print("Bruh")
 
     def Q4(self):
-        self.last_click_button_q4 = button_num
-        print(f"Button {button_num} was clicked")
+            print("Bruh")
 
     def Q5(self):
-        self.last_click_button_q5 = button_num
-        print(f"Button {button_num} was clicked")
-
-    def Q6(self):
-        feedback_q6 = self.textEdit_6.text()
+            print("Bruh")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1        #LAPTOP-GISFMR8S
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2131,38 +1844,6 @@ class Ui_MainWindow(object):
         else:
             print('connection failed')
             return False
-
-    def HistoryData(self):
-        # Retrieve the currently logged in username from the cache
-        username = "User1"
-        # Query the database for appointments for the current user
-        query = QSqlQuery(db)
-        query.prepare(
-                "SELECT AppointmentID, DonationType, BloodType, Date, Time FROM Appointments WHERE Username = ?")
-        query.addBindValue(username)
-        if query.exec():
-                # Loop over the results and populate the table widget with appointment data
-                self.tableWidget.setRowCount(0)
-                row = 0
-                while query.next():
-                        appointment_id = query.value(0)
-                        donation_type = query.value(1)
-                        blood_type = query.value(2)
-                        date = query.value(3)
-                        time = query.value(4)
-
-                        self.tableWidget.insertRow(row)
-                        self.tableWidget.setItem(row, 0, QTableWidgetItem(str(appointment_id)))
-                        self.tableWidget.setItem(row, 1, QTableWidgetItem(donation_type))
-                        self.tableWidget.setItem(row, 2, QTableWidgetItem(blood_type))
-                        self.tableWidget.setItem(row, 3, QTableWidgetItem(str(date)))
-                        self.tableWidget.setItem(row, 4, QTableWidgetItem(str(time)))
-                        row += 1
-
-        else:
-                print(query.lastError().text())
-
-
 
 
 if __name__ == "__main__":
