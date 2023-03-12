@@ -9,7 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
-from PyQt6.QtWidgets import QTableWidgetItem
+from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1686,6 +1686,13 @@ class Ui_MainWindow(object):
         self.pushButton_53.setText(_translate("MainWindow", "More About us!"))
         self.pushButton_54.setText(_translate("MainWindow", "Rewards"))
 
+        #Item Attribute Change
+        self.tableWidget.setColumnWidth(0, 175)
+        self.tableWidget.setColumnWidth(1, 175)
+        self.tableWidget.setColumnWidth(2, 175)
+        self.tableWidget.setColumnWidth(3, 175)
+        self.tableWidget.setColumnWidth(4, 175)
+
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
@@ -1884,14 +1891,12 @@ class Ui_MainWindow(object):
     def HistoryData(self):
         # Retrieve the currently logged in username from the cache
         username = "User1"
-        print("Test2")
         # Query the database for appointments for the current user
         query = QSqlQuery(db)
         query.prepare(
                 "SELECT AppointmentID, DonationType, BloodType, Date, Time FROM Appointments WHERE Username = ?")
         query.addBindValue(username)
         if query.exec():
-                print("Test1")
                 # Loop over the results and populate the table widget with appointment data
                 self.tableWidget.setRowCount(0)
                 row = 0
@@ -1901,8 +1906,6 @@ class Ui_MainWindow(object):
                         blood_type = query.value(2)
                         date = query.value(3)
                         time = query.value(4)
-                        print("Test3")
-                        print(time)
 
                         self.tableWidget.insertRow(row)
                         self.tableWidget.setItem(row, 0, QTableWidgetItem(str(appointment_id)))
