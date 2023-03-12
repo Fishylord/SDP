@@ -1,0 +1,64 @@
+CREATE TABLE [Users]
+(
+    [Username] NVARCHAR(50) NOT NULL,
+    [UserPass] NVARCHAR(50),
+    [UserType] NVARCHAR(50),
+    PRIMARY KEY ([Username])
+);
+
+CREATE TABLE [Hospital]
+(
+    [HospitalName] NVARCHAR(50) NOT NULL,
+    [HospitalID] NVARCHAR(50) NOT NULL,
+    [City] NVARCHAR(50),
+    [Address] NVARCHAR(100),
+    PRIMARY KEY ([HospitalID])
+);
+
+CREATE TABLE [UserProfile]
+(
+    [Username] NVARCHAR(50) NOT NULL,
+    [Name] NVARCHAR(50),
+    [Password] NVARCHAR(50) NOT NULL,
+    [Phone Number] INT,
+    [Email] NVARCHAR(50),
+    [Telephone] INT,
+    [Address] NVARCHAR(50),
+    FOREIGN KEY ([Username]) REFERENCES [Users]([Username])
+);
+
+CREATE TABLE [Feedback]
+(
+    [Feedback ID] INT PRIMARY KEY,
+    [Username] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES [Users]([Username]),
+    [Q1] INT,
+    [Q2] INT,
+    [Q3] INT,
+    [Q4] INT,
+    [Q5] INT,
+    [Q6] NVARCHAR(MAX)
+);
+
+CREATE TABLE [Appointments]
+(
+    [AppointmentID] INT PRIMARY KEY,
+    [Username] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES [Users]([Username]),
+    [HospitalID] NVARCHAR(50) NOT NULL FOREIGN KEY REFERENCES [Hospital]([HospitalID]),
+    [DonationType] NVARCHAR(50),
+    [BloodType] NVARCHAR(50),
+    [Date] DATE,
+    [Time] TIME
+);
+
+CREATE TABLE [Records]
+(
+    [Username] NVARCHAR(50) FOREIGN KEY REFERENCES [Users]([Username]),
+    [BloodType] NVARCHAR(50),
+    [Disease] NVARCHAR(50),
+    [Medication] NVARCHAR(50),
+    [diagnosis] NVARCHAR(50),
+    [Age] INT,
+    [Gender] NVARCHAR(10)
+);
+
+
