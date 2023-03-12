@@ -505,11 +505,11 @@ class Ui_MainWindow(object):
         self.pushButton_16 = QtWidgets.QPushButton(self.Appointment_List)
         self.pushButton_16.setGeometry(QtCore.QRect(170, 210, 161, 51))
         self.pushButton_16.setObjectName("pushButton_16")
-        self.table_widget = QtWidgets.QTableWidget(self.Appointment_List)
-        self.table_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
-        self.table_widget.setObjectName("table_widget")
-        self.table_widget.setColumnCount(0)
-        self.table_widget.setRowCount(0)
+        self.table_user_appointments_widget = QtWidgets.QTableWidget(self.Appointment_List)
+        self.table_user_appointments_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
+        self.table_user_appointments_widget.setObjectName("table_user_appointments_widget")
+        self.table_user_appointments_widget.setColumnCount(0)
+        self.table_user_appointments_widget.setRowCount(0)
         self.tabWidget.addTab(self.Appointment_List, "")
         self.User_Management = QtWidgets.QWidget()
         self.User_Management.setObjectName("User_Management")
@@ -1876,7 +1876,7 @@ class Ui_MainWindow(object):
         print(f"Button {button_num} was clicked")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -1926,6 +1926,9 @@ class Ui_MainWindow(object):
 
         else:
                 print(query.lastError().text())
+
+
+
 
 if __name__ == "__main__":
     import sys
