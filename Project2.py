@@ -1705,6 +1705,7 @@ class Ui_MainWindow(object):
         self.pushButton_52.clicked.connect(self.logout)
         self.pushButton_53.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(7))
         self.pushButton_54.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
+        self.pushButton_55.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_56.clicked.connect(self.SideMenuOpen)
         self.pushButton_57.clicked.connect(self.SideMenuOpen)
         self.pushButton_58.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
@@ -1747,6 +1748,9 @@ class Ui_MainWindow(object):
         print("Bruh")
 
     def register(self):
+        print("Bruh")
+
+    def donation(self):
         print("Bruh")
 
     def createConnection(self):
