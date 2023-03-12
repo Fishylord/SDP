@@ -12,6 +12,9 @@ from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
 from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
+
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1280, 720)
@@ -1783,6 +1786,9 @@ class Ui_MainWindow(object):
                     MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
                     MainWindow.resize(1080, 720)
 
+        #Initialise
+        def __init__(self):
+                self.last_click_button = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
@@ -1861,18 +1867,23 @@ class Ui_MainWindow(object):
             print("Bruh")
 
     def Q1(self,button_num):
+        self.last_click_button = button_num
         print(f"Button {button_num} was clicked")
 
-    def Q2(self):
+    def Q2(self,button_num):
+        self.last_click_button = button_num
         print(f"Button {button_num} was clicked")
 
     def Q3(self):
+        self.last_click_button = button_num
         print(f"Button {button_num} was clicked")
 
     def Q4(self):
+        self.last_click_button = button_num
         print(f"Button {button_num} was clicked")
 
     def Q5(self):
+        self.last_click_button = button_num
         print(f"Button {button_num} was clicked")
 
     def createConnection(self):
