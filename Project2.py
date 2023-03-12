@@ -1696,6 +1696,7 @@ class Ui_MainWindow(object):
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
+        self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
         self.pushButton_22.clicked.connect(self.Q1)
         self.pushButton_23.clicked.connect(self.Q1)
