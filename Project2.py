@@ -1723,6 +1723,7 @@ class Ui_MainWindow(object):
         self.pushButton_44.clicked.connect(self.Q5)
         self.pushButton_45.clicked.connect(self.Q5)
         self.pushButton_46.clicked.connect(self.Q5)
+        self.pushButton_47.clicked.connect(self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1781,6 +1782,18 @@ class Ui_MainWindow(object):
         print("Bruh")
 
     def feedback(self):
+            print("Bruh")
+    def FeeedbackSubmit(self):
+            print("Bruh")
+    def Q1(self):
+            print("Bruh")
+    def Q2(self):
+            print("Bruh")
+    def Q3(self):
+            print("Bruh")
+    def Q4(self):
+            print("Bruh")
+    def Q5(self):
             print("Bruh")
 
     def createConnection(self):
