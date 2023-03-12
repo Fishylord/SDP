@@ -1824,7 +1824,7 @@ class Ui_MainWindow(object):
             print("Bruh")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1        #LAPTOP-GISFMR8S
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
