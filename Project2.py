@@ -1771,7 +1771,8 @@ class Ui_MainWindow(object):
 
 
     def logout(self):
-        self.pushButton_52.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))\
+        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget_3.setCurrentIndex(1)
 
     def login(self):
         log_Username = self.lineEdit_12.text()
@@ -1805,14 +1806,19 @@ class Ui_MainWindow(object):
 
     def FeedbackSubmit(self):
             print("Bruh")
+
     def Q1(self):
             print("Bruh")
+
     def Q2(self):
             print("Bruh")
+
     def Q3(self):
             print("Bruh")
+
     def Q4(self):
             print("Bruh")
+
     def Q5(self):
             print("Bruh")
 
