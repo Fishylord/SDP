@@ -1796,7 +1796,7 @@ class Ui_MainWindow(object):
 
     def register(self):
         print("Bruh")
-        print("1")
+        print("2")
 
     def donation(self):
         print("Bruh")
