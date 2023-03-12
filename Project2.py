@@ -7,7 +7,9 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
+from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1488,15 +1490,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "History"))
         self.label_4.setText(_translate("MainWindow", "Previous Donations"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Donation Date"))
+        item.setText(_translate("MainWindow", "Appointment ID"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Hospital"))
+        item.setText(_translate("MainWindow", "DonationType"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Donation Type"))
+        item.setText(_translate("MainWindow", "BloodType"))
         item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "New Column"))
+        item.setText(_translate("MainWindow", "Date"))
         item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Points Recieved"))
+        item.setText(_translate("MainWindow", "Time"))
         self.pushButton_2.setText(_translate("MainWindow", "Home Page"))
         self.label_21.setText(_translate("MainWindow", "ID: "))
         self.label_9.setText(_translate("MainWindow", "Name: "))
@@ -1684,9 +1686,17 @@ class Ui_MainWindow(object):
         self.pushButton_53.setText(_translate("MainWindow", "More About us!"))
         self.pushButton_54.setText(_translate("MainWindow", "Rewards"))
 
+        #Item Attribute Change
+        self.tableWidget.setColumnWidth(0, 175)
+        self.tableWidget.setColumnWidth(1, 175)
+        self.tableWidget.setColumnWidth(2, 175)
+        self.tableWidget.setColumnWidth(3, 175)
+        self.tableWidget.setColumnWidth(4, 175)
+
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
+        self.HistoryData()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -1697,36 +1707,38 @@ class Ui_MainWindow(object):
 
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
+        self.pushButton_11.clicked.connect(self.register)
         self.pushButton_13.clicked.connect(self.login)
+        self.pushButton_14.clicked.connect(lambda: self.stackedWidget_3.setCurrentIndex(0))
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(self.Q1)
-        self.pushButton_23.clicked.connect(self.Q1)
-        self.pushButton_24.clicked.connect(self.Q1)
-        self.pushButton_25.clicked.connect(self.Q1)
-        self.pushButton_26.clicked.connect(self.Q1)
-        self.pushButton_27.clicked.connect(self.Q2)
-        self.pushButton_28.clicked.connect(self.Q2)
-        self.pushButton_29.clicked.connect(self.Q2)
-        self.pushButton_30.clicked.connect(self.Q2)
-        self.pushButton_31.clicked.connect(self.Q2)
-        self.pushButton_32.clicked.connect(self.Q3)
-        self.pushButton_33.clicked.connect(self.Q3)
-        self.pushButton_34.clicked.connect(self.Q3)
-        self.pushButton_35.clicked.connect(self.Q3)
-        self.pushButton_36.clicked.connect(self.Q3)
-        self.pushButton_37.clicked.connect(self.Q4)
-        self.pushButton_38.clicked.connect(self.Q4)
-        self.pushButton_39.clicked.connect(self.Q4)
-        self.pushButton_40.clicked.connect(self.Q4)
-        self.pushButton_41.clicked.connect(self.Q4)
-        self.pushButton_42.clicked.connect(self.Q5)
-        self.pushButton_43.clicked.connect(self.Q5)
-        self.pushButton_44.clicked.connect(self.Q5)
-        self.pushButton_45.clicked.connect(self.Q5)
-        self.pushButton_46.clicked.connect(self.Q5)
-        self.pushButton_47.clicked.connect(self.FeedbackSubmit)
+        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
+        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
+        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
+        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
+        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
+        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
+        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
+        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
+        self.pushButton_30.clicked.connect(lambda:self.Q2(4))
+        self.pushButton_31.clicked.connect(lambda:self.Q2(5))
+        self.pushButton_32.clicked.connect(lambda:self.Q3(2))
+        self.pushButton_33.clicked.connect(lambda:self.Q3(2))
+        self.pushButton_34.clicked.connect(lambda:self.Q3(3))
+        self.pushButton_35.clicked.connect(lambda:self.Q3(4))
+        self.pushButton_36.clicked.connect(lambda:self.Q3(5))
+        self.pushButton_37.clicked.connect(lambda:self.Q4(1))
+        self.pushButton_38.clicked.connect(lambda:self.Q4(2))
+        self.pushButton_39.clicked.connect(lambda:self.Q4(3))
+        self.pushButton_40.clicked.connect(lambda:self.Q4(4))
+        self.pushButton_41.clicked.connect(lambda:self.Q4(5))
+        self.pushButton_42.clicked.connect(lambda:self.Q5(1))
+        self.pushButton_43.clicked.connect(lambda:self.Q5(2))
+        self.pushButton_44.clicked.connect(lambda:self.Q5(3))
+        self.pushButton_45.clicked.connect(lambda:self.Q5(4))
+        self.pushButton_46.clicked.connect(lambda:self.Q5(5))
+        self.pushButton_47.clicked.connect(lambda:self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1796,8 +1808,39 @@ class Ui_MainWindow(object):
                         print(query.lastError().text())
 
     def register(self):
-        print("Bruh")
-        print("2")
+        log_Username = self.lineEdit_4.text()
+        log_Password = self.lineEdit_5.text()
+        log_ConfPassword = self.lineEdit_6.text()
+
+        if log_Password != log_ConfPassword:
+                self.pushButton_11.setText("Passwords do not match")
+                return True
+
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("SELECT COUNT(*) FROM Users WHERE Username = ?")
+        if is_valid_query:
+                query.addBindValue(log_Username)
+                if query.exec() and query.first():
+                        count = query.value(0)
+                        if count > 0:
+                                self.pushButton_11.setText("Username already exist")
+                                QTimer.singleShot(3500, lambda: self.pushButton_11.setText("Register"))
+                                return True
+                else:
+                        print(query.lastError().text())
+                        return True
+
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass) VALUES (?, ?)")
+        if is_valid_query:
+                query.addBindValue(log_Username)
+                query.addBindValue(log_Password)
+                if query.exec():
+                        self.stackedWidget.setCurrentIndex(3)
+                else:
+                        print(query.lastError().text())
+        else:
+                print(query.lastError().text())
 
     def donation(self):
         print("Bruh")
@@ -1808,23 +1851,23 @@ class Ui_MainWindow(object):
     def FeedbackSubmit(self):
             print("Bruh")
 
-    def Q1(self):
-            print("Bruh")
+    def Q1(self,button_num):
+        print(f"Button {button_num} was clicked")
 
     def Q2(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q3(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q4(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def Q5(self):
-            print("Bruh")
+        print(f"Button {button_num} was clicked")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-C59P4B6M'  #LAPTOP-C59P4B6M #LAPTOP-Q1SP2NU1
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -1845,6 +1888,35 @@ class Ui_MainWindow(object):
             print('connection failed')
             return False
 
+    def HistoryData(self):
+        # Retrieve the currently logged in username from the cache
+        username = "User1"
+        # Query the database for appointments for the current user
+        query = QSqlQuery(db)
+        query.prepare(
+                "SELECT AppointmentID, DonationType, BloodType, Date, Time FROM Appointments WHERE Username = ?")
+        query.addBindValue(username)
+        if query.exec():
+                # Loop over the results and populate the table widget with appointment data
+                self.tableWidget.setRowCount(0)
+                row = 0
+                while query.next():
+                        appointment_id = query.value(0)
+                        donation_type = query.value(1)
+                        blood_type = query.value(2)
+                        date = query.value(3)
+                        time = query.value(4)
+
+                        self.tableWidget.insertRow(row)
+                        self.tableWidget.setItem(row, 0, QTableWidgetItem(str(appointment_id)))
+                        self.tableWidget.setItem(row, 1, QTableWidgetItem(donation_type))
+                        self.tableWidget.setItem(row, 2, QTableWidgetItem(blood_type))
+                        self.tableWidget.setItem(row, 3, QTableWidgetItem(str(date)))
+                        self.tableWidget.setItem(row, 4, QTableWidgetItem(str(time)))
+                        row += 1
+
+        else:
+                print(query.lastError().text())
 
 if __name__ == "__main__":
     import sys
