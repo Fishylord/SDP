@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
 
 class Ui_MainWindow(object):
@@ -1697,7 +1698,9 @@ class Ui_MainWindow(object):
 
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
+        self.pushButton_11.clicked.connect(self.register)
         self.pushButton_13.clicked.connect(self.login)
+        self.pushButton_14.clicked.connect(lambda: self.stackedWidget_3.setCurrentIndex(0))
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
@@ -1796,8 +1799,39 @@ class Ui_MainWindow(object):
                         print(query.lastError().text())
 
     def register(self):
-        print("Bruh")
-        print("2")
+        log_Username = self.lineEdit_4.text()
+        log_Password = self.lineEdit_5.text()
+        log_ConfPassword = self.lineEdit_6.text()
+
+        if log_Password != log_ConfPassword:
+                self.pushButton_11.setText("Passwords do not match")
+                return True
+
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("SELECT COUNT(*) FROM Users WHERE Username = ?")
+        if is_valid_query:
+                query.addBindValue(log_Username)
+                if query.exec() and query.first():
+                        count = query.value(0)
+                        if count > 0:
+                                self.pushButton_11.setText("Username already exist")
+                                QTimer.singleShot(3500, lambda: self.pushButton_11.setText("Register"))
+                                return True
+                else:
+                        print(query.lastError().text())
+                        return True
+
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass) VALUES (?, ?)")
+        if is_valid_query:
+                query.addBindValue(log_Username)
+                query.addBindValue(log_Password)
+                if query.exec():
+                        self.stackedWidget.setCurrentIndex(3)
+                else:
+                        print(query.lastError().text())
+        else:
+                print(query.lastError().text())
 
     def donation(self):
         print("Bruh")
@@ -1824,7 +1858,7 @@ class Ui_MainWindow(object):
             print("Bruh")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1        #LAPTOP-GISFMR8S
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
