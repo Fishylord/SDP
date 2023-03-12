@@ -1786,6 +1786,11 @@ class Ui_MainWindow(object):
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_3.setCurrentIndex(1)
+        if self.frame.maximumWidth() > 0:  #
+                self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
+                self.centralwidget.setMaximumSize(QtCore.QSize(1080, 16777215))
+                MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
+                MainWindow.resize(1080, 720)
 
     def login(self):
         log_Username = self.lineEdit_12.text()
