@@ -1802,7 +1802,8 @@ class Ui_MainWindow(object):
 
     def feedback(self):
             print("Bruh")
-    def FeeedbackSubmit(self):
+
+    def FeedbackSubmit(self):
             print("Bruh")
     def Q1(self):
             print("Bruh")
