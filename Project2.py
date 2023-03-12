@@ -1801,6 +1801,8 @@ class Ui_MainWindow(object):
                 query.addBindValue(log_Password)
                 if query.exec():
                         if query.first():
+                                global username
+                                username = log_Username
                                 self.stackedWidget.setCurrentIndex(3)
                         else:
                                 self.label_8.setText("Login failed")
