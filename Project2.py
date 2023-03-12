@@ -1686,6 +1686,7 @@ class Ui_MainWindow(object):
 
         #Initialise Functions
         self.SideMenuClose()
+        self.createConnection()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -1695,6 +1696,7 @@ class Ui_MainWindow(object):
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
+        self.pushButton_13.clicked.connect(self.login)
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
@@ -1772,7 +1774,24 @@ class Ui_MainWindow(object):
         self.pushButton_52.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))\
 
     def login(self):
-        print("Bruh")
+        log_Username = self.lineEdit_12.text()
+        log_Password = self.lineEdit_13.text()
+        # sqlStatement = "where [Username]=log_Username AND [UserPass] = log_Password"
+        # qry = QSqlQuery(db)
+        # qry.prepare(sqlStatement)
+        # qry.exec()
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("SELECT * FROM Users WHERE Username = ? and UserPass = ?")
+        if is_valid_query:
+                query.addBindValue(log_Username)
+                query.addBindValue(log_Password)
+                if query.exec():
+                        if query.first():
+                                self.label_8.setText("Login Succesful")
+                        else:
+                                self.label_8.setText("Login failed")
+                else:
+                        print(query.lastError().text())
 
     def register(self):
         print("Bruh")
