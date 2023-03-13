@@ -2166,6 +2166,7 @@ class Ui_MainWindow(object):
 
 
     def FeedbackSubmit(self):
+        feedback_id = str(self.row_count)
         q1_value = str(self.last_click_button_q1)
         q2_value = str(self.last_click_button_q2)
         q3_value = str(self.last_click_button_q3)
@@ -2173,8 +2174,11 @@ class Ui_MainWindow(object):
         q5_value = str(self.last_click_button_q5)
         q6_value = str(self.feedback_q6)
 
+
         query = QSqlQuery()
-        query.prepare("INSERT INTO feedback (FeedbackID, username, q1, q2, q3, q4, q5, q6) VALUES (:q1, :q2, :q3, :q4, :q5, :q6)")
+        query.prepare("INSERT INTO feedback (Feedback ID, Username, q1, q2, q3, q4, q5, q6) VALUES (:feedback_id, :username, :q1, :q2, :q3, :q4, :q5, :q6)")
+        query.bindValue(":feedback_id",feedback_id)
+        query.bindValue("name",Username)
         query.bindValue(":q1", q1_value)
         query.bindValue(":q2", q2_value)
         query.bindValue(":q3", q3_value)
@@ -2183,11 +2187,11 @@ class Ui_MainWindow(object):
         query.bindValue(":q6", q6_value)
 
 
-    def Q1(self,button_num):
+    def Q1(self):
         self.last_click_button_q1 = button_num
         print(f"Button {button_num} was clicked")
 
-    def Q2(self,button_num):
+    def Q2(self):
         self.last_click_button_q2 = button_num
         print(f"Button {button_num} was clicked")
 
@@ -2205,6 +2209,15 @@ class Ui_MainWindow(object):
 
     def Q6(self):
         feedback_q6 = self.textEdit_6.text()
+
+    def feedbackid(self):
+        query.exec("SELECT COUNT(*) FROM feedback")
+        if query.next():
+            row_count = query.value(0)
+        else:
+            row_count = 0
+
+        row_count += 1
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
