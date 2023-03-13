@@ -12,6 +12,9 @@ from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
 from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
+
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1280, 720)
@@ -505,11 +508,11 @@ class Ui_MainWindow(object):
         self.pushButton_16 = QtWidgets.QPushButton(self.Appointment_List)
         self.pushButton_16.setGeometry(QtCore.QRect(170, 210, 161, 51))
         self.pushButton_16.setObjectName("pushButton_16")
-        self.table_widget = QtWidgets.QTableWidget(self.Appointment_List)
-        self.table_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
-        self.table_widget.setObjectName("table_widget")
-        self.table_widget.setColumnCount(0)
-        self.table_widget.setRowCount(0)
+        self.table_user_appointments_widget = QtWidgets.QTableWidget(self.Appointment_List)
+        self.table_user_appointments_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
+        self.table_user_appointments_widget.setObjectName("table_user_appointments_widget")
+        self.table_user_appointments_widget.setColumnCount(0)
+        self.table_user_appointments_widget.setRowCount(0)
         self.tabWidget.addTab(self.Appointment_List, "")
         self.User_Management = QtWidgets.QWidget()
         self.User_Management.setObjectName("User_Management")
@@ -728,7 +731,7 @@ class Ui_MainWindow(object):
         self.tableWidget_2 = QtWidgets.QTableWidget(self.frame_18)
         self.tableWidget_2.setGeometry(QtCore.QRect(10, 150, 1071, 531))
         self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(3)
+        self.tableWidget_2.setColumnCount(4)
         self.tableWidget_2.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -754,6 +757,14 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.tableWidget_2.setHorizontalHeaderItem(3, item)
         self.pushButton_15 = QtWidgets.QPushButton(self.Hospital_User)
         self.pushButton_15.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_15.setText("")
@@ -1529,10 +1540,12 @@ class Ui_MainWindow(object):
         self.lineEdit_7.setText(_translate("MainWindow", "Enter hospital name."))
         self.pushButton_3.setText(_translate("MainWindow", "Home Page"))
         item = self.tableWidget_2.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Hospital No"))
+        item.setText(_translate("MainWindow", "Hospital Name"))
         item = self.tableWidget_2.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "City"))
+        item.setText(_translate("MainWindow", "Hospital ID"))
         item = self.tableWidget_2.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "City"))
+        item = self.tableWidget_2.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Address"))
         self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1693,6 +1706,10 @@ class Ui_MainWindow(object):
         self.tableWidget.setColumnWidth(3, 175)
         self.tableWidget.setColumnWidth(4, 175)
 
+        self.tableWidget_2.setColumnWidth(0, 200)
+        self.tableWidget_2.setColumnWidth(1, 200)
+        self.tableWidget_2.setColumnWidth(2, 200)
+        self.tableWidget_2.setColumnWidth(3, 200)
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
@@ -1704,7 +1721,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_5.clicked.connect(self.SideMenuOpen)
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
-
+        self.pushButton_7.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_11.clicked.connect(self.register)
@@ -1721,24 +1738,24 @@ class Ui_MainWindow(object):
         self.pushButton_27.clicked.connect(lambda: self.Q2(1))
         self.pushButton_28.clicked.connect(lambda: self.Q2(2))
         self.pushButton_29.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_30.clicked.connect(lambda:self.Q2(4))
-        self.pushButton_31.clicked.connect(lambda:self.Q2(5))
-        self.pushButton_32.clicked.connect(lambda:self.Q3(2))
-        self.pushButton_33.clicked.connect(lambda:self.Q3(2))
-        self.pushButton_34.clicked.connect(lambda:self.Q3(3))
-        self.pushButton_35.clicked.connect(lambda:self.Q3(4))
-        self.pushButton_36.clicked.connect(lambda:self.Q3(5))
-        self.pushButton_37.clicked.connect(lambda:self.Q4(1))
-        self.pushButton_38.clicked.connect(lambda:self.Q4(2))
-        self.pushButton_39.clicked.connect(lambda:self.Q4(3))
-        self.pushButton_40.clicked.connect(lambda:self.Q4(4))
-        self.pushButton_41.clicked.connect(lambda:self.Q4(5))
-        self.pushButton_42.clicked.connect(lambda:self.Q5(1))
-        self.pushButton_43.clicked.connect(lambda:self.Q5(2))
-        self.pushButton_44.clicked.connect(lambda:self.Q5(3))
-        self.pushButton_45.clicked.connect(lambda:self.Q5(4))
-        self.pushButton_46.clicked.connect(lambda:self.Q5(5))
-        self.pushButton_47.clicked.connect(lambda:self.FeedbackSubmit)
+        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
+        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
+        self.pushButton_32.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
+        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
+        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
+        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
+        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
+        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
+        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
+        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
+        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
+        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
+        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
+        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
+        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
+        self.pushButton_47.clicked.connect(lambda: self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1763,6 +1780,7 @@ class Ui_MainWindow(object):
         self.HButton_7.clicked.connect(self.logout)
         self.HButton_8.clicked.connect(self.SideMenuOpen)
 
+        #Initial variables
 
     def SideMenuClose(self):
         self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
@@ -1782,10 +1800,24 @@ class Ui_MainWindow(object):
                     MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
                     MainWindow.resize(1080, 720)
 
+        #Initialise
+        def __init__(self):
+                self.last_click_button_q1 = None
+                self.last_click_button_q5 = None
+                self.last_click_button_q4 = None
+                self.last_click_button_q3 = None
+                self.last_click_button_q2 = None
+                self.last_click_button_q1 = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_3.setCurrentIndex(1)
+        if self.frame.maximumWidth() > 0:  #
+                self.frame.setMaximumSize(QtCore.QSize(0, 16777215))
+                self.centralwidget.setMaximumSize(QtCore.QSize(1080, 16777215))
+                MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
+                MainWindow.resize(1080, 720)
+        username = " "
 
     def login(self):
         log_Username = self.lineEdit_12.text()
@@ -1801,6 +1833,8 @@ class Ui_MainWindow(object):
                 query.addBindValue(log_Password)
                 if query.exec():
                         if query.first():
+                                global username
+                                username = log_Username
                                 self.stackedWidget.setCurrentIndex(3)
                         else:
                                 self.label_8.setText("Login failed")
@@ -1845,29 +1879,44 @@ class Ui_MainWindow(object):
     def donation(self):
         print("Bruh")
 
-    def feedback(self):
-            print("Bruh")
 
     def FeedbackSubmit(self):
-            print("Bruh")
+        q1_value = str(self.last_click_button_q1)
+        q2_value = str(self.last_click_button_q2)
+        q3_value = str(self.last_click_button_q3)
+        q4_value = str(self.last_click_button_q4)
+        q5_value = str(self.last_click_button_q5)
+
+        query = QSqlQuery()
+        query.prepare("INSERT INTO feedback (q1, q2) VALUES (:q1, :q2)")
+        query.bindValue(":q1", q1_value)
+        query.bindValue(":q2", q2_value)
+        query.bindValue(":q3", q3_value)
+        query.bindValue(":q4", q4_value)
+        query.bindValue(":q5", q5_value)
 
     def Q1(self,button_num):
+        self.last_click_button_q1 = button_num
         print(f"Button {button_num} was clicked")
 
-    def Q2(self):
+    def Q2(self,button_num):
+        self.last_click_button_q2 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q3(self):
+        self.last_click_button_q3 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q4(self):
+        self.last_click_button_q4 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q5(self):
+        self.last_click_button_q5 = button_num
         print(f"Button {button_num} was clicked")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -1917,6 +1966,9 @@ class Ui_MainWindow(object):
 
         else:
                 print(query.lastError().text())
+
+
+
 
 if __name__ == "__main__":
     import sys
