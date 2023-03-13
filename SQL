@@ -124,6 +124,7 @@ VALUES
     (7, 'user4', 'H003', 'Blood Donation', 'O+', '2023-03-25', '10:30:00'),
     (8, 'user5', 'H002', 'Blood Donation', 'B-', '2023-03-28', '14:30:00'),
     (9, 'user2', 'H001', 'Plasma Donation', 'A-', '2023-03-29', '11:30:00');
+
 -- Mock data for Records table
 INSERT INTO [Records] ([Username], [BloodType], [Disease], [Medication], [diagnosis], [Age], [Gender])
 VALUES

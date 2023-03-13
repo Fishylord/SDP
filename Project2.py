@@ -2048,25 +2048,25 @@ class Ui_MainWindow(object):
         self.pushButton_57.clicked.connect(self.SideMenuOpen)
         self.pushButton_58.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_59.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
-        self.pushButton_60.clicked.connect(self.Temp)
-        self.pushButton_61.clicked.connect(self.HC(1))
-        self.pushButton_62.clicked.connect(self.HC(2))
-        self.pushButton_63.clicked.connect(self.HC(3))
-        self.pushButton_64.clicked.connect(self.DC(1))
-        self.pushButton_65.clicked.connect(self.DC(2))
-        self.pushButton_66.clicked.connect(self.DC(3))
-        self.pushButton_67.clicked.connect(self.DC(0))
-        self.pushButton_68.clicked.connect(self.HC(0))
-        self.pushButton_69.clicked.connect(self.BC(5))
-        self.pushButton_70.clicked.connect(self.BC(5))
-        self.pushButton_71.clicked.connect(self.BC(5))
-        self.pushButton_72.clicked.connect(self.BC(5))
-        self.pushButton_73.clicked.connect(self.BC(5))
-        self.pushButton_74.clicked.connect(self.BC(5))
-        self.pushButton_75.clicked.connect(self.BC(5))
-        self.pushButton_76.clicked.connect(self.BC(5))
-        self.pushButton_77.clicked.connect(self.BC(5))
-        self.pushButton_78.clicked.connect(self.Temp)
+        self.pushButton_60.clicked.connect(lambda: self.Temp)
+        self.pushButton_61.clicked.connect(lambda: self.HC(1))
+        self.pushButton_62.clicked.connect(lambda: self.HC(2))
+        self.pushButton_63.clicked.connect(lambda: self.HC(3))
+        self.pushButton_64.clicked.connect(lambda: self.DC(1))
+        self.pushButton_65.clicked.connect(lambda: self.DC(2))
+        self.pushButton_66.clicked.connect(lambda: self.DC(3))
+        self.pushButton_67.clicked.connect(lambda: self.DC(0))
+        self.pushButton_68.clicked.connect(lambda: self.HC(0))
+        self.pushButton_69.clicked.connect(lambda: self.BC(5))
+        self.pushButton_70.clicked.connect(lambda: self.BC(5))
+        self.pushButton_71.clicked.connect(lambda: self.BC(5))
+        self.pushButton_72.clicked.connect(lambda: self.BC(5))
+        self.pushButton_73.clicked.connect(lambda: self.BC(5))
+        self.pushButton_74.clicked.connect(lambda: self.BC(5))
+        self.pushButton_75.clicked.connect(lambda: self.BC(5))
+        self.pushButton_76.clicked.connect(lambda: self.BC(5))
+        self.pushButton_77.clicked.connect(lambda: self.BC(5))
+        self.pushButton_78.clicked.connect(lambda: self.Temp)
 
         #Home Connections
         self.HButton_1.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(8))
@@ -2291,8 +2291,14 @@ class Ui_MainWindow(object):
                 print(query.lastError().text())
 
 
-
-
+    def Temp(self):
+        print("1")
+    def HC(self, value):
+        print("1")
+    def DC(self, value):
+        print("1")
+    def BC(self, value):
+        print("1")
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
