@@ -118,12 +118,12 @@ VALUES
     (1, 'user1', 'H001', 'Blood Donation', 'O-', '2023-03-15', '10:00:00'),
     (2, 'user2', 'H002', 'Platelet Donation', 'AB+', '2023-03-17', '14:00:00'),
     (3, 'user1', 'H003', 'Blood Donation', 'A+', '2023-03-18', '11:00:00'),
-    (4, 'user5', 'H004', 'Blood Donation', 'B+', '2023-03-20', '13:00:00'),
-    (5, 'user4', 'H005', 'Platelet Donation', 'A-', '2023-03-22', '15:00:00'),
-    (6, 'user5', 'H006', 'Plasma Donation', 'AB-', '2023-03-23', '12:00:00'),
-    (7, 'user4', 'H007', 'Blood Donation', 'O+', '2023-03-25', '10:30:00'),
-    (8, 'user5', 'H008', 'Blood Donation', 'B-', '2023-03-28', '14:30:00'),
-    (9, 'user2', 'H009', 'Plasma Donation', 'A-', '2023-03-29', '11:30:00');
+    (4, 'user5', 'H002', 'Blood Donation', 'B+', '2023-03-20', '13:00:00'),
+    (5, 'user4', 'H003', 'Platelet Donation', 'A-', '2023-03-22', '15:00:00'),
+    (6, 'user5', 'H001', 'Plasma Donation', 'AB-', '2023-03-23', '12:00:00'),
+    (7, 'user4', 'H003', 'Blood Donation', 'O+', '2023-03-25', '10:30:00'),
+    (8, 'user5', 'H002', 'Blood Donation', 'B-', '2023-03-28', '14:30:00'),
+    (9, 'user2', 'H001', 'Plasma Donation', 'A-', '2023-03-29', '11:30:00');
 -- Mock data for Records table
 INSERT INTO [Records] ([Username], [BloodType], [Disease], [Medication], [diagnosis], [Age], [Gender])
 VALUES

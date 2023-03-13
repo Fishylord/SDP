@@ -2030,7 +2030,9 @@ class Ui_MainWindow(object):
                                 else:
                                     self.stackedWidget.setCurrentIndex(3)
                         else:
-                                self.label_8.setText("Login failed")
+                            self.pushButton_13.setText("Incorrect Password/Usersname")
+                            QTimer.singleShot(3000, lambda: self.pushButton_13.setText("Login"))
+                            return True
                 else:
                         print(query.lastError().text())
 
