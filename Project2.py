@@ -508,11 +508,11 @@ class Ui_MainWindow(object):
         self.pushButton_16 = QtWidgets.QPushButton(self.Appointment_List)
         self.pushButton_16.setGeometry(QtCore.QRect(170, 210, 161, 51))
         self.pushButton_16.setObjectName("pushButton_16")
-        self.table_widget = QtWidgets.QTableWidget(self.Appointment_List)
-        self.table_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
-        self.table_widget.setObjectName("table_widget")
-        self.table_widget.setColumnCount(0)
-        self.table_widget.setRowCount(0)
+        self.table_user_appointments_widget = QtWidgets.QTableWidget(self.Appointment_List)
+        self.table_user_appointments_widget.setGeometry(QtCore.QRect(450, 70, 571, 431))
+        self.table_user_appointments_widget.setObjectName("table_user_appointments_widget")
+        self.table_user_appointments_widget.setColumnCount(0)
+        self.table_user_appointments_widget.setRowCount(0)
         self.tabWidget.addTab(self.Appointment_List, "")
         self.User_Management = QtWidgets.QWidget()
         self.User_Management.setObjectName("User_Management")
@@ -731,7 +731,7 @@ class Ui_MainWindow(object):
         self.tableWidget_2 = QtWidgets.QTableWidget(self.frame_18)
         self.tableWidget_2.setGeometry(QtCore.QRect(10, 150, 1071, 531))
         self.tableWidget_2.setObjectName("tableWidget_2")
-        self.tableWidget_2.setColumnCount(3)
+        self.tableWidget_2.setColumnCount(4)
         self.tableWidget_2.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         font = QtGui.QFont()
@@ -757,6 +757,14 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         item.setFont(font)
         self.tableWidget_2.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.tableWidget_2.setHorizontalHeaderItem(3, item)
         self.pushButton_15 = QtWidgets.QPushButton(self.Hospital_User)
         self.pushButton_15.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_15.setText("")
@@ -1532,10 +1540,12 @@ class Ui_MainWindow(object):
         self.lineEdit_7.setText(_translate("MainWindow", "Enter hospital name."))
         self.pushButton_3.setText(_translate("MainWindow", "Home Page"))
         item = self.tableWidget_2.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Hospital No"))
+        item.setText(_translate("MainWindow", "Hospital Name"))
         item = self.tableWidget_2.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "City"))
+        item.setText(_translate("MainWindow", "Hospital ID"))
         item = self.tableWidget_2.horizontalHeaderItem(2)
+        item.setText(_translate("MainWindow", "City"))
+        item = self.tableWidget_2.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Address"))
         self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -1696,6 +1706,10 @@ class Ui_MainWindow(object):
         self.tableWidget.setColumnWidth(3, 175)
         self.tableWidget.setColumnWidth(4, 175)
 
+        self.tableWidget_2.setColumnWidth(0, 200)
+        self.tableWidget_2.setColumnWidth(1, 200)
+        self.tableWidget_2.setColumnWidth(2, 200)
+        self.tableWidget_2.setColumnWidth(3, 200)
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
@@ -1707,7 +1721,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_5.clicked.connect(self.SideMenuOpen)
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
-
+        self.pushButton_7.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_11.clicked.connect(self.register)
@@ -1887,7 +1901,7 @@ class Ui_MainWindow(object):
         print(f"Button {button_num} was clicked")
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -1937,6 +1951,9 @@ class Ui_MainWindow(object):
 
         else:
                 print(query.lastError().text())
+
+
+
 
 if __name__ == "__main__":
     import sys
