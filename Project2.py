@@ -1886,14 +1886,17 @@ class Ui_MainWindow(object):
         q3_value = str(self.last_click_button_q3)
         q4_value = str(self.last_click_button_q4)
         q5_value = str(self.last_click_button_q5)
+        q6_value = str(self.feedback_q6)
 
         query = QSqlQuery()
-        query.prepare("INSERT INTO feedback (q1, q2) VALUES (:q1, :q2)")
+        query.prepare("INSERT INTO feedback (q1, q2) VALUES (:q1, :q2, :q3, :q4, :q5, :q6)")
         query.bindValue(":q1", q1_value)
         query.bindValue(":q2", q2_value)
         query.bindValue(":q3", q3_value)
         query.bindValue(":q4", q4_value)
         query.bindValue(":q5", q5_value)
+        query.bindValue(":q6", q6_value)
+
 
     def Q1(self,button_num):
         self.last_click_button_q1 = button_num
@@ -1914,6 +1917,9 @@ class Ui_MainWindow(object):
     def Q5(self):
         self.last_click_button_q5 = button_num
         print(f"Button {button_num} was clicked")
+
+    def Q6(self):
+        feedback_q6 = self.textEdit_6.text()
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
