@@ -100,7 +100,7 @@ INSERT INTO [UserProfile] ([Username], [Name], [Password], [Phone Number], [Emai
 VALUES
     ('user1', 'John Smith', 'password1', 5551234, 'johnsmith@email.com', 5555678, '123 Main Street'),
     ('user2', 'Jane Doe', 'password2', 5554321, 'janedoe@email.com', 5558765, '456 Elm Street'),
-    ('user3', 'Admin User', 'password3', NULL, NULL, NULL, NULL);
+    ('user3', 'Admin User', 'password3', NULL, NULL, NULL, NULL),
     ('user4', 'Emily Johnson', 'password4', 5551111, 'emilyjohnson@email.com', 5552222, '789 Oak Street'),
     ('user5', 'David Lee', 'password5', 5553333, 'davidlee@email.com', 5554444, '123 Main Street'),
     ('user6', 'Admin User 2', 'password6', NULL, NULL, NULL, NULL);
@@ -117,7 +117,7 @@ INSERT INTO [Appointments] ([AppointmentID], [Username], [HospitalID], [Donation
 VALUES
     (1, 'user1', 'H001', 'Blood Donation', 'O-', '2023-03-15', '10:00:00'),
     (2, 'user2', 'H002', 'Platelet Donation', 'AB+', '2023-03-17', '14:00:00'),
-    (3, 'user1', 'H003', 'Blood Donation', 'A+', '2023-03-18', '11:00:00');
+    (3, 'user1', 'H003', 'Blood Donation', 'A+', '2023-03-18', '11:00:00'),
     (4, 'user5', 'H004', 'Blood Donation', 'B+', '2023-03-20', '13:00:00'),
     (5, 'user4', 'H005', 'Platelet Donation', 'A-', '2023-03-22', '15:00:00'),
     (6, 'user5', 'H006', 'Plasma Donation', 'AB-', '2023-03-23', '12:00:00'),
@@ -129,7 +129,7 @@ INSERT INTO [Records] ([Username], [BloodType], [Disease], [Medication], [diagno
 VALUES
     ('user1', 'O+', 'None', NULL, 'Healthy', 35, 'Male'),
     ('user2', 'AB-', 'Diabetes', 'Insulin', 'Stable', 45, 'Female'),
-    ('user3', 'A+', 'High Blood Pressure', 'Lisinopril', 'Stable', 50, 'Male');
+    ('user3', 'A+', 'High Blood Pressure', 'Lisinopril', 'Stable', 50, 'Male'),
     ('user4', 'A-', 'None', NULL, 'Healthy', 27, 'Female'),
     ('user5', 'B+', 'None', NULL, 'Healthy', 33, 'Male'),
     ('user6', 'O+', 'High Cholesterol', 'Atorvastatin', 'Stable', 47, 'Female');

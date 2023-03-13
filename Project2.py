@@ -367,7 +367,7 @@ class Ui_MainWindow(object):
         self.label_59.setGeometry(QtCore.QRect(20, 10, 81, 21))
         self.label_59.setObjectName("label_59")
         self.label_65 = QtWidgets.QLabel(self.frame_45)
-        self.label_65.setGeometry(QtCore.QRect(200, 60, 81, 61))
+        self.label_65.setGeometry(QtCore.QRect(200, 60, 95, 61))
         self.label_65.setObjectName("label_65")
         self.frame_46 = QtWidgets.QFrame(self.frame_44)
         self.frame_46.setGeometry(QtCore.QRect(15, 184, 493, 163))
@@ -378,7 +378,7 @@ class Ui_MainWindow(object):
         self.label_60.setGeometry(QtCore.QRect(20, 10, 91, 21))
         self.label_60.setObjectName("label_60")
         self.label_67 = QtWidgets.QLabel(self.frame_46)
-        self.label_67.setGeometry(QtCore.QRect(120, 60, 231, 61))
+        self.label_67.setGeometry(QtCore.QRect(120, 60, 265, 61))
         self.label_67.setObjectName("label_67")
         self.frame_47 = QtWidgets.QFrame(self.frame_44)
         self.frame_47.setGeometry(QtCore.QRect(15, 353, 493, 163))
@@ -389,7 +389,7 @@ class Ui_MainWindow(object):
         self.label_61.setGeometry(QtCore.QRect(20, 10, 91, 21))
         self.label_61.setObjectName("label_61")
         self.label_69 = QtWidgets.QLabel(self.frame_47)
-        self.label_69.setGeometry(QtCore.QRect(130, 60, 191, 61))
+        self.label_69.setGeometry(QtCore.QRect(130, 60, 210, 61))
         self.label_69.setObjectName("label_69")
         self.frame_52 = QtWidgets.QFrame(self.frame_44)
         self.frame_52.setGeometry(QtCore.QRect(514, 15, 492, 163))
@@ -411,7 +411,7 @@ class Ui_MainWindow(object):
         self.label_63.setGeometry(QtCore.QRect(20, 10, 91, 21))
         self.label_63.setObjectName("label_63")
         self.label_68 = QtWidgets.QLabel(self.frame_53)
-        self.label_68.setGeometry(QtCore.QRect(180, 60, 171, 61))
+        self.label_68.setGeometry(QtCore.QRect(180, 60, 190, 61))
         self.label_68.setObjectName("label_68")
         self.frame_54 = QtWidgets.QFrame(self.frame_44)
         self.frame_54.setGeometry(QtCore.QRect(514, 353, 492, 163))
@@ -422,7 +422,7 @@ class Ui_MainWindow(object):
         self.label_64.setGeometry(QtCore.QRect(20, 10, 91, 21))
         self.label_64.setObjectName("label_64")
         self.label_70 = QtWidgets.QLabel(self.frame_54)
-        self.label_70.setGeometry(QtCore.QRect(120, 60, 281, 61))
+        self.label_70.setGeometry(QtCore.QRect(120, 60, 315, 61))
         self.label_70.setObjectName("label_70")
         self.label_57 = QtWidgets.QLabel(self.frame_14)
         self.label_57.setGeometry(QtCore.QRect(420, 130, 271, 21))
@@ -1968,7 +1968,7 @@ class Ui_MainWindow(object):
         self.HButton_6.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(9))
         self.HButton_7.clicked.connect(self.logout)
         self.HButton_8.clicked.connect(self.SideMenuOpen)
-
+        self.HButton_9.clicked.connect(self.logout)
         #Initial variables
 
     def SideMenuClose(self):
