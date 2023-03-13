@@ -1738,24 +1738,24 @@ class Ui_MainWindow(object):
         self.pushButton_27.clicked.connect(lambda: self.Q2(1))
         self.pushButton_28.clicked.connect(lambda: self.Q2(2))
         self.pushButton_29.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_30.clicked.connect(lambda:self.Q2(4))
-        self.pushButton_31.clicked.connect(lambda:self.Q2(5))
-        self.pushButton_32.clicked.connect(lambda:self.Q3(2))
-        self.pushButton_33.clicked.connect(lambda:self.Q3(2))
-        self.pushButton_34.clicked.connect(lambda:self.Q3(3))
-        self.pushButton_35.clicked.connect(lambda:self.Q3(4))
-        self.pushButton_36.clicked.connect(lambda:self.Q3(5))
-        self.pushButton_37.clicked.connect(lambda:self.Q4(1))
-        self.pushButton_38.clicked.connect(lambda:self.Q4(2))
-        self.pushButton_39.clicked.connect(lambda:self.Q4(3))
-        self.pushButton_40.clicked.connect(lambda:self.Q4(4))
-        self.pushButton_41.clicked.connect(lambda:self.Q4(5))
-        self.pushButton_42.clicked.connect(lambda:self.Q5(1))
-        self.pushButton_43.clicked.connect(lambda:self.Q5(2))
-        self.pushButton_44.clicked.connect(lambda:self.Q5(3))
-        self.pushButton_45.clicked.connect(lambda:self.Q5(4))
-        self.pushButton_46.clicked.connect(lambda:self.Q5(5))
-        self.pushButton_47.clicked.connect(lambda:self.FeedbackSubmit)
+        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
+        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
+        self.pushButton_32.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
+        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
+        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
+        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
+        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
+        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
+        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
+        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
+        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
+        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
+        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
+        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
+        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
+        self.pushButton_47.clicked.connect(lambda: self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
         self.pushButton_49.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
@@ -1802,7 +1802,12 @@ class Ui_MainWindow(object):
 
         #Initialise
         def __init__(self):
-                self.last_click_button = None
+                self.last_click_button_q1 = None
+                self.last_click_button_q5 = None
+                self.last_click_button_q4 = None
+                self.last_click_button_q3 = None
+                self.last_click_button_q2 = None
+                self.last_click_button_q1 = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
@@ -1874,30 +1879,40 @@ class Ui_MainWindow(object):
     def donation(self):
         print("Bruh")
 
-    def feedback(self):
-            print("Bruh")
 
     def FeedbackSubmit(self):
-            print("Bruh")
+        q1_value = str(self.last_click_button_q1)
+        q2_value = str(self.last_click_button_q2)
+        q3_value = str(self.last_click_button_q3)
+        q4_value = str(self.last_click_button_q4)
+        q5_value = str(self.last_click_button_q5)
+
+        query = QSqlQuery()
+        query.prepare("INSERT INTO feedback (q1, q2) VALUES (:q1, :q2)")
+        query.bindValue(":q1", q1_value)
+        query.bindValue(":q2", q2_value)
+        query.bindValue(":q3", q3_value)
+        query.bindValue(":q4", q4_value)
+        query.bindValue(":q5", q5_value)
 
     def Q1(self,button_num):
-        self.last_click_button = button_num
+        self.last_click_button_q1 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q2(self,button_num):
-        self.last_click_button = button_num
+        self.last_click_button_q2 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q3(self):
-        self.last_click_button = button_num
+        self.last_click_button_q3 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q4(self):
-        self.last_click_button = button_num
+        self.last_click_button_q4 = button_num
         print(f"Button {button_num} was clicked")
 
     def Q5(self):
-        self.last_click_button = button_num
+        self.last_click_button_q5 = button_num
         print(f"Button {button_num} was clicked")
 
     def createConnection(self):
