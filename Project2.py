@@ -163,7 +163,30 @@ class Ui_MainWindow(object):
         self.UserProfile_2 = QtWidgets.QWidget()
         self.UserProfile_2.setObjectName("UserProfile_2")
         self.frame_20 = QtWidgets.QFrame(self.UserProfile_2)
-        self.frame_20.setGeometry(QtCore.QRect(0, -20, 1131, 761))
+        self.frame_20.setGeometry(QtCore.QRect(0, 0, 1131, 761))
+        self.frame_20.setStyleSheet("#frame_20{\n"
+                                    "    background-color:white;\n"
+                                    "}\n"
+                                    "\n"
+                                    "#frame_20 QLabel{\n"
+                                    "    background-color: transparent;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton {\n"
+                                    "  background-color: transparent;\n"
+                                    "  border-radius: 10px;\n"
+                                    "  border: 2px solid black;\n"
+                                    "  padding: 3px;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QTextEdit{\n"
+                                    " background-color: transparent;\n"
+                                    "  border-radius: 3px;\n"
+                                    "  border: 2px solid black;\n"
+                                    "  padding: 4px;\n"
+                                    "}\n"
+                                    "\n"
+                                    "")
         self.frame_20.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
@@ -171,46 +194,86 @@ class Ui_MainWindow(object):
         self.pushButton_8.setGeometry(QtCore.QRect(950, 680, 75, 23))
         self.pushButton_8.setObjectName("pushButton_8")
         self.label_8 = QtWidgets.QLabel(self.frame_20)
-        self.label_8.setGeometry(QtCore.QRect(540, 380, 111, 16))
+        self.label_8.setGeometry(QtCore.QRect(100, 220, 111, 16))
         self.label_8.setObjectName("label_8")
         self.textEdit = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit.setGeometry(QtCore.QRect(320, 170, 331, 31))
+        self.textEdit.setGeometry(QtCore.QRect(100, 250, 211, 41))
         self.textEdit.setObjectName("textEdit")
         self.textEdit_2 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_2.setGeometry(QtCore.QRect(320, 210, 331, 31))
+        self.textEdit_2.setGeometry(QtCore.QRect(100, 300, 211, 41))
         self.textEdit_2.setObjectName("textEdit_2")
         self.textEdit_3 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_3.setGeometry(QtCore.QRect(320, 260, 331, 31))
+        self.textEdit_3.setGeometry(QtCore.QRect(100, 350, 211, 41))
         self.textEdit_3.setObjectName("textEdit_3")
         self.textEdit_4 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_4.setGeometry(QtCore.QRect(320, 310, 331, 31))
+        self.textEdit_4.setGeometry(QtCore.QRect(100, 400, 211, 41))
         self.textEdit_4.setObjectName("textEdit_4")
+        self.label_58 = QtWidgets.QLabel(self.frame_20)
+        self.label_58.setGeometry(QtCore.QRect(520, 210, 71, 16))
+        self.label_58.setObjectName("label_58")
         self.textEdit_5 = QtWidgets.QTextEdit(self.frame_20)
-        self.textEdit_5.setGeometry(QtCore.QRect(300, 420, 561, 271))
+        self.textEdit_5.setGeometry(QtCore.QRect(520, 240, 91, 41))
         self.textEdit_5.setObjectName("textEdit_5")
-        self.label = QtWidgets.QLabel(self.frame_20)
-        self.label.setGeometry(QtCore.QRect(466, 53, 211, 31))
+        self.textEdit_7 = QtWidgets.QTextEdit(self.frame_20)
+        self.textEdit_7.setGeometry(QtCore.QRect(520, 290, 71, 41))
+        self.textEdit_7.setObjectName("textEdit_7")
+        self.textEdit_8 = QtWidgets.QTextEdit(self.frame_20)
+        self.textEdit_8.setGeometry(QtCore.QRect(520, 350, 81, 41))
+        self.textEdit_8.setObjectName("textEdit_8")
+        self.textEdit_9 = QtWidgets.QTextEdit(self.frame_20)
+        self.textEdit_9.setGeometry(QtCore.QRect(520, 400, 211, 61))
+        self.textEdit_9.setObjectName("textEdit_9")
+        self.textEdit_10 = QtWidgets.QTextEdit(self.frame_20)
+        self.textEdit_10.setGeometry(QtCore.QRect(520, 470, 211, 71))
+        self.textEdit_10.setObjectName("textEdit_10")
+        self.textEdit_11 = QtWidgets.QTextEdit(self.frame_20)
+        self.textEdit_11.setGeometry(QtCore.QRect(520, 550, 211, 71))
+        self.textEdit_11.setObjectName("textEdit_11")
+        self.frame_43 = QtWidgets.QFrame(self.frame_20)
+        self.frame_43.setGeometry(QtCore.QRect(0, 0, 1081, 161))
+        self.frame_43.setStyleSheet("#frame_43{\n"
+                                    "    background-color: qlineargradient(spread:pad, x1:0.5, y1:0.7, x2:0.5, y2:1, stop:0.570621 rgba(46, 46, 46, 255), stop:1 rgba(109, 109, 109, 255));\n"
+                                    "}\n"
+                                    "\n"
+                                    "#frame_43 QLabel{\n"
+                                    "    background-color: transparent;\n"
+                                    "    text-color: white;\n"
+                                    "}\n"
+                                    "\n"
+                                    "QPushButton {\n"
+                                    "  background-color: white;\n"
+                                    "  border-radius: 10px;\n"
+                                    "  border: 2px solid black;\n"
+                                    "  padding: 3px;\n"
+                                    "}\n"
+                                    "")
+        self.frame_43.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame_43.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame_43.setObjectName("frame_43")
+        self.pushButton_7 = QtWidgets.QPushButton(self.frame_43)
+        self.pushButton_7.setGeometry(QtCore.QRect(10, 20, 91, 31))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_7.setIcon(icon)
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.label = QtWidgets.QLabel(self.frame_43)
+        self.label.setGeometry(QtCore.QRect(460, 60, 111, 31))
         font = QtGui.QFont()
         font.setFamily("Arial")
         font.setPointSize(24)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
+        self.label.setStyleSheet("color: rgb(255,255,255);")
         self.label.setObjectName("label")
-        self.pushButton_6 = QtWidgets.QPushButton(self.frame_20)
-        self.pushButton_6.setGeometry(QtCore.QRect(1040, 20, 41, 31))
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_43)
+        self.pushButton_6.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_6.setText("")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_6.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_6.setIcon(icon1)
         self.pushButton_6.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_6.setObjectName("pushButton_6")
-        self.pushButton_7 = QtWidgets.QPushButton(self.frame_20)
-        self.pushButton_7.setGeometry(QtCore.QRect(0, 20, 91, 31))
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_7.setIcon(icon1)
-        self.pushButton_7.setObjectName("pushButton_7")
         self.stackedWidget.addWidget(self.UserProfile_2)
         self.Reward = QtWidgets.QWidget()
         self.Reward.setObjectName("Reward")
@@ -1480,11 +1543,43 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Password</p></body></html>"))
-        self.textEdit_5.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User Record</p></body></html>"))
+        self.label_58.setText(_translate("MainWindow", "USER RECORD"))
+        self.textEdit_5.setHtml(_translate("MainWindow",
+                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                           "p, li { white-space: pre-wrap; }\n"
+                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Gender</p></body></html>"))
+        self.textEdit_7.setHtml(_translate("MainWindow",
+                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                           "p, li { white-space: pre-wrap; }\n"
+                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Age</p></body></html>"))
+        self.textEdit_8.setHtml(_translate("MainWindow",
+                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                           "p, li { white-space: pre-wrap; }\n"
+                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Blood Type</p></body></html>"))
+        self.textEdit_9.setHtml(_translate("MainWindow",
+                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                           "p, li { white-space: pre-wrap; }\n"
+                                           "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Disease</p></body></html>"))
+        self.textEdit_10.setHtml(_translate("MainWindow",
+                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                            "p, li { white-space: pre-wrap; }\n"
+                                            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Diagnosis</p></body></html>"))
+        self.textEdit_11.setHtml(_translate("MainWindow",
+                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                            "p, li { white-space: pre-wrap; }\n"
+                                            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                            "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Medication</p></body></html>"))
         self.label.setText(_translate("MainWindow", "Profile"))
         self.pushButton_7.setText(_translate("MainWindow", "Home Page"))
         self.label_5.setText(_translate("MainWindow", "Rewards Available"))
@@ -1801,13 +1896,13 @@ class Ui_MainWindow(object):
                     MainWindow.resize(1080, 720)
 
         #Initialise
-        def __init__(self):
-                self.last_click_button_q1 = None
-                self.last_click_button_q5 = None
-                self.last_click_button_q4 = None
-                self.last_click_button_q3 = None
-                self.last_click_button_q2 = None
-                self.last_click_button_q1 = None
+    def __init__(self):
+        self.last_click_button_q1 = None
+        self.last_click_button_q5 = None
+        self.last_click_button_q4 = None
+        self.last_click_button_q3 = None
+        self.last_click_button_q2 = None
+        self.last_click_button_q1 = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
