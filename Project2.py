@@ -2412,10 +2412,10 @@ class Ui_MainWindow(object):
                 print(query.lastError().text())
 
     def admin_view_appointments(self):
-        #get name for query
+        # get name for query
         name = self.lineEdit.text()
 
-        #prepare query
+        # prepare query
         query = QSqlQuery(db)
         query.prepare("SELECT * from [Appointments] WHERE Username = ?")
 
@@ -2425,12 +2425,13 @@ class Ui_MainWindow(object):
             rows = 0
             while query.next():
                 self.table_widget.insertRow(rows)
-                for i in range(query.size()):
-                    self.table_widget.setItem(rows, i, QTableWidgetItem(i))
+                for i in range(query.record().count()):
+                    self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
 
                 rows += 1
         else:
             print(query.lastError().text())
+
 
     def edit_user(self):
         #get username
