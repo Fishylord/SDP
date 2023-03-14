@@ -9,9 +9,10 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
-from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
+from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView, QPushButton
 
 class Ui_MainWindow(object):
+
 
 
 
@@ -2131,31 +2132,31 @@ class Ui_MainWindow(object):
         self.pushButton_17.clicked.connect(lambda: self.edit_user())
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
-        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
-        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
-        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
-        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
-        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
-        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
-        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
-        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
-        self.pushButton_32.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
-        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
-        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
-        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
-        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
-        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
-        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
-        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
-        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
-        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
-        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
-        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
-        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
+        self.pushButton_22.clicked.connect(lambda: self.Q1(0))
+        self.pushButton_23.clicked.connect(lambda: self.Q1(1))
+        self.pushButton_24.clicked.connect(lambda: self.Q1(2))
+        self.pushButton_25.clicked.connect(lambda: self.Q1(3))
+        self.pushButton_26.clicked.connect(lambda: self.Q1(4))
+        self.pushButton_27.clicked.connect(lambda: self.Q2(0))
+        self.pushButton_28.clicked.connect(lambda: self.Q2(1))
+        self.pushButton_29.clicked.connect(lambda: self.Q2(2))
+        self.pushButton_30.clicked.connect(lambda: self.Q2(3))
+        self.pushButton_31.clicked.connect(lambda: self.Q2(4))
+        self.pushButton_32.clicked.connect(lambda: self.Q3(0))
+        self.pushButton_33.clicked.connect(lambda: self.Q3(1))
+        self.pushButton_34.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_35.clicked.connect(lambda: self.Q3(3))
+        self.pushButton_36.clicked.connect(lambda: self.Q3(4))
+        self.pushButton_37.clicked.connect(lambda: self.Q4(0))
+        self.pushButton_38.clicked.connect(lambda: self.Q4(1))
+        self.pushButton_39.clicked.connect(lambda: self.Q4(2))
+        self.pushButton_40.clicked.connect(lambda: self.Q4(3))
+        self.pushButton_41.clicked.connect(lambda: self.Q4(4))
+        self.pushButton_42.clicked.connect(lambda: self.Q5(0))
+        self.pushButton_43.clicked.connect(lambda: self.Q5(1))
+        self.pushButton_44.clicked.connect(lambda: self.Q5(2))
+        self.pushButton_45.clicked.connect(lambda: self.Q5(3))
+        self.pushButton_46.clicked.connect(lambda: self.Q5(4))
         self.pushButton_47.clicked.connect(lambda: self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
@@ -2222,12 +2223,13 @@ class Ui_MainWindow(object):
 
         #Initialise
     def __init__(self):
-        self.last_click_button_q1 = None
-        self.last_click_button_q5 = None
-        self.last_click_button_q4 = None
-        self.last_click_button_q3 = None
-        self.last_click_button_q2 = None
-        self.last_click_button_q1 = None
+        self.buttonList_q1 = None
+        self.buttonList_q2 = None
+        self.buttonList_q3 = None
+        self.buttonList_q4 = None
+        self.buttonList_q5 = None
+        self.lastButtonIndex = None
+
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
@@ -2308,13 +2310,6 @@ class Ui_MainWindow(object):
 
     def FeedbackSubmit(self):
         feedback_id = str(self.row_count)
-        q1_value = str(self.last_click_button_q1)
-        q2_value = str(self.last_click_button_q2)
-        q3_value = str(self.last_click_button_q3)
-        q4_value = str(self.last_click_button_q4)
-        q5_value = str(self.last_click_button_q5)
-        q6_value = str(self.feedback_q6)
-
 
         query = QSqlQuery()
         query.prepare("INSERT INTO feedback (Feedback ID, Username, q1, q2, q3, q4, q5, q6) VALUES (:feedback_id, :username, :q1, :q2, :q3, :q4, :q5, :q6)")
@@ -2328,25 +2323,40 @@ class Ui_MainWindow(object):
         query.bindValue(":q6", q6_value)
 
 
-    def Q1(self):
-        self.last_click_button_q1 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q1(self, index_q1):
+        self.buttonList_q1 = [self.pushButton_22,self.pushButton_23,self.pushButton_24,self.pushButton_25,self.pushButton_26]
+        if self.lastButtonIndex is not None:
+            self.buttonList_q1[self.lastButtonIndex].setStyleSheet("")
+        self.buttonList_q1[index_q1].setStyleSheet("background-color: grey;")
+        self.lastButtonIndex = index_q1
 
-    def Q2(self):
-        self.last_click_button_q2 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q2(self, index_q2):
+        self.buttonList_q2 = [self.pushButton_27, self.pushButton_28, self.pushButton_29, self.pushButton_30,self.pushButton_31]
+        if self.lastButtonIndex is not None:
+            self.buttonList_q2[self.lastButtonIndex].setStyleSheet("")
+        self.buttonList_q2[index_q2].setStyleSheet("background-color: grey;")
+        self.lastButtonIndex = index_q2
 
-    def Q3(self):
-        self.last_click_button_q3 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q3(self, index_q3):
+        self.buttonList_q3 = [self.pushButton_32, self.pushButton_33, self.pushButton_34, self.pushButton_35,self.pushButton_36]
+        if self.lastButtonIndex is not None:
+            self.buttonList_q3[self.lastButtonIndex].setStyleSheet("")
+        self.buttonList_q3[index_q3].setStyleSheet("background-color: grey;")
+        self.lastButtonIndex = index_q3
 
-    def Q4(self):
-        self.last_click_button_q4 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q4(self, index_q4):
+        self.buttonList_q4 = [self.pushButton_37, self.pushButton_38, self.pushButton_39, self.pushButton_40,self.pushButton_41]
+        if self.lastButtonIndex is not None:
+            self.buttonList_q4[self.lastButtonIndex].setStyleSheet("")
+        self.buttonList_q4[index_q4].setStyleSheet("background-color: grey;")
+        self.lastButtonIndex = index_q4
 
-    def Q5(self):
-        self.last_click_button_q5 = button_num
-        print(f"Button {button_num} was clicked")
+    def Q5(self, index_q5):
+        self.buttonList_q5 = [self.pushButton_42, self.pushButton_43, self.pushButton_44, self.pushButton_45,self.pushButton_46]
+        if self.lastButtonIndex is not None:
+            self.buttonList_q5[self.lastButtonIndex].setStyleSheet("")
+        self.buttonList_q5[index_q5].setStyleSheet("background-color: grey;")
+        self.lastButtonIndex = index_q5
 
     def Q6(self):
         feedback_q6 = self.textEdit_6.text()
