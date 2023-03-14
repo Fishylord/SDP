@@ -2127,6 +2127,7 @@ class Ui_MainWindow(object):
         self.pushButton_13.clicked.connect(self.login)
         self.pushButton_14.clicked.connect(lambda: self.stackedWidget_3.setCurrentIndex(0))
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
+        self.pushButton_17.clicked.connect(lambda: self.edit_user())
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
         self.pushButton_22.clicked.connect(lambda: self.Q1(1))
@@ -2424,12 +2425,36 @@ class Ui_MainWindow(object):
             rows = 0
             while query.next():
                 self.table_widget.insertRow(rows)
-                for i in range(query.record().count()):
-                    self.table_widget.setItem(rows,i,QTableWidgetItem(i))
+                for i in range(query.size()):
+                    self.table_widget.setItem(rows, i, QTableWidgetItem(i))
 
                 rows += 1
         else:
             print(query.lastError().text())
+
+    def edit_user(self):
+        #get username
+        username = str(self.lineEdit_3.text())
+        print(username)
+
+        #query
+        query = QSqlQuery(db)
+        query.prepare("Select Distinct Name, Records.Username, Gender, Age, Address, Email, Telephone, BloodType, Disease, Medication, diagnosis from Records inner join UserProfile on Records.Username = UserProfile.Username where Records.Username = :username")
+        query.addBindValue(username)
+        if query.exec():
+            print("query done")
+            while(query.next()):
+                for i in range(query.size()):
+                    print(str(query.value(i)))
+
+            self.lineEdit_8.setText(str(query.value(0)))
+            #username
+            print(str(query.value(1)))
+            self.lineEdit_9.setText(str(query.value(1)))
+        else:
+            print("query failed")
+
+
 
 
     def Temp(self):
@@ -2440,6 +2465,8 @@ class Ui_MainWindow(object):
         print("1")
     def BC(self, value):
         print("1")
+
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
