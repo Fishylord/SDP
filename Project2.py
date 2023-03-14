@@ -1911,7 +1911,6 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.SideMenuOpen)
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
         self.pushButton_7.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
-        self.pushButton_8.clicked.connect(self.EditProfile)
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_11.clicked.connect(self.register)
@@ -2110,23 +2109,6 @@ class Ui_MainWindow(object):
 
     def Q6(self):
         feedback_q6 = self.textEdit_6.text()
-
-    def EditProfile(self):
-        edit_name = self.textEdit.text()
-        edit_email = self.textEdit_2.text()
-        edit_mobile = self.textEdit_3.text()
-        edit_password = self.textEdit_4.text()
-        edit_gender = self.textEdit_5.text()
-        edit_age = self.textEdit_7.text()
-        edit_blood = self.textEdit_8.text()
-        edit_disease = self.textEdit_9.text()
-        edit_diagnosis = self.textEdit_10.text()
-        edit_medication = self.textEdit_11.text()
-
-
-    def Profile(self):
-
-
 
     def createConnection(self):
         SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
