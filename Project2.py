@@ -2197,7 +2197,7 @@ class Ui_MainWindow(object):
         query = QSqlQuery()
         query.prepare("INSERT INTO feedback (Feedback ID, Username, q1, q2, q3, q4, q5, q6) VALUES (:feedback_id, :username, :q1, :q2, :q3, :q4, :q5, :q6)")
         query.bindValue(":feedback_id",feedback_id)
-        query.bindValue("name",Username)
+        query.bindValue("name",username)
         query.bindValue(":q1", q1_value)
         query.bindValue(":q2", q2_value)
         query.bindValue(":q3", q3_value)
