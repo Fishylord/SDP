@@ -2384,7 +2384,7 @@ class Ui_MainWindow(object):
 
     def HistoryData(self):
         # Retrieve the currently logged in username from the cache
-        username = "User1"
+        username = "user1"
         # Query the database for appointments for the current user
         query = QSqlQuery(db)
         query.prepare(
@@ -2413,18 +2413,26 @@ class Ui_MainWindow(object):
                 print(query.lastError().text())
 
     def UserProfile(self):
-
-        # Query the database for appointments for the current user
+        # Query the database for user profile data
+        username = "user1"
         query = QSqlQuery(db)
         query.prepare(
-            "SELECT Username, Name, Password, Phone Number, Email, Telephone, Address FROM UserProfile WHERE Username = ?")
+            "SELECT * FROM UserProfile WHERE Username = ?")
+        query.addBindValue(username)
         if query.exec():
+            # Fetch the data from the query result
+            query.next()
             Name = query.value(1)
             Password = query.value(2)
             Phone_Number = query.value(3)
             Email = query.value(4)
             Telephone = query.value(5)
             Address = query.value(6)
+
+            # Set the text of the QTextEdit widget
+            self.textEdit.setPlainText(Name)
+        else:
+            print(query.lastError().text())  # print the error message if the query fails
         query.prepare(
             "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
         if query.exec():
