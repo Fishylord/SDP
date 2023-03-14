@@ -640,6 +640,7 @@ class Ui_MainWindow(object):
         self.pushButton_16 = QtWidgets.QPushButton(self.Appointment_List)
         self.pushButton_16.setGeometry(QtCore.QRect(710, 30, 220, 50))
         self.pushButton_16.setObjectName("pushButton_16")
+        self.pushButton_16.clicked.connect(self.admin_view_appointments)
         self.lineEdit = QtWidgets.QLineEdit(self.Appointment_List)
         self.lineEdit.setGeometry(QtCore.QRect(510, 20, 191, 51))
         self.lineEdit.setStyleSheet("border-color: \"black\"")
@@ -2083,6 +2084,7 @@ class Ui_MainWindow(object):
         self.SideMenuClose()
         self.createConnection()
         self.HistoryData()
+        self.admin_view_appointments()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -2329,7 +2331,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2379,6 +2381,27 @@ class Ui_MainWindow(object):
 
         else:
                 print(query.lastError().text())
+
+    def admin_view_appointments(self):
+        #get name for query
+        name = self.lineEdit.text()
+
+        #prepare query
+        query = QSqlQuery(db)
+        query.prepare("SELECT * from [Appointments] WHERE Username = ?")
+
+        query.addBindValue(name)
+        if query.exec():
+            self.table_widget.setRowCount(0)
+            rows = 0
+            while query.next():
+                self.table_widget.insertRow(rows)
+                for i in range(query.record().count()):
+                    self.table_widget.setItem(rows,i,QTableWidgetItem(i))
+
+                rows += 1
+        else:
+            print(query.lastError().text())
 
 
     def Temp(self):
