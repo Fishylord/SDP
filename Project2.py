@@ -2360,7 +2360,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'DESKTOP-T07EGLG'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2410,6 +2410,53 @@ class Ui_MainWindow(object):
 
         else:
                 print(query.lastError().text())
+
+    def UserProfile(self):
+
+        # Query the database for appointments for the current user
+        query = QSqlQuery(db)
+        query.prepare(
+            "SELECT Username, Name, Password, Phone Number, Email, Telephone, Address FROM UserProfile WHERE Username = ?")
+        if query.exec():
+            Name = query.value(1)
+            Password = query.value(2)
+            Phone_Number = query.value(3)
+            Email = query.value(4)
+            Telephone = query.value(5)
+            Address = query.value(6)
+        query.prepare(
+            "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
+        if query.exec():
+            BloodType = query.value(1)
+            Disease = query.value(2)
+            Medication = query.value(3)
+            diagnosis = query.value(4)
+            Age = query.value(5)
+            Gender = query.value(6)
+
+        self.textEdit.setHtml(_translate("MainWindow",
+                                         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                         "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                         "p, li { white-space: pre-wrap; }\n"
+                                         "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+                                         "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Name</p></body></html>"))
+
+
+
+    def EditProfile(self):
+        # Retrieve the currently logged in username from the cache
+        username = "User1"
+        # Query the database for appointments for the current user
+        query = QSqlQuery(db)
+        query.prepare(
+            "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
+        edit_name = self.textEdit.text()
+        edit_gender = self.textEdit_5.text()
+        edit_age = self.textEdit_7.text()
+        edit_blood = self.textEdit_8.text()
+        edit_disease = self.textEdit_9.text()
+        edit_diagnosis = self.textEdit_10.text()
+        edit_medication = self.textEdit_11.text()
 
     def admin_view_appointments(self):
         #get name for query
