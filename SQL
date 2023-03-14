@@ -77,7 +77,7 @@ CREATE TABLE [Records]
 
 
 
-# Insert Data
+-- Insert Data
 
 -- Mock data for Users table
 INSERT INTO [Users] ([Username], [UserPass], [UserType])
