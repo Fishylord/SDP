@@ -2111,7 +2111,7 @@ class Ui_MainWindow(object):
         feedback_q6 = self.textEdit_6.text()
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2162,6 +2162,43 @@ class Ui_MainWindow(object):
         else:
                 print(query.lastError().text())
 
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare("INSERT INTO Records (Username, Gender, Age, BloodType, Disease, diagnosis, Medication) VALUES (?, ?)")
+        if is_valid_query:
+            query.addBindValue(edit_name)
+            query.addBindValue(edit_email)
+            query.addBindValue(edit_mobile)
+            query.addBindValue(edit_password)
+            query.addBindValue(edit_gender)
+            query.addBindValue(edit_age)
+            query.addBindValue(edit_blood)
+            query.addBindValue(edit_disease)
+            query.addBindValue(edit_diagnosis)
+            query.addBindValue(edit_medication)
+            if query.exec():
+                self.stackedWidget.setCurrentIndex(3)
+            else:
+                print(query.lastError().text())
+        else:
+            print(query.lastError().text())
+
+    def ShowData(self):
+        # Assign the values to the text box
+        query = QSqlQuery(db)
+        is_valid_query = query.prepare(
+            "SELECT Records (Username, Gender, Age, BloodType, Disease, diagnosis, Medication) VALUES (?, ?)")
+        for row in results:
+            edit_name.insert(tk.END, str(row) + '\n')
+            edit_email.insert(tk.END, str(row) + '\n')
+            edit_mobile.insert(tk.END, str(row) + '\n')
+            edit_password.insert(tk.END, str(row) + '\n')
+            edit_gender.insert(tk.END, str(row) + '\n')
+            edit_age.insert(tk.END, str(row) + '\n')
+            edit_blood.insert(tk.END, str(row) + '\n')
+            edit_disease.insert(tk.END, str(row) + '\n')
+            edit_diagnosis.insert(tk.END, str(row) + '\n')
+            edit_medication.insert(tk.END, str(row) + '\n')
+            #code does not work for now will need to re think here^^^
 
 
 
