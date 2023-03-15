@@ -2203,6 +2203,7 @@ class Ui_MainWindow(object):
         self.value = None
         self.value_2 = None
         self.value_3 = None
+        self.Feed = None
 
         #Item Attribute Change
         self.tableWidget.setColumnWidth(0, 175)
@@ -2521,32 +2522,40 @@ class Ui_MainWindow(object):
 
 
     def FeedbackSubmit(self):
-        def FeedbackSubmit(self):
-            self.pushButton_47.setStyleSheet("background-color: grey;")
-            feedback_id = str(self.feedbackid())
-            name = str(self.lineEdit_3.text())
-            q1 = str(self.lastButtonIndex_q1)
-            q2 = str(self.lastButtonIndex_q2)
-            q3 = str(self.lastButtonIndex_q3)
-            q4 = str(self.lastButtonIndex_q4)
-            q5 = str(self.lastButtonIndex_q5)
-            q6 = self.textEdit_6.text()
+        self.pushButton_47.setStyleSheet("background-color: grey;")
+        self.feedbackid()
+        feedback_id = str(self.Feed)
+        q1 = str(self.lastButtonIndex_q1)
+        q2 = str(self.lastButtonIndex_q2)
+        q3 = str(self.lastButtonIndex_q3)
+        q4 = str(self.lastButtonIndex_q4)
+        q5 = str(self.lastButtonIndex_q5)
+        q6 = str(self.textEdit_6.toPlainText())
+        print("AA")
+        print(feedback_id)
+        print("AA")
+        print(q1)
+        print(q2)
+        print(q3)
+        print(q4)
+        print(q5)
+        print(q6)
+        if not db.open():
+            print("Failed to connect to database")
+        query = QSqlQuery(db)
+        query.prepare("INSERT INTO Feedback ([Feedback ID], Username, Q1, Q2, Q3, Q4, Q5, Q6) "
+                      "VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
+        query.bindValue(":feedback_id", feedback_id)
+        query.bindValue(":name", username)
+        query.bindValue(":q1", q1)
+        query.bindValue(":q2", q2)
+        query.bindValue(":q3", q3)
+        query.bindValue(":q4", q4)
+        query.bindValue(":q5", q5)
+        query.bindValue(":q6", q6)
+        if not query.exec():
+            print("Failed to execute query")
 
-            if not db.open():
-                print("Failed to connect to database")
-            query = QSqlQuery(db)
-            query.prepare("INSERT INTO Feedback (Feedback ID, Username, Q1, Q2, Q3, Q4, Q5, Q6) "
-                          "VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
-            query.bindValue(":feedback_id", feedback_id)
-            query.bindValue(":name", name)
-            query.bindValue(":q1", q1)
-            query.bindValue(":q2", q2)
-            query.bindValue(":q3", q3)
-            query.bindValue(":q4", q4)
-            query.bindValue(":q5", q5)
-            query.bindValue(":q6", q6)
-            if not query.exec():
-                print("Failed to execute query")
 
 
 
@@ -2591,14 +2600,14 @@ class Ui_MainWindow(object):
         query = QSqlQuery(db)
         query.exec("SELECT COUNT(*) FROM Feedback")
         if query.next():
-            row_count = query.value(0)
+            self.Feed = query.value(0) + 1
         else:
             row_count = 0
 
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-C59P4B6M'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
