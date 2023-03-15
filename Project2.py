@@ -2182,23 +2182,23 @@ class Ui_MainWindow(object):
         self.pushButton_58.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_59.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_60.clicked.connect(lambda: self.Temp)
-        self.pushButton_61.clicked.connect(lambda: self.Temp(value = 1))
-        self.pushButton_62.clicked.connect(lambda: self.Temp(value = 2))
-        self.pushButton_63.clicked.connect(lambda: self.Temp(value = 3))
-        self.pushButton_64.clicked.connect(lambda: self.Temp(value_2 = 1))
-        self.pushButton_65.clicked.connect(lambda: self.Temp(value_2 = 2))
-        self.pushButton_66.clicked.connect(lambda: self.Temp(value_2 = 3))
+        self.pushButton_61.clicked.connect(lambda: self.Temp(value = "H001"))
+        self.pushButton_62.clicked.connect(lambda: self.Temp(value = "H002"))
+        self.pushButton_63.clicked.connect(lambda: self.Temp(value = "H003"))
+        self.pushButton_64.clicked.connect(lambda: self.Temp(value_2 = "Blood Donation"))
+        self.pushButton_65.clicked.connect(lambda: self.Temp(value_2 = "Plasma Donation"))
+        self.pushButton_66.clicked.connect(lambda: self.Temp(value_2 = "Platelet Donation"))
         self.pushButton_67.clicked.connect(lambda: self.Temp(value_2 = 0))
         self.pushButton_68.clicked.connect(lambda: self.Temp(value = 0))
-        self.pushButton_69.clicked.connect(lambda: self.Temp(value_3 = 3))
-        self.pushButton_70.clicked.connect(lambda: self.Temp(value_3 = 7))
-        self.pushButton_71.clicked.connect(lambda: self.Temp(value_3 = 8))
-        self.pushButton_72.clicked.connect(lambda: self.Temp(value_3 = 1))
-        self.pushButton_73.clicked.connect(lambda: self.Temp(value_3 = 4))
+        self.pushButton_69.clicked.connect(lambda: self.Temp(value_3 = "A+"))
+        self.pushButton_70.clicked.connect(lambda: self.Temp(value_3 = "AB+"))
+        self.pushButton_71.clicked.connect(lambda: self.Temp(value_3 = "B-"))
+        self.pushButton_72.clicked.connect(lambda: self.Temp(value_3 = "O+"))
+        self.pushButton_73.clicked.connect(lambda: self.Temp(value_3 = "A-"))
         self.pushButton_74.clicked.connect(lambda: self.Temp(value_3 = 0))
-        self.pushButton_75.clicked.connect(lambda: self.Temp(value_3 = 2))
-        self.pushButton_76.clicked.connect(lambda: self.Temp(value_3 = 6))
-        self.pushButton_77.clicked.connect(lambda: self.Temp(value_3 = 5))
+        self.pushButton_75.clicked.connect(lambda: self.Temp(value_3 = "O-"))
+        self.pushButton_76.clicked.connect(lambda: self.Temp(value_3 = "B-"))
+        self.pushButton_77.clicked.connect(lambda: self.Temp(value_3 = "B+"))
         self.pushButton_78.clicked.connect(lambda: self.Temp)
 
         #Home Connections
@@ -2397,7 +2397,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-GISFMR8S'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2585,7 +2585,52 @@ class Ui_MainWindow(object):
             self.value_2 = value_2
         if value_3 is not None:
             self.value_3 = value_3
-        
+        self.run_query()
+
+    def run_query(self):
+        # Initialize the query with SELECT and FROM clauses
+        query_str = "SELECT * FROM Appointments"
+
+        # List to store the conditions
+        conditions = []
+
+        # Add conditions based on the set values
+        if self.value is not None and self.value != 0:
+            conditions.append("HospitalID = :hospital_id")
+        if self.value_2 is not None and self.value_2 != 0:
+            conditions.append("DonationType = :donation_type")
+        if self.value_3 is not None and self.value_3 != 0:
+            conditions.append("BloodType = :blood_type")
+
+        # Add the conditions to the query string
+        if conditions:
+            query_str += " WHERE " + " AND ".join(conditions)
+
+        # Create the query and bind the values
+        query = QSqlQuery(db)
+        query.prepare(query_str)
+
+        if self.value is not None and self.value != 0:
+            query.bindValue(":hospital_id", self.value)
+        if self.value_2 is not None and self.value_2 != 0:
+            query.bindValue(":donation_type", self.value_2)
+        if self.value_3 is not None and self.value_3 != 0:
+            query.bindValue(":blood_type", self.value_3)
+
+        # Execute the query
+        if query.exec():
+            print("Query executed successfully")
+            while query.next():
+                # Access the individual fields of the record
+                field1 = query.value(0)
+                field2 = query.value(1)
+                field3 = query.value(2)
+                # ... and so on for the remaining fields
+
+                # Print the fields or process them as needed
+                print(field1, field2, field3)
+        else:
+            print("Query execution failed")
 
 if __name__ == "__main__":
     import sys
