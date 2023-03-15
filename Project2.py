@@ -2242,6 +2242,7 @@ class Ui_MainWindow(object):
         self.pushButton_14.clicked.connect(lambda: self.stackedWidget_3.setCurrentIndex(0))
         self.pushButton_15.clicked.connect(self.SideMenuOpen)
         self.pushButton_17.clicked.connect(lambda: self.edit_user())
+        self.pushButton_18.clicked.connect(lambda: self.update_user())
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
         self.pushButton_22.clicked.connect(lambda: self.Q1(0))
@@ -2733,6 +2734,7 @@ class Ui_MainWindow(object):
         else:
             print("Error updating data:", query.lastError().text())
 
+#Joseph Functions
     def admin_view_appointments(self):
         # get name for query
         name = self.lineEdit.text()
@@ -2842,6 +2844,10 @@ update Records set BloodType = :bloodtype, Disease = :disease, Medication = :med
 
         else:
             print("update failed")
+
+
+
+
 
     def Temp(self, value=None, value_2=None, value_3=None):
         if value is not None:
