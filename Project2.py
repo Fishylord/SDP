@@ -2590,7 +2590,7 @@ class Ui_MainWindow(object):
         query = QSqlQuery(db)
         query.exec("SELECT COUNT(*) FROM Feedback")
         if query.next():
-            row_count = query.value(0)
+            row_count = query.value(0) + 1
         else:
             row_count = 0
 
