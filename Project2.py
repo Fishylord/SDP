@@ -2215,10 +2215,18 @@ class Ui_MainWindow(object):
         self.tableWidget_2.setColumnWidth(1, 200)
         self.tableWidget_2.setColumnWidth(2, 200)
         self.tableWidget_2.setColumnWidth(3, 200)
+
+        self.tableWidget_3.setColumnWidth(0, 175)
+        self.tableWidget_3.setColumnWidth(1, 175)
+        self.tableWidget_3.setColumnWidth(2, 175)
+        self.tableWidget_3.setColumnWidth(3, 175)
+
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
         self.admin_view_appointments()
+        self.HospitalList()
+        self.admin_manage_hospital()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -2270,7 +2278,7 @@ class Ui_MainWindow(object):
         self.pushButton_52.clicked.connect(self.logout)
         self.pushButton_53.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(7))
         self.pushButton_54.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
-        self.pushButton_55.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
+        self.pushButton_55.clicked.connect(self.donation)
         self.pushButton_56.clicked.connect(self.SideMenuOpen)
         self.pushButton_57.clicked.connect(self.SideMenuOpen)
         self.pushButton_58.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
@@ -2294,6 +2302,8 @@ class Ui_MainWindow(object):
         self.pushButton_76.clicked.connect(lambda: self.Temp(value_3 = "B-"))
         self.pushButton_77.clicked.connect(lambda: self.Temp(value_3 = "B+"))
         self.pushButton_78.clicked.connect(lambda: self.Temp)
+        self.pushButton_79.clicked.connect(self.admin_manage_hospital)
+        self.pushButton_80.clicked.connect(self.admin_manage_hospital)
 
         #Home Connections
         self.HButton_1.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(8))
@@ -2415,8 +2425,95 @@ class Ui_MainWindow(object):
                 print(query.lastError().text())
 
     def donation(self):
-        print("Bruh")
+        query = QSqlQuery("SELECT COUNT(*) FROM Appointments")
+        query.next()
+        appointment_id = query.value(0) + 1
 
+        donor_username = username
+        donate_date = self.lineEdit_15.text()
+        donate_time = self.lineEdit_16.text()
+        donate_hospital = self.lineEdit_17.text()
+        donate_type = self.comboBox.currentText()
+        blood_type = self.lineEdit_26.text()
+
+        query = QSqlQuery()
+        query.prepare("INSERT INTO Appointments (AppointmentID, Username, HospitalID, DonationType, BloodType, "
+                      "Date, Time) VALUES (?, ?, ?, ?, ?, ?, ?)")
+        query.addBindValue(appointment_id)
+        query.addBindValue(donor_username)
+        query.addBindValue(donate_hospital)
+        query.addBindValue(donate_type)
+        query.addBindValue(blood_type)
+        query.addBindValue(donate_date)
+        query.addBindValue(donate_time)
+
+        if query.exec():
+            self.stackedWidget.setCurrentIndex(3)
+        else:
+            print(query.lastError().text())
+
+    def HospitalList(self):
+        # prepare query
+        query = QSqlQuery(db)
+        query.prepare(
+            "SELECT * FROM Hospital")
+        if query.exec():
+            # Loop over the results and populate the table widget with appointment data
+            self.tableWidget_2.setRowCount(0)
+            row = 0
+            while query.next():
+                hospital_name = query.value(0)
+                hospital_id = query.value(1)
+                city = query.value(2)
+                address = query.value(3)
+
+                self.tableWidget_2.insertRow(row)
+                self.tableWidget_2.setItem(row, 0, QTableWidgetItem(str(hospital_name)))
+                self.tableWidget_2.setItem(row, 1, QTableWidgetItem(str(hospital_id)))
+                self.tableWidget_2.setItem(row, 2, QTableWidgetItem(str(city)))
+                self.tableWidget_2.setItem(row, 3, QTableWidgetItem(str(address)))
+                row += 1
+
+        else:
+            print(query.lastError().text())
+
+    def admin_manage_hospital(self):
+        # prepare query
+        query = QSqlQuery(db)
+        query.prepare("SELECT * FROM Hospital")
+        if query.exec():
+            # Loop over the results and populate the table widget with appointment data
+            self.tableWidget_3.setRowCount(0)
+            row = 0
+            while query.next():
+                hospital_name = query.value(0)
+                hospital_id = query.value(1)
+                city = query.value(2)
+                address = query.value(3)
+
+                self.tableWidget_3.insertRow(row)
+                self.tableWidget_3.setItem(row, 0, QTableWidgetItem(str(hospital_name)))
+                self.tableWidget_3.setItem(row, 1, QTableWidgetItem(str(hospital_id)))
+                self.tableWidget_3.setItem(row, 2, QTableWidgetItem(str(city)))
+                self.tableWidget_3.setItem(row, 3, QTableWidgetItem(str(address)))
+                row += 1
+
+            hospital_id = self.lineEdit_7.text()
+            query = QSqlQuery(db)
+            query.prepare("DELETE FROM Hospital WHERE hospital_id = ?")
+
+            if query.exec():
+                for row in range(self.tableWidget_3.rowCount()):
+                    if self.tableWidget_3.item(row, 1).text() == hospital_id:
+                        self.tableWidget_3.removeRow(row)
+                        break
+            else:
+                self.pushButton_80.setText("Record does not exist")
+                QTimer.singleShot(2000, lambda: self.pushButton_80.setText("DELETE"))
+                return True
+
+        else:
+            print(query.lastError().text())
 
     def FeedbackSubmit(self):
         self.pushButton_47.setStyleSheet("background-color: grey;")
@@ -2491,7 +2588,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-C59P4B6M'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
