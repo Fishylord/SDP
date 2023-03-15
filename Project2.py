@@ -2682,13 +2682,11 @@ class Ui_MainWindow(object):
         self.run_query()
 
     def run_query(self):
-        # Initialize the query with SELECT and FROM clauses
+        self.tableWidget_4.clearContents()
+        self.tableWidget_4.setRowCount(0)
+
         query_str = "SELECT * FROM Appointments"
-
-        # List to store the conditions
         conditions = []
-
-        # Add conditions based on the set values
         if self.value is not None and self.value != 0:
             conditions.append("HospitalID = :hospital_id")
         if self.value_2 is not None and self.value_2 != 0:
@@ -2696,11 +2694,8 @@ class Ui_MainWindow(object):
         if self.value_3 is not None and self.value_3 != 0:
             conditions.append("BloodType = :blood_type")
 
-        # Add the conditions to the query string
         if conditions:
             query_str += " WHERE " + " AND ".join(conditions)
-
-        # Create the query and bind the values
         query = QSqlQuery(db)
         query.prepare(query_str)
 
@@ -2711,23 +2706,24 @@ class Ui_MainWindow(object):
         if self.value_3 is not None and self.value_3 != 0:
             query.bindValue(":blood_type", self.value_3)
 
-        # Execute the query
         if query.exec():
             print("Query executed successfully")
+            self.tableWidget_4.setRowCount(query.size())
+            num_fields = query.record().count()
+            self.tableWidget_4.setColumnCount(num_fields)
+            for i in range(num_fields):
+                column_name = query.record().fieldName(i)
+                header_item = QTableWidgetItem(column_name)
+                self.tableWidget_4.setHorizontalHeaderItem(i, header_item)
+
+            row = 0
             while query.next():
-                # Get the number of fields in the record
-                num_fields = query.record().count()
-
-                # Loop through all the fields
+                self.tableWidget_4.insertRow(row)
                 for i in range(num_fields):
-                    # Access the field value using the index
                     field_value = query.value(i)
-
-                    # Print the field value or process it as needed
-                    print(field_value, end=' ')
-
-                # Print a new line for each record
-                print()
+                    item = QTableWidgetItem(str(field_value))
+                    self.tableWidget_4.setItem(row, i, item)
+                row += 1
         else:
             print("Query execution failed")
 
