@@ -9,10 +9,9 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
-from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView, QPushButton
+from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView
 
 class Ui_MainWindow(object):
-
 
 
 
@@ -2114,7 +2113,7 @@ class Ui_MainWindow(object):
         self.createConnection()
         self.HistoryData()
         self.admin_view_appointments()
-        self.UserProfile()
+        self.HospitalList()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -2132,31 +2131,31 @@ class Ui_MainWindow(object):
         self.pushButton_17.clicked.connect(lambda: self.edit_user())
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(lambda: self.Q1(0))
-        self.pushButton_23.clicked.connect(lambda: self.Q1(1))
-        self.pushButton_24.clicked.connect(lambda: self.Q1(2))
-        self.pushButton_25.clicked.connect(lambda: self.Q1(3))
-        self.pushButton_26.clicked.connect(lambda: self.Q1(4))
-        self.pushButton_27.clicked.connect(lambda: self.Q2(0))
-        self.pushButton_28.clicked.connect(lambda: self.Q2(1))
-        self.pushButton_29.clicked.connect(lambda: self.Q2(2))
-        self.pushButton_30.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_31.clicked.connect(lambda: self.Q2(4))
-        self.pushButton_32.clicked.connect(lambda: self.Q3(0))
-        self.pushButton_33.clicked.connect(lambda: self.Q3(1))
-        self.pushButton_34.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_35.clicked.connect(lambda: self.Q3(3))
-        self.pushButton_36.clicked.connect(lambda: self.Q3(4))
-        self.pushButton_37.clicked.connect(lambda: self.Q4(0))
-        self.pushButton_38.clicked.connect(lambda: self.Q4(1))
-        self.pushButton_39.clicked.connect(lambda: self.Q4(2))
-        self.pushButton_40.clicked.connect(lambda: self.Q4(3))
-        self.pushButton_41.clicked.connect(lambda: self.Q4(4))
-        self.pushButton_42.clicked.connect(lambda: self.Q5(0))
-        self.pushButton_43.clicked.connect(lambda: self.Q5(1))
-        self.pushButton_44.clicked.connect(lambda: self.Q5(2))
-        self.pushButton_45.clicked.connect(lambda: self.Q5(3))
-        self.pushButton_46.clicked.connect(lambda: self.Q5(4))
+        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
+        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
+        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
+        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
+        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
+        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
+        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
+        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
+        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
+        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
+        self.pushButton_32.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
+        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
+        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
+        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
+        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
+        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
+        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
+        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
+        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
+        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
+        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
+        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
+        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
         self.pushButton_47.clicked.connect(lambda: self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
@@ -2223,13 +2222,12 @@ class Ui_MainWindow(object):
 
         #Initialise
     def __init__(self):
-        self.buttonList_q1 = None
-        self.buttonList_q2 = None
-        self.buttonList_q3 = None
-        self.buttonList_q4 = None
-        self.buttonList_q5 = None
-        self.lastButtonIndex = None
-
+        self.last_click_button_q1 = None
+        self.last_click_button_q5 = None
+        self.last_click_button_q4 = None
+        self.last_click_button_q3 = None
+        self.last_click_button_q2 = None
+        self.last_click_button_q1 = None
 
     def logout(self):
         self.stackedWidget.setCurrentIndex(0)
@@ -2305,11 +2303,68 @@ class Ui_MainWindow(object):
                 print(query.lastError().text())
 
     def donation(self):
-        print("Bruh")
+        query = QSqlQuery("SELECT COUNT(*) FROM Appointments")
+        query.next()
+        appointment_id = query.value(0) + 1
 
+        donor_username = username
+        donate_date = self.lineEdit_15.text()
+        donate_time = self.lineEdit_16.text()
+        donate_hospital = self.lineEdit_17.text()
+        donate_type = self.comboBox.currentText()
+        blood_type = "O"
+
+        query = QSqlQuery()
+        query.prepare("INSERT INTO Appointments (AppointmentID, Username, HospitalID, DonationType, BloodType, "
+                      "Date, Time) VALUES (?, ?, ?, ?, ?, ?, ?)")
+        query.addBindValue(appointment_id)
+        query.addBindValue(donor_username)
+        query.addBindValue(donate_hospital)
+        query.addBindValue(donate_type)
+        query.addBindValue(blood_type)
+        query.addBindValue(donate_date)
+        query.addBindValue(donate_time)
+        query.addBindValue(donate_type)
+
+        if query.exec():
+            self.stackedWidget.setCurrentIndex(3)
+        else:
+            print(query.lastError().text())
+
+    def HospitalList(self):
+        # prepare query
+        query = QSqlQuery(db)
+        query.prepare(
+            "SELECT * FROM Hospital")
+        if query.exec():
+            # Loop over the results and populate the table widget with appointment data
+            self.tableWidget_2.setRowCount(0)
+            row = 0
+            while query.next():
+                hospital_name = query.value(0)
+                hospital_id = query.value(1)
+                city = query.value(2)
+                address = query.value(3)
+
+                self.tableWidget_2.insertRow(row)
+                self.tableWidget_2.setItem(row, 0, QTableWidgetItem(str(hospital_name)))
+                self.tableWidget_2.setItem(row, 1, QTableWidgetItem(str(hospital_id)))
+                self.tableWidget_2.setItem(row, 2, QTableWidgetItem(str(city)))
+                self.tableWidget_2.setItem(row, 3, QTableWidgetItem(str(address)))
+                row += 1
+
+        else:
+            print(query.lastError().text())
 
     def FeedbackSubmit(self):
         feedback_id = str(self.row_count)
+        q1_value = str(self.last_click_button_q1)
+        q2_value = str(self.last_click_button_q2)
+        q3_value = str(self.last_click_button_q3)
+        q4_value = str(self.last_click_button_q4)
+        q5_value = str(self.last_click_button_q5)
+        q6_value = str(self.feedback_q6)
+
 
         query = QSqlQuery()
         query.prepare("INSERT INTO feedback (Feedback ID, Username, q1, q2, q3, q4, q5, q6) VALUES (:feedback_id, :username, :q1, :q2, :q3, :q4, :q5, :q6)")
@@ -2323,40 +2378,25 @@ class Ui_MainWindow(object):
         query.bindValue(":q6", q6_value)
 
 
-    def Q1(self, index_q1):
-        self.buttonList_q1 = [self.pushButton_22,self.pushButton_23,self.pushButton_24,self.pushButton_25,self.pushButton_26]
-        if self.lastButtonIndex is not None:
-            self.buttonList_q1[self.lastButtonIndex].setStyleSheet("")
-        self.buttonList_q1[index_q1].setStyleSheet("background-color: grey;")
-        self.lastButtonIndex = index_q1
+    def Q1(self):
+        self.last_click_button_q1 = button_num
+        print(f"Button {button_num} was clicked")
 
-    def Q2(self, index_q2):
-        self.buttonList_q2 = [self.pushButton_27, self.pushButton_28, self.pushButton_29, self.pushButton_30,self.pushButton_31]
-        if self.lastButtonIndex is not None:
-            self.buttonList_q2[self.lastButtonIndex].setStyleSheet("")
-        self.buttonList_q2[index_q2].setStyleSheet("background-color: grey;")
-        self.lastButtonIndex = index_q2
+    def Q2(self):
+        self.last_click_button_q2 = button_num
+        print(f"Button {button_num} was clicked")
 
-    def Q3(self, index_q3):
-        self.buttonList_q3 = [self.pushButton_32, self.pushButton_33, self.pushButton_34, self.pushButton_35,self.pushButton_36]
-        if self.lastButtonIndex is not None:
-            self.buttonList_q3[self.lastButtonIndex].setStyleSheet("")
-        self.buttonList_q3[index_q3].setStyleSheet("background-color: grey;")
-        self.lastButtonIndex = index_q3
+    def Q3(self):
+        self.last_click_button_q3 = button_num
+        print(f"Button {button_num} was clicked")
 
-    def Q4(self, index_q4):
-        self.buttonList_q4 = [self.pushButton_37, self.pushButton_38, self.pushButton_39, self.pushButton_40,self.pushButton_41]
-        if self.lastButtonIndex is not None:
-            self.buttonList_q4[self.lastButtonIndex].setStyleSheet("")
-        self.buttonList_q4[index_q4].setStyleSheet("background-color: grey;")
-        self.lastButtonIndex = index_q4
+    def Q4(self):
+        self.last_click_button_q4 = button_num
+        print(f"Button {button_num} was clicked")
 
-    def Q5(self, index_q5):
-        self.buttonList_q5 = [self.pushButton_42, self.pushButton_43, self.pushButton_44, self.pushButton_45,self.pushButton_46]
-        if self.lastButtonIndex is not None:
-            self.buttonList_q5[self.lastButtonIndex].setStyleSheet("")
-        self.buttonList_q5[index_q5].setStyleSheet("background-color: grey;")
-        self.lastButtonIndex = index_q5
+    def Q5(self):
+        self.last_click_button_q5 = button_num
+        print(f"Button {button_num} was clicked")
 
     def Q6(self):
         feedback_q6 = self.textEdit_6.text()
@@ -2394,7 +2434,7 @@ class Ui_MainWindow(object):
 
     def HistoryData(self):
         # Retrieve the currently logged in username from the cache
-        username = "user1"
+        username = "User1"
         # Query the database for appointments for the current user
         query = QSqlQuery(db)
         query.prepare(
@@ -2422,91 +2462,11 @@ class Ui_MainWindow(object):
         else:
                 print(query.lastError().text())
 
-    def UserProfile(self):
-        # Query the database for user profile data
-        username = "user1"
-        query = QSqlQuery(db)
-        query.prepare(
-            "SELECT * FROM UserProfile WHERE Username = ?")
-        query.addBindValue(username)
-        if query.exec():
-            # Fetch the data from the query result
-            query.next()
-            Name = query.value(1)
-            Password = query.value(2)
-            Phone_Number = query.value(3)
-            Email = query.value(4)
-            Telephone = query.value(5)
-            Address = query.value(6)
-
-            # Set the text of the QTextEdit widget
-            self.textEdit.setPlainText(Name)
-            self.textEdit_2.setPlainText(Email)
-            self.textEdit_3.setPlainText(Phone_Number)
-            self.textEdit_4.setPlainText(Password)
-        else:
-            print(query.lastError().text())  # print the error message if the query fails
-        query.prepare(
-            "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
-        if query.exec():
-            BloodType = query.value(1)
-            Disease = query.value(2)
-            Medication = query.value(3)
-            diagnosis = query.value(4)
-            Age = query.value(5)
-            Gender = query.value(6)
-
-            self.textEdit_5.setPlainText(Gender)
-            self.textEdit_7.setPlainText(Age)
-            self.textEdit_8.setPlainText(BloodType)
-            self.textEdit_9.setPlainText(Disease)
-            self.textEdit_10.setPlainText(diagnosis)
-            self.textEdit_11.setPlainText(Medication)
-
-    def EditProfile(self):
-        # Get the new data from the textEdit widgets
-        edit_name = self.textEdit.text()
-        edit_email = self.textEdit_2.text()
-        edit_mobilenumber = self.textEdit_3.text()
-        edit_password = self.textEdit_4.text()
-
-        # Update the user profile table with the new data
-        query = QSqlQuery(db)
-        query.prepare(
-            "UPDATE UserProfile SET Name = ?, Email = ?, Phone Number = ?, Password = ?, WHERE Username = ?")
-        query.addBindValue(edit_name)
-        query.addBindValue(edit_email)
-        query.addBindValue(edit_mobilenumber)
-        query.addBindValue(edit_password)
-
-        edit_gender = self.textEdit_5.text()
-        edit_age = self.textEdit_7.text()
-        edit_blood = self.textEdit_8.text()
-        edit_disease = self.textEdit_9.text()
-        edit_diagnosis = self.textEdit_10.text()
-        edit_medication = self.textEdit_11.text()
-
-        # Update the record table with the new data
-        query = QSqlQuery(db)
-        query.prepare(
-            "UPDATE Records SET Email = ?, MobileNumber = ?, Password = ?, Gender = ?, Age = ?, BloodType = ?, Disease = ?, Medication = ?, Diagnosis = ? WHERE Username = ?")
-        query.addBindValue(edit_gender)
-        query.addBindValue(edit_age)
-        query.addBindValue(edit_blood)
-        query.addBindValue(edit_disease)
-        query.addBindValue(edit_medication)
-        query.addBindValue(edit_diagnosis)
-
-        if query.exec():
-            print("Data updated successfully")
-        else:
-            print("Error updating data:", query.lastError().text())
-
     def admin_view_appointments(self):
-        #get name for query
+        # get name for query
         name = self.lineEdit.text()
 
-        #prepare query
+        # prepare query
         query = QSqlQuery(db)
         query.prepare("SELECT * from [Appointments] WHERE Username = ?")
 
@@ -2516,12 +2476,13 @@ class Ui_MainWindow(object):
             rows = 0
             while query.next():
                 self.table_widget.insertRow(rows)
-                for i in range(query.size()):
-                    self.table_widget.setItem(rows, i, QTableWidgetItem(i))
+                for i in range(query.record().count()):
+                    self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
 
                 rows += 1
         else:
             print(query.lastError().text())
+
 
     def edit_user(self):
         #get username
