@@ -2516,28 +2516,33 @@ class Ui_MainWindow(object):
             print(query.lastError().text())
 
     def FeedbackSubmit(self):
-        self.pushButton_47.setStyleSheet("background-color: grey;")
-        feedback_id = str(self.feedbackid())
-        name = str(self.lineEdit_3.text())
-        q1 = str(self.lastButtonIndex_q1)
-        q2 = str(self.lastButtonIndex_q2)
-        q3 = str(self.lastButtonIndex_q3)
-        q4 = str(self.lastButtonIndex_q4)
-        q5 = str(self.lastButtonIndex_q5)
-        q6 = self.textEdit_6.text()
+        def FeedbackSubmit(self):
+            self.pushButton_47.setStyleSheet("background-color: grey;")
+            feedback_id = str(self.feedbackid())
+            name = str(self.lineEdit_3.text())
+            q1 = str(self.lastButtonIndex_q1)
+            q2 = str(self.lastButtonIndex_q2)
+            q3 = str(self.lastButtonIndex_q3)
+            q4 = str(self.lastButtonIndex_q4)
+            q5 = str(self.lastButtonIndex_q5)
+            q6 = self.textEdit_6.text()
 
-        query = QSqlQuery(db)
-        query.prepare("INSERT INTO Feedback (Feedback ID, Username, Q1, Q2, Q3, Q4, Q5, Q6) "
-                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
-        query.addBindValue(feedback_id)
-        query.addBindValue(name)
-        query.addBindValue(q1)
-        query.addBindValue(q2)
-        query.addBindValue(q3)
-        query.addBindValue(q4)
-        query.addBindValue(q5)
-        query.addBindValue(q6)
-        query.exec()
+            if not db.open():
+                print("Failed to connect to database")
+            query = QSqlQuery(db)
+            query.prepare("INSERT INTO Feedback (Feedback ID, Username, Q1, Q2, Q3, Q4, Q5, Q6) "
+                          "VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
+            query.bindValue(":feedback_id", feedback_id)
+            query.bindValue(":name", name)
+            query.bindValue(":q1", q1)
+            query.bindValue(":q2", q2)
+            query.bindValue(":q3", q3)
+            query.bindValue(":q4", q4)
+            query.bindValue(":q5", q5)
+            query.bindValue(":q6", q6)
+            if not query.exec():
+                print("Failed to execute query")
+
 
 
 
