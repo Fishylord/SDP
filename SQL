@@ -87,7 +87,13 @@ VALUES
     ('user3', 'password3', 'admin'),
     ('user4', 'password4', 'donor'),
     ('user5', 'password5', 'donor'),
-    ('user6', 'password6', 'admin');
+    ('user6', 'password6', 'admin'),
+    ('user7', 'password7', 'donor'),
+    ('user8', 'password8', 'donor'),
+    ('user9', 'password9', 'donor'),
+    ('user10', 'password10', 'donor'),
+    ('user11', 'password11', 'donor'),
+    ('user12', 'password12', 'donor');
 -- Mock data for Hospital table
 INSERT INTO [Hospital] ([HospitalName], [HospitalID], [City], [Address])
 VALUES
@@ -104,13 +110,21 @@ VALUES
     ('user4', 'Emily Johnson', 'password4', 5551111, 'emilyjohnson@email.com', 5552222, '789 Oak Street'),
     ('user5', 'David Lee', 'password5', 5553333, 'davidlee@email.com', 5554444, '123 Main Street'),
     ('user6', 'Admin User 2', 'password6', NULL, NULL, NULL, NULL);
-
+    ('user7', 'Michael Brown', 'password7', 5557777, 'michaelbrown@email.com', 5558888, '123 Maple Street'),
+    ('user8', 'Sarah Taylor', 'password8', 5556666, 'sarahtaylor@email.com', 5559999, '456 Pine Street'),
+    ('user9', 'James Miller', 'password9', 5555555, 'jamesmiller@email.com', 5550000, '789 Birch Street'),
+    ('user10', 'Jessica Moore', 'password10', 5554444, 'jessicamoore@email.com', 5553333, '123 Cedar Street'),
+    ('user11', 'Daniel White', 'password11', 5552222, 'danielwhite@email.com', 5551111, '456 Spruce Street'),
+    ('user12', 'Jennifer Martin', 'password12', 5559999, 'jennifermartin@email.com', 5558888, '789 Willow Street');
 -- Mock data for Feedback table
 INSERT INTO [Feedback] ([Feedback ID], [Username], [Q1], [Q2], [Q3], [Q4], [Q5], [Q6])
 VALUES
     (1, 'user1', 5, 4, 3, 4, 5, 'Great experience!'),
     (2, 'user2', 3, 4, 5, 4, 3, 'Could be better.'),
-    (3, 'user3', 4, 4, 4, 4, 4, 'No comment.');
+    (3, 'user3', 4, 4, 4, 4, 4, 'No comment.'),
+    (10, 'user7', 4, 3, 5, 5, 4, 'Good experience overall.'),
+    (11, 'user8', 5, 5, 4, 4, 5, 'Very satisfied with the service.'),
+    (12, 'user9', 3, 2, 4, 3, 3, 'Needs improvement.');
 
 -- Mock data for Appointments table
 INSERT INTO [Appointments] ([AppointmentID], [Username], [HospitalID], [DonationType], [BloodType], [Date], [Time])
@@ -123,8 +137,19 @@ VALUES
     (6, 'user5', 'H001', 'Plasma Donation', 'AB-', '2023-03-23', '12:00:00'),
     (7, 'user4', 'H003', 'Blood Donation', 'O+', '2023-03-25', '10:30:00'),
     (8, 'user5', 'H002', 'Blood Donation', 'B-', '2023-03-28', '14:30:00'),
-    (9, 'user2', 'H001', 'Plasma Donation', 'A-', '2023-03-29', '11:30:00');
-
+    (9, 'user2', 'H001', 'Plasma Donation', 'A-', '2023-03-29', '11:30:00'),
+    (10, 'user7', 'H001', 'Blood Donation', 'A+', '2023-03-16', '11:30:00'),
+    (11, 'user7', 'H002', 'Platelet Donation', 'A+', '2023-03-24', '14:30:00'),
+    (12, 'user8', 'H003', 'Blood Donation', 'A-', '2023-03-16', '16:00:00'),
+    (13, 'user8', 'H001', 'Platelet Donation', 'A-', '2023-03-26', '09:30:00'),
+    (14, 'user9', 'H002', 'Blood Donation', 'B+', '2023-03-17', '15:30:00'),
+    (15, 'user9', 'H003', 'Platelet Donation', 'B+', '2023-03-27', '12:00:00'),
+    (16, 'user10', 'H001', 'Blood Donation', 'B-', '2023-03-18', '10:00:00'),
+    (17, 'user10', 'H002', 'Platelet Donation', 'B-', '2023-03-28', '13:00:00'),
+    (18, 'user11', 'H003', 'Blood Donation', 'AB+', '2023-03-19', '11:30:00'),
+    (19, 'user11', 'H001', 'Platelet Donation', 'AB+', '2023-03-29', '14:30:00'),
+    (20, 'user12', 'H002', 'Blood Donation', 'AB-', '2023-03-20', '16:00:00'),
+    (21, 'user12', 'H003', 'Platelet Donation', 'AB-', '2023-03-30', '09:30:00');
 -- Mock data for Records table
 INSERT INTO [Records] ([Username], [BloodType], [Disease], [Medication], [diagnosis], [Age], [Gender])
 VALUES
@@ -133,4 +158,10 @@ VALUES
     ('user3', 'A+', 'High Blood Pressure', 'Lisinopril', 'Stable', 50, 'Male'),
     ('user4', 'A-', 'None', NULL, 'Healthy', 27, 'Female'),
     ('user5', 'B+', 'None', NULL, 'Healthy', 33, 'Male'),
-    ('user6', 'O+', 'High Cholesterol', 'Atorvastatin', 'Stable', 47, 'Female');
+    ('user6', 'O+', 'High Cholesterol', 'Atorvastatin', 'Stable', 47, 'Female'),
+    ('user7', 'A+', 'None', NULL, 'Healthy', 29, 'Female'),
+    ('user8', 'A-', 'Asthma', 'Albuterol', 'Stable', 32, 'Male'),
+    ('user9', 'B+', 'High Cholesterol', 'Simvastatin', 'Stable', 45, 'Female'),
+    ('user10', 'B-', 'None', NULL, 'Healthy', 36, 'Male'),
+    ('user11', 'AB+', 'Diabetes', 'Metformin', 'Stable', 41, 'Female'),
+    ('user12', 'AB-', 'None', NULL, 'Healthy', 28, 'Male');
