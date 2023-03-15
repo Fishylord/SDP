@@ -2397,7 +2397,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph
+        SERVER_NAME = 'DESKTOP-T07EGLG'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
