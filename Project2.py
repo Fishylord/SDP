@@ -2598,7 +2598,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-C59P4B6M'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2747,9 +2747,9 @@ class Ui_MainWindow(object):
             rows = 0
             while query.next():
                 self.table_widget.insertRow(rows)
-                for i in range(query.record().count()):
-                    print(i)
-                    self.table_widget.setItem(rows, i, QTableWidgetItem(query.value(i)))
+                for i in range(query.size()):
+                    self.table_widget.setItem(rows, i, QTableWidgetItem(i))
+
                 rows += 1
         else:
             print(query.lastError().text())
@@ -2761,7 +2761,7 @@ class Ui_MainWindow(object):
 
         #query
         query = QSqlQuery(db)
-        query.prepare("Select Distinct Name, Gender, Age, Address, Email, Telephone, BloodType, Disease, Medication, diagnosis from Records inner join UserProfile on Records.Username = UserProfile.Username where Records.Username = ?")
+        query.prepare("Select Distinct Name, Records.Username, Gender, Age, Address, Email, Telephone, BloodType, Disease, Medication, diagnosis from Records inner join UserProfile on Records.Username = UserProfile.Username where Records.Username = :username")
         query.addBindValue(username)
         if query.exec():
             print("query done")
