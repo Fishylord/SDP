@@ -2598,7 +2598,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-C59P4B6M'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2734,10 +2734,10 @@ class Ui_MainWindow(object):
             print("Error updating data:", query.lastError().text())
 
     def admin_view_appointments(self):
-        #get name for query
+        # get name for query
         name = self.lineEdit.text()
 
-        #prepare query
+        # prepare query
         query = QSqlQuery(db)
         query.prepare("SELECT * from [Appointments] WHERE Username = ?")
 
@@ -2747,37 +2747,101 @@ class Ui_MainWindow(object):
             rows = 0
             while query.next():
                 self.table_widget.insertRow(rows)
-                for i in range(query.size()):
-                    self.table_widget.setItem(rows, i, QTableWidgetItem(i))
-
+                for i in range(query.record().count()):
+                    print(i)
+                    self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
                 rows += 1
         else:
             print(query.lastError().text())
 
     def edit_user(self):
-        #get username
+        # get username
         username = str(self.lineEdit_3.text())
         print(username)
 
-        #query
+        # query
         query = QSqlQuery(db)
-        query.prepare("Select Distinct Name, Records.Username, Gender, Age, Address, Email, Telephone, BloodType, Disease, Medication, diagnosis from Records inner join UserProfile on Records.Username = UserProfile.Username where Records.Username = :username")
+        query.prepare(
+            "Select Distinct Name, Records.Username, Gender, Age, Address, Email, Telephone, BloodType, Disease, Medication, diagnosis from Records inner join UserProfile on Records.Username = UserProfile.Username where Records.Username = :username")
         query.addBindValue(username)
         if query.exec():
-            print("query done")
-            while(query.next()):
-                for i in range(query.size()):
-                    print(str(query.value(i)))
-
-            self.lineEdit_8.setText(str(query.value(0)))
-            #username
-            print(str(query.value(1)))
-            self.lineEdit_9.setText(str(query.value(1)))
+            print("query successful")
+            while (query.next()):
+                # name
+                self.lineEdit_8.setText(str(query.value(0)))
+                # username
+                self.lineEdit_9.setText(str(query.value(1)))
+                # Gender
+                self.lineEdit_20.setText(str(query.value(2)))
+                # Age
+                self.lineEdit_19.setText(str(query.value(3)))
+                # Address
+                self.lineEdit_23.setText(str(query.value(4)))
+                # Email
+                self.lineEdit_11.setText(str(query.value(5)))
+                # Telephone
+                self.lineEdit_14.setText(str(query.value(6)))
+                # Blood Type
+                self.lineEdit_18.setText(str(query.value(7)))
+                # Diseases
+                self.lineEdit_21.setText(str(query.value(8)))
+                # Medication
+                self.lineEdit_22.setText(str(query.value(9)))
+                # Diagnosis
+                self.lineEdit_24.setText(str(query.value(10)))
         else:
             print("query failed")
 
+    def update_user(self):
+        name = self.lineEdit_8.text()
+        list = [name]
+        username = self.lineEdit_9.text()
+        list.append(username)
+        gender = self.lineEdit_20.text()
+        list.append(gender)
+        age = self.lineEdit_19.text()
+        list.append(age)
+        address = self.lineEdit_23.text()
+        list.append(address)
+        email = self.lineEdit_11.text()
+        list.append(email)
+        telephone = self.lineEdit_14.text()
+        list.append(telephone)
+        bloodType = self.lineEdit_18.text()
+        list.append(bloodType)
+        disease = self.lineEdit_21.text()
+        list.append(disease)
+        medication = self.lineEdit_22.text()
+        list.append(medication)
+        diagnosis = self.lineEdit_24.text()
+        list.append(diagnosis)
 
+        username = str(self.lineEdit_3.text())
+        print(username)
 
+        # query
+        query = QSqlQuery(db)
+        query.prepare("""
+update UserProfile set Name = :name, [Phone Number] = :telephone, Email = :email, Address = :address;
+update Records set BloodType = :bloodtype, Disease = :disease, Medication = :medication, diagnosis = :diagnosis, Age = :age, Gender = :gender where Username = :username;""")
+
+        query.bindValue(":name", name)
+        query.bindValue(":username", username)
+        query.bindValue(":gender", gender)
+        query.bindValue(":age", age)
+        query.bindValue(":address", address)
+        query.bindValue(":email", email)
+        query.bindValue(":telephone", telephone)
+        query.bindValue(":bloodtype,", bloodType)
+        query.bindValue(":disease", disease)
+        query.bindValue(":medication", medication)
+        query.bindValue(":diagnosis", diagnosis)
+
+        if query.exec():
+            print("Update successful")
+
+        else:
+            print("update failed")
 
     def Temp(self, value=None, value_2=None, value_3=None):
         if value is not None:
