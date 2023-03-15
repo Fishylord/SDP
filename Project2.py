@@ -2302,8 +2302,7 @@ class Ui_MainWindow(object):
         self.pushButton_76.clicked.connect(lambda: self.Temp(value_3 = "B-"))
         self.pushButton_77.clicked.connect(lambda: self.Temp(value_3 = "B+"))
         self.pushButton_78.clicked.connect(lambda: self.Temp)
-        self.pushButton_79.clicked.connect(self.admin_manage_hospital)
-        self.pushButton_80.clicked.connect(self.admin_manage_hospital)
+        self.pushButton_79.clicked.connect(self.admin_manage_hospital_add)
 
         #Home Connections
         self.HButton_1.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(8))
@@ -2497,23 +2496,29 @@ class Ui_MainWindow(object):
                 self.tableWidget_3.setItem(row, 2, QTableWidgetItem(str(city)))
                 self.tableWidget_3.setItem(row, 3, QTableWidgetItem(str(address)))
                 row += 1
-
-            hospital_id = self.lineEdit_7.text()
-            query = QSqlQuery(db)
-            query.prepare("DELETE FROM Hospital WHERE hospital_id = ?")
-
-            if query.exec():
-                for row in range(self.tableWidget_3.rowCount()):
-                    if self.tableWidget_3.item(row, 1).text() == hospital_id:
-                        self.tableWidget_3.removeRow(row)
-                        break
-            else:
-                self.pushButton_80.setText("Record does not exist")
-                QTimer.singleShot(2000, lambda: self.pushButton_80.setText("DELETE"))
-                return True
-
         else:
             print(query.lastError().text())
+
+    def admin_manage_hospital_add(self):
+
+        hospital_name = self.lineEdit_2.text()
+        hospital_id = self.lineEdit_7.text()
+        city = self.lineEdit_10.text()
+        address = self.lineEdit_25.text()
+
+        query = QSqlQuery(db)
+        query.prepare("INSERT INTO Hospital (HospitalName, HospitalID, City, Address) VALUES (?, ?, ?, ?)")
+        query.addBindValue(hospital_name)
+        query.addBindValue(hospital_id)
+        query.addBindValue(city)
+        query.addBindValue(address)
+
+        if query.exec():
+            self.stackedWidget.setCurrentIndex(5)
+            self.admin_manage_hospital()
+        else:
+            print(query.lastError().text())
+
 
     def FeedbackSubmit(self):
         self.pushButton_47.setStyleSheet("background-color: grey;")
