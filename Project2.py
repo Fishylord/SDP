@@ -2112,9 +2112,7 @@ class Ui_MainWindow(object):
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
-        self.HistoryData()
         self.admin_view_appointments()
-        self.UserProfile()
 
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
@@ -2261,6 +2259,8 @@ class Ui_MainWindow(object):
                                 if user_type == "admin":
                                     self.stackedWidget.setCurrentIndex(5)
                                 else:
+                                    self.UserProfile()
+                                    self.HistoryData()
                                     self.stackedWidget.setCurrentIndex(3)
                         else:
                             self.pushButton_13.setText("Incorrect Password/Usersname")
@@ -2394,7 +2394,6 @@ class Ui_MainWindow(object):
 
     def HistoryData(self):
         # Retrieve the currently logged in username from the cache
-        username = "user1"
         # Query the database for appointments for the current user
         query = QSqlQuery(db)
         query.prepare(
@@ -2424,7 +2423,7 @@ class Ui_MainWindow(object):
 
     def UserProfile(self):
         # Query the database for user profile data
-        username = "user1"
+        print(username)
         query = QSqlQuery(db)
         query.prepare(
             "SELECT * FROM UserProfile WHERE Username = ?")
@@ -2442,13 +2441,16 @@ class Ui_MainWindow(object):
             # Set the text of the QTextEdit widget
             self.textEdit.setPlainText(Name)
             self.textEdit_2.setPlainText(Email)
-            self.textEdit_3.setPlainText(Phone_Number)
+            self.textEdit_3.setPlainText(str(Phone_Number))
             self.textEdit_4.setPlainText(Password)
         else:
             print(query.lastError().text())  # print the error message if the query fails
+
         query.prepare(
             "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
+        query.addBindValue(username)
         if query.exec():
+            query.next()
             BloodType = query.value(1)
             Disease = query.value(2)
             Medication = query.value(3)
@@ -2457,11 +2459,13 @@ class Ui_MainWindow(object):
             Gender = query.value(6)
 
             self.textEdit_5.setPlainText(Gender)
-            self.textEdit_7.setPlainText(Age)
+            self.textEdit_7.setPlainText(str(Age))
             self.textEdit_8.setPlainText(BloodType)
             self.textEdit_9.setPlainText(Disease)
             self.textEdit_10.setPlainText(diagnosis)
             self.textEdit_11.setPlainText(Medication)
+
+
 
     def EditProfile(self):
         # Get the new data from the textEdit widgets
