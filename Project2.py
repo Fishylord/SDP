@@ -2441,6 +2441,9 @@ class Ui_MainWindow(object):
 
             # Set the text of the QTextEdit widget
             self.textEdit.setPlainText(Name)
+            self.textEdit_2.setPlainText(Email)
+            self.textEdit_3.setPlainText(Phone_Number)
+            self.textEdit_4.setPlainText(Password)
         else:
             print(query.lastError().text())  # print the error message if the query fails
         query.prepare(
@@ -2453,22 +2456,51 @@ class Ui_MainWindow(object):
             Age = query.value(5)
             Gender = query.value(6)
 
-
+            self.textEdit_5.setPlainText(Gender)
+            self.textEdit_7.setPlainText(Age)
+            self.textEdit_8.setPlainText(BloodType)
+            self.textEdit_9.setPlainText(Disease)
+            self.textEdit_10.setPlainText(diagnosis)
+            self.textEdit_11.setPlainText(Medication)
 
     def EditProfile(self):
-        # Retrieve the currently logged in username from the cache
-        username = "User1"
-        # Query the database for appointments for the current user
+        # Get the new data from the textEdit widgets
+        edit_name = self.textEdit.text()
+        edit_email = self.textEdit_2.text()
+        edit_mobilenumber = self.textEdit_3.text()
+        edit_password = self.textEdit_4.text()
+
+        # Update the user profile table with the new data
         query = QSqlQuery(db)
         query.prepare(
-            "SELECT Username, BloodType, Disease, Medication, diagnosis, Age, Gender FROM Records WHERE Username = ?")
-        edit_name = self.textEdit.text()
+            "UPDATE UserProfile SET Name = ?, Email = ?, Phone Number = ?, Password = ?, WHERE Username = ?")
+        query.addBindValue(edit_name)
+        query.addBindValue(edit_email)
+        query.addBindValue(edit_mobilenumber)
+        query.addBindValue(edit_password)
+
         edit_gender = self.textEdit_5.text()
         edit_age = self.textEdit_7.text()
         edit_blood = self.textEdit_8.text()
         edit_disease = self.textEdit_9.text()
         edit_diagnosis = self.textEdit_10.text()
         edit_medication = self.textEdit_11.text()
+
+        # Update the record table with the new data
+        query = QSqlQuery(db)
+        query.prepare(
+            "UPDATE Records SET Email = ?, MobileNumber = ?, Password = ?, Gender = ?, Age = ?, BloodType = ?, Disease = ?, Medication = ?, Diagnosis = ? WHERE Username = ?")
+        query.addBindValue(edit_gender)
+        query.addBindValue(edit_age)
+        query.addBindValue(edit_blood)
+        query.addBindValue(edit_disease)
+        query.addBindValue(edit_medication)
+        query.addBindValue(edit_diagnosis)
+
+        if query.exec():
+            print("Data updated successfully")
+        else:
+            print("Error updating data:", query.lastError().text())
 
     def admin_view_appointments(self):
         #get name for query
