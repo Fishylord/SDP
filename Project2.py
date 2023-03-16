@@ -254,7 +254,11 @@ class Ui_MainWindow(object):
         self.pushButton_7.setGeometry(QtCore.QRect(10, 20, 91, 31))
         icon = QtGui.QIcon()
 <<<<<<< HEAD
+<<<<<<< HEAD
         icon.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+=======
+        icon.addPixmap(QtGui.QPixmap("Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+>>>>>>> parent of f415599 (U)
 =======
         icon.addPixmap(QtGui.QPixmap("Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
 >>>>>>> parent of f415599 (U)
@@ -275,7 +279,11 @@ class Ui_MainWindow(object):
         self.pushButton_6.setText("")
         icon1 = QtGui.QIcon()
 <<<<<<< HEAD
+<<<<<<< HEAD
         icon1.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+=======
+        icon1.addPixmap(QtGui.QPixmap("Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+>>>>>>> parent of f415599 (U)
 =======
         icon1.addPixmap(QtGui.QPixmap("Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
 >>>>>>> parent of f415599 (U)
