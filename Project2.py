@@ -2207,7 +2207,7 @@ class Ui_MainWindow(object):
         self.createConnection()
         self.HospitalList()
         self.admin_manage_hospital()
-
+        self.feedbackid()
         #Connections
         self.pushButton.clicked.connect(self.SideMenuClose)
         self.pushButton_2.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
@@ -2226,31 +2226,31 @@ class Ui_MainWindow(object):
         self.pushButton_18.clicked.connect(lambda: self.update_user())
         self.pushButton_19.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(2))
         self.pushButton_21.clicked.connect(self.SideMenuOpen)
-        self.pushButton_22.clicked.connect(lambda: self.Q1(1))
-        self.pushButton_23.clicked.connect(lambda: self.Q1(2))
-        self.pushButton_24.clicked.connect(lambda: self.Q1(3))
-        self.pushButton_25.clicked.connect(lambda: self.Q1(4))
-        self.pushButton_26.clicked.connect(lambda: self.Q1(5))
-        self.pushButton_27.clicked.connect(lambda: self.Q2(1))
-        self.pushButton_28.clicked.connect(lambda: self.Q2(2))
-        self.pushButton_29.clicked.connect(lambda: self.Q2(3))
-        self.pushButton_30.clicked.connect(lambda: self.Q2(4))
-        self.pushButton_31.clicked.connect(lambda: self.Q2(5))
-        self.pushButton_32.clicked.connect(lambda: self.Q3(1))
-        self.pushButton_33.clicked.connect(lambda: self.Q3(2))
-        self.pushButton_34.clicked.connect(lambda: self.Q3(3))
-        self.pushButton_35.clicked.connect(lambda: self.Q3(4))
-        self.pushButton_36.clicked.connect(lambda: self.Q3(5))
-        self.pushButton_37.clicked.connect(lambda: self.Q4(1))
-        self.pushButton_38.clicked.connect(lambda: self.Q4(2))
-        self.pushButton_39.clicked.connect(lambda: self.Q4(3))
-        self.pushButton_40.clicked.connect(lambda: self.Q4(4))
-        self.pushButton_41.clicked.connect(lambda: self.Q4(5))
-        self.pushButton_42.clicked.connect(lambda: self.Q5(1))
-        self.pushButton_43.clicked.connect(lambda: self.Q5(2))
-        self.pushButton_44.clicked.connect(lambda: self.Q5(3))
-        self.pushButton_45.clicked.connect(lambda: self.Q5(4))
-        self.pushButton_46.clicked.connect(lambda: self.Q5(5))
+        self.pushButton_22.clicked.connect(lambda: self.Q1(0))
+        self.pushButton_23.clicked.connect(lambda: self.Q1(1))
+        self.pushButton_24.clicked.connect(lambda: self.Q1(2))
+        self.pushButton_25.clicked.connect(lambda: self.Q1(3))
+        self.pushButton_26.clicked.connect(lambda: self.Q1(4))
+        self.pushButton_27.clicked.connect(lambda: self.Q2(0))
+        self.pushButton_28.clicked.connect(lambda: self.Q2(1))
+        self.pushButton_29.clicked.connect(lambda: self.Q2(2))
+        self.pushButton_30.clicked.connect(lambda: self.Q2(3))
+        self.pushButton_31.clicked.connect(lambda: self.Q2(4))
+        self.pushButton_32.clicked.connect(lambda: self.Q3(0))
+        self.pushButton_33.clicked.connect(lambda: self.Q3(1))
+        self.pushButton_34.clicked.connect(lambda: self.Q3(2))
+        self.pushButton_35.clicked.connect(lambda: self.Q3(3))
+        self.pushButton_36.clicked.connect(lambda: self.Q3(4))
+        self.pushButton_37.clicked.connect(lambda: self.Q4(0))
+        self.pushButton_38.clicked.connect(lambda: self.Q4(1))
+        self.pushButton_39.clicked.connect(lambda: self.Q4(2))
+        self.pushButton_40.clicked.connect(lambda: self.Q4(3))
+        self.pushButton_41.clicked.connect(lambda: self.Q4(4))
+        self.pushButton_42.clicked.connect(lambda: self.Q5(0))
+        self.pushButton_43.clicked.connect(lambda: self.Q5(1))
+        self.pushButton_44.clicked.connect(lambda: self.Q5(2))
+        self.pushButton_45.clicked.connect(lambda: self.Q5(3))
+        self.pushButton_46.clicked.connect(lambda: self.Q5(4))
         self.pushButton_47.clicked.connect(self.FeedbackSubmit)
         self.pushButton_20.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_48.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(4))
@@ -2316,6 +2316,7 @@ class Ui_MainWindow(object):
 
         #Initialise
     def __init__(self):
+        self.row_count = None
         self.lastButtonIndex_q1 = None
         self.lastButtonIndex_q2 = None
         self.lastButtonIndex_q3 = None
@@ -2521,7 +2522,12 @@ class Ui_MainWindow(object):
 
     def FeedbackSubmit(self):
         self.pushButton_47.setStyleSheet("background-color: grey;")
-        feedback_id = str("5")
+        feedback_id = self.row_count
+        self.lastButtonIndex_q1 = self.lastButtonIndex_q1 +1
+        self.lastButtonIndex_q2 = self.lastButtonIndex_q2 + 1
+        self.lastButtonIndex_q3 = self.lastButtonIndex_q3 + 1
+        self.lastButtonIndex_q4 = self.lastButtonIndex_q4 + 1
+        self.lastButtonIndex_q5 = self.lastButtonIndex_q5 + 1
         q1 = str(self.lastButtonIndex_q1)
         q2 = str(self.lastButtonIndex_q2)
         q3 = str(self.lastButtonIndex_q3)
@@ -2529,8 +2535,7 @@ class Ui_MainWindow(object):
         q5 = str(self.lastButtonIndex_q5)
         q6 = self.textEdit_6.toPlainText()
 
-        if not db.open():
-            print("Failed to connect to database")
+
 
         query = QSqlQuery(db)
         query.prepare("INSERT INTO Feedback ([Feedback ID], Username, Q1, Q2, Q3, Q4, Q5, Q6) VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
@@ -2588,14 +2593,12 @@ class Ui_MainWindow(object):
         query = QSqlQuery(db)
         query.exec("SELECT COUNT(*) FROM Feedback")
         if query.next():
-            row_count = query.value(0) + 1
-        else:
-            row_count = 0
+            self.row_count = query.value(0) + 1
 
-        row_count += 1
+
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
