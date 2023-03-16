@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.label_10 = QtWidgets.QLabel(self.page_7)
         self.label_10.setMinimumSize(QtCore.QSize(30, 40))
         self.label_10.setText("")
-        self.label_10.setPixmap(QtGui.QPixmap(":/Icons/user.svg"))
+        self.label_10.setPixmap(QtGui.QPixmap("Icons/user.svg"))
         self.label_10.setObjectName("label_10")
         self.verticalLayout_8.addWidget(self.label_10, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.label_11 = QtWidgets.QLabel(self.page_7)
@@ -124,7 +124,7 @@ class Ui_MainWindow(object):
         self.label_13 = QtWidgets.QLabel(self.page_8)
         self.label_13.setMinimumSize(QtCore.QSize(30, 40))
         self.label_13.setText("")
-        self.label_13.setPixmap(QtGui.QPixmap(":/Icons/user.svg"))
+        self.label_13.setPixmap(QtGui.QPixmap("Icons/user.svg"))
         self.label_13.setObjectName("label_13")
         self.verticalLayout_10.addWidget(self.label_13, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         self.label_14 = QtWidgets.QLabel(self.page_8)
@@ -191,7 +191,7 @@ class Ui_MainWindow(object):
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_20)
-        self.pushButton_8.setGeometry(QtCore.QRect(870, 630, 150, 50))
+        self.pushButton_8.setGeometry(QtCore.QRect(950, 680, 75, 23))
         self.pushButton_8.setObjectName("pushButton_8")
         self.label_8 = QtWidgets.QLabel(self.frame_20)
         self.label_8.setGeometry(QtCore.QRect(100, 220, 111, 16))
@@ -252,9 +252,11 @@ class Ui_MainWindow(object):
         self.frame_43.setObjectName("frame_43")
         self.pushButton_7 = QtWidgets.QPushButton(self.frame_43)
         self.pushButton_7.setGeometry(QtCore.QRect(10, 20, 91, 31))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/Icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_7.setIcon(icon)
+        icon.addPixmap(QtGui.QPixmap("Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_7.setIcon(icon1)
         self.pushButton_7.setObjectName("pushButton_7")
         self.label = QtWidgets.QLabel(self.frame_43)
         self.label.setGeometry(QtCore.QRect(460, 60, 111, 31))
@@ -269,9 +271,9 @@ class Ui_MainWindow(object):
         self.pushButton_6 = QtWidgets.QPushButton(self.frame_43)
         self.pushButton_6.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_6.setText("")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.pushButton_6.setIcon(icon1)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Icons/user.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.pushButton_6.setIcon(icon)
         self.pushButton_6.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_6.setObjectName("pushButton_6")
         self.label_25 = QtWidgets.QLabel(self.frame_20)
@@ -368,12 +370,12 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.pushButton_9 = QtWidgets.QPushButton(self.Header)
         self.pushButton_9.setGeometry(QtCore.QRect(950, 0, 91, 31))
-        self.pushButton_9.setIcon(icon)
+        self.pushButton_9.setIcon(icon1)
         self.pushButton_9.setObjectName("pushButton_9")
         self.pushButton_10 = QtWidgets.QPushButton(self.Header)
         self.pushButton_10.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_10.setText("")
-        self.pushButton_10.setIcon(icon1)
+        self.pushButton_10.setIcon(icon)
         self.pushButton_10.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_10.setObjectName("pushButton_10")
         self.frame_44 = QtWidgets.QFrame(self.frame_14)
@@ -994,7 +996,7 @@ class Ui_MainWindow(object):
         self.pushButton_4.setGeometry(QtCore.QRect(990, 480, 61, 51))
         self.pushButton_4.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/Icons/tool.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap("Icons/tool.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_4.setIcon(icon2)
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_79 = QtWidgets.QPushButton(self.Hospital_list)
@@ -1090,7 +1092,7 @@ class Ui_MainWindow(object):
         self.label_16.setObjectName("label_16")
         self.pushButton_3 = QtWidgets.QPushButton(self.frame_19)
         self.pushButton_3.setGeometry(QtCore.QRect(950, 0, 91, 31))
-        self.pushButton_3.setIcon(icon)
+        self.pushButton_3.setIcon(icon1)
         self.pushButton_3.setObjectName("pushButton_3")
         self.tableWidget_2 = QtWidgets.QTableWidget(self.frame_18)
         self.tableWidget_2.setGeometry(QtCore.QRect(10, 150, 1071, 531))
@@ -1130,7 +1132,7 @@ class Ui_MainWindow(object):
         self.pushButton_15 = QtWidgets.QPushButton(self.Hospital_User)
         self.pushButton_15.setGeometry(QtCore.QRect(1040, 0, 41, 31))
         self.pushButton_15.setText("")
-        self.pushButton_15.setIcon(icon1)
+        self.pushButton_15.setIcon(icon)
         self.pushButton_15.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_15.setObjectName("pushButton_15")
         self.stackedWidget.addWidget(self.Hospital_User)
@@ -1763,14 +1765,14 @@ class Ui_MainWindow(object):
         self.label_3 = QtWidgets.QLabel(self.frame_6)
         self.label_3.setGeometry(QtCore.QRect(60, 50, 61, 61))
         self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap(":/Icons/user.svg"))
+        self.label_3.setPixmap(QtGui.QPixmap("Icons/user.svg"))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.pushButton = QtWidgets.QPushButton(self.frame_6)
         self.pushButton.setGeometry(QtCore.QRect(10, 10, 28, 24))
         self.pushButton.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/Icons/x.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap("Icons/x.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton.setIcon(icon3)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout.addWidget(self.frame_6)
@@ -2405,8 +2407,9 @@ class Ui_MainWindow(object):
         # Insert username into UserProfile with "Not Filled" values
         query = QSqlQuery(db)
         query.prepare(
-            "INSERT INTO UserProfile (Username, Name, Password, [Phone Number], Email, Telephone, Address) VALUES (:Username, 'Not Filled', 'Not Filled', NULL, 'Not Filled', NULL, 'Not Filled')")
+            "INSERT INTO UserProfile (Username, Name, Password, [Phone Number], Email, Telephone, Address) VALUES (:Username, 'Not Filled', ?, NULL, 'Not Filled', NULL, 'Not Filled')")
         query.bindValue(":Username", log_Username)
+        query.addBindValue(log_Password)
         if not query.exec():
             print("Failed to insert user into UserProfile:", query.lastError().text())
 
@@ -2694,7 +2697,10 @@ class Ui_MainWindow(object):
         edit_email = self.textEdit_2.toPlainText()
         edit_mobilenumber = self.textEdit_3.toPlainText()
         edit_password = self.textEdit_4.toPlainText()
-
+        print(edit_name)
+        print(edit_email)
+        print(edit_mobilenumber)
+        print(edit_password)
         # Update the user profile table with the new data
         query = QSqlQuery(db)
         query.prepare(
@@ -2704,12 +2710,19 @@ class Ui_MainWindow(object):
         query.addBindValue(edit_mobilenumber)
         query.addBindValue(edit_password)
         query.addBindValue(username)
-        print(query)
         if query.exec():
             print("Data updated successfully")
         else:
             print("Error updating data:", query.lastError().text())
-
+        query = QSqlQuery(db)
+        query.prepare(
+            "UPDATE Users SET UserPass = ? WHERE Username = ?")
+        query.addBindValue(edit_password)
+        query.addBindValue(username)
+        if query.exec():
+            print("Data updated successfully")
+        else:
+            print("Error updating data:", query.lastError().text())
         edit_gender = self.textEdit_5.toPlainText()
         edit_age = self.textEdit_7.toPlainText()
         edit_blood = self.textEdit_8.toPlainText()
@@ -2717,12 +2730,10 @@ class Ui_MainWindow(object):
         edit_diagnosis = self.textEdit_10.toPlainText()
         edit_medication = self.textEdit_11.toPlainText()
 
-        try:
-            edit_age = int(edit_age)
-        except ValueError:
+        if not isinstance(edit_age, int):
             self.pushButton_8.setText("Error: Invalid Age")
             QTimer.singleShot(3500, lambda: self.pushButton_8.setText("Edit Profile"))
-            return
+            return True
 
         if edit_gender not in ('Male', 'Female'):
             self.pushButton_8.setText("Error: Invalid Gender")
