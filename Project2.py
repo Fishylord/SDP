@@ -1810,8 +1810,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
-        self.stackedWidget_3.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget_3.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -2444,6 +2444,7 @@ class Ui_MainWindow(object):
 
         if query.exec():
             self.stackedWidget.setCurrentIndex(3)
+            self.HistoryData()
         else:
             print(query.lastError().text())
 
