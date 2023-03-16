@@ -1833,7 +1833,7 @@ class Ui_MainWindow(object):
         self.lineEdit_13.setPlaceholderText(_translate("MainWindow", "Password"))
         self.pushButton_13.setText(_translate("MainWindow", "Login"))
         self.pushButton_14.setText(_translate("MainWindow", "Not registered? Register Now!"))
-        self.label_15.setText(_translate("MainWindow", "Forget Password"))
+        self.label_15.setText(_translate("MainWindow", "Fishy's Donation"))
         self.pushButton_8.setText(_translate("MainWindow", "Edit Profile"))
         self.label_8.setText(_translate("MainWindow", "USER INFO"))
         self.textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -2521,7 +2521,7 @@ class Ui_MainWindow(object):
 
     def FeedbackSubmit(self):
         self.pushButton_47.setStyleSheet("background-color: grey;")
-        feedback_id = str(self.feedbackid())
+        feedback_id = str("5")
         q1 = str(self.lastButtonIndex_q1)
         q2 = str(self.lastButtonIndex_q2)
         q3 = str(self.lastButtonIndex_q3)
@@ -2531,9 +2531,9 @@ class Ui_MainWindow(object):
 
         if not db.open():
             print("Failed to connect to database")
+
         query = QSqlQuery(db)
-        query.prepare("INSERT INTO Feedback (Feedback ID, Username, Q1, Q2, Q3, Q4, Q5, Q6) "
-                        "VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
+        query.prepare("INSERT INTO Feedback ([Feedback ID], Username, Q1, Q2, Q3, Q4, Q5, Q6) VALUES (:feedback_id, :name, :q1, :q2, :q3, :q4, :q5, :q6)")
         query.bindValue(":feedback_id", feedback_id)
         query.bindValue(":name", username)
         query.bindValue(":q1", q1)
@@ -2542,8 +2542,8 @@ class Ui_MainWindow(object):
         query.bindValue(":q4", q4)
         query.bindValue(":q5", q5)
         query.bindValue(":q6", q6)
-        if not query.exec():
-            print("Failed to execute query")
+        if query.exec():
+            print("Success")
 
 
 
