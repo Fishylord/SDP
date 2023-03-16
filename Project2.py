@@ -8,7 +8,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer
 from PyQt6.QtSql import QSqlDatabase, QSqlQueryModel, QSqlQuery
-from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView, QPushButton
+from PyQt6.QtWidgets import QTableWidgetItem, QHeaderView, QPushButton, QMessageBox
 
 class Ui_MainWindow(object):
 
@@ -2205,7 +2205,6 @@ class Ui_MainWindow(object):
         #Initialise Functions
         self.SideMenuClose()
         self.createConnection()
-        self.admin_view_appointments()
         self.HospitalList()
         self.admin_manage_hospital()
 
@@ -2596,7 +2595,7 @@ class Ui_MainWindow(object):
         row_count += 1
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2763,7 +2762,9 @@ class Ui_MainWindow(object):
         else:
             print("Error updating data:", query.lastError().text())
 
-#Joseph Functions
+
+
+#wip
     def admin_view_appointments(self):
         # get name for query
         name = self.lineEdit.text()
@@ -2774,14 +2775,22 @@ class Ui_MainWindow(object):
 
         query.addBindValue(name)
         if query.exec():
-            self.table_widget.setRowCount(0)
-            rows = 0
-            while query.next():
-                self.table_widget.insertRow(rows)
-                for i in range(query.record().count()):
-                    print(i)
-                    self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
-                rows += 1
+            if query.size():
+                print("it still went through anyways smh")
+                self.table_widget.setRowCount(0)
+                rows = 0
+                while query.next():
+                    self.table_widget.insertRow(rows)
+                    for i in range(query.record().count()):
+                        print(i)
+                        self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
+                    rows += 1
+            else:
+                msgBox = QMessageBox()
+                msgBox.setText('Invalid username')
+                msgBox.addButton(QMessageBox.StandardButton.Ok)
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.exec()
         else:
             print(query.lastError().text())
 
@@ -2822,12 +2831,12 @@ class Ui_MainWindow(object):
             print("query failed")
 
     def update_user(self):
+        list = []
         name = self.lineEdit_8.text()
-        list = [name]
-        list.append(username)
+        list.append(name)
         gender = self.lineEdit_20.text()
         list.append(gender)
-        age = self.lineEdit_19.text()
+        age = int(self.lineEdit_19.text())
         list.append(age)
         address = self.lineEdit_23.text()
         list.append(address)
@@ -2844,13 +2853,17 @@ class Ui_MainWindow(object):
         diagnosis = self.lineEdit_24.text()
         list.append(diagnosis)
 
+        print("hi")
+
         username = str(self.lineEdit_3.text())
         print(username)
+
+        print(list)
 
         # query
         query = QSqlQuery(db)
         query.prepare("""
-update UserProfile set Name = :name, [Phone Number] = :telephone, Email = :email, Address = :address;
+update UserProfile set Name = :name, [Phone Number] = :telephone, Email = :email, Address = :address where Username = :username;
 update Records set BloodType = :bloodtype, Disease = :disease, Medication = :medication, diagnosis = :diagnosis, Age = :age, Gender = :gender where Username = :username;""")
 
         query.bindValue(":name", name)
@@ -2860,14 +2873,13 @@ update Records set BloodType = :bloodtype, Disease = :disease, Medication = :med
         query.bindValue(":address", address)
         query.bindValue(":email", email)
         query.bindValue(":telephone", telephone)
-        query.bindValue(":bloodtype,", bloodType)
+        query.bindValue(":bloodtype", bloodType)
         query.bindValue(":disease", disease)
         query.bindValue(":medication", medication)
         query.bindValue(":diagnosis", diagnosis)
 
         if query.exec():
             print("Update successful")
-
         else:
             print("update failed")
 
