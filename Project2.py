@@ -2403,7 +2403,7 @@ class Ui_MainWindow(object):
         # Insert username into UserProfile with "Not Filled" values
         query = QSqlQuery(db)
         query.prepare(
-            "INSERT INTO UserProfile (Username, Name, Password, Phone Number, Email, Telephone, Address) VALUES (:Username, 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled')")
+            "INSERT INTO UserProfile (Username, Name, Password, [Phone Number], Email, Telephone, Address) VALUES (:Username, 'Not Filled', 'Not Filled', NULL, 'Not Filled', NULL, 'Not Filled')")
         query.bindValue(":Username", log_Username)
         if not query.exec():
             print("Failed to insert user into UserProfile:", query.lastError().text())
@@ -2415,6 +2415,8 @@ class Ui_MainWindow(object):
         query.bindValue(":Username", log_Username)
         if not query.exec():
             print("Failed to insert user into Records:", query.lastError().text())
+        self.UserProfile()
+        self.HistoryData()
 
     def donation(self):
         query = QSqlQuery("SELECT COUNT(*) FROM Appointments")
