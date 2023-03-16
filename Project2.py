@@ -2596,7 +2596,7 @@ class Ui_MainWindow(object):
 
 
     def createConnection(self):
-        SERVER_NAME = 'LAPTOP-Q1SP2NU1'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
+        SERVER_NAME = 'LAPTOP-Joseph'                 #LAPTOP-Q1SP2NU1 #LAPTOP-GISFMR8S #LAPTOP-Joseph #DESKTOP-T07EGLG
         DATABASE_NAME = 'Accounts'
         Username = " "
         Password = " "
@@ -2757,35 +2757,36 @@ class Ui_MainWindow(object):
 
 
 
-#wip
     def admin_view_appointments(self):
         # get name for query
-        name = self.lineEdit.text()
+        try:
+            name = self.lineEdit.text()
 
-        # prepare query
-        query = QSqlQuery(db)
-        query.prepare("SELECT * from [Appointments] WHERE Username = ?")
+            # prepare query
+            query = QSqlQuery(db)
+            query.prepare("SELECT * from [Appointments] WHERE Username = ?")
 
-        query.addBindValue(name)
-        if query.exec():
-            if query.size():
-                print("it still went through anyways smh")
-                self.table_widget.setRowCount(0)
-                rows = 0
-                while query.next():
-                    self.table_widget.insertRow(rows)
-                    for i in range(query.record().count()):
-                        print(i)
-                        self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
-                    rows += 1
+            query.addBindValue(name)
+            if query.exec():
+                if query.isActive() and query.size() > 0:
+                    self.table_widget.setRowCount(0)
+                    rows = 0
+                    while query.next():
+                        self.table_widget.insertRow(rows)
+                        for i in range(query.record().count()):
+                            print(i)
+                            self.table_widget.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
+                        rows += 1
+                else:
+                    msgBox = QMessageBox()
+                    msgBox.setText('Invalid username')
+                    msgBox.addButton(QMessageBox.StandardButton.Ok)
+                    msgBox.setIcon(QMessageBox.Icon.Warning)
+                    msgBox.exec()
             else:
-                msgBox = QMessageBox()
-                msgBox.setText('Invalid username')
-                msgBox.addButton(QMessageBox.StandardButton.Ok)
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.exec()
-        else:
-            print(query.lastError().text())
+                print(query.lastError().text())
+        except Exception as e:
+            print(f"an error occured: {e}")
 
     def edit_user(self):
         # get username
@@ -2846,7 +2847,12 @@ class Ui_MainWindow(object):
         diagnosis = self.lineEdit_24.text()
         list.append(diagnosis)
 
-        print("hi")
+        try:
+            if not all(list):
+                QMessageBox.critical(self.pushButton_18, "Error", "One or more fields are not filled in")
+                return
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
         username = str(self.lineEdit_3.text())
         print(username)
@@ -2873,11 +2879,13 @@ update Records set BloodType = :bloodtype, Disease = :disease, Medication = :med
 
         if query.exec():
             print("Update successful")
+            try:
+                QMessageBox.information(self.pushButton_18, "Success", "Update successful.")
+            except Exception as e:
+                print("Error: ", e)
         else:
+            QMessageBox.critical(self.pushButton_18, "Error", "There was an error parsing the query", QMessageBox.StandardButton.Ok)
             print("update failed")
-
-
-
 
 
     def Temp(self, value=None, value_2=None, value_3=None):
