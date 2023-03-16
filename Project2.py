@@ -191,7 +191,7 @@ class Ui_MainWindow(object):
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_20)
-        self.pushButton_8.setGeometry(QtCore.QRect(950, 680, 75, 23))
+        self.pushButton_8.setGeometry(QtCore.QRect(870, 630, 150, 50))
         self.pushButton_8.setObjectName("pushButton_8")
         self.label_8 = QtWidgets.QLabel(self.frame_20)
         self.label_8.setGeometry(QtCore.QRect(100, 220, 111, 16))
@@ -2214,6 +2214,7 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.SideMenuOpen)
         self.pushButton_6.clicked.connect(self.SideMenuOpen)
         self.pushButton_7.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
+        self.pushButton_8.clicked.connect(self.EditProfile)
         self.pushButton_9.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(3))
         self.pushButton_10.clicked.connect(self.SideMenuOpen)
         self.pushButton_11.clicked.connect(self.register)
@@ -2390,12 +2391,12 @@ class Ui_MainWindow(object):
                 return True
 
         query = QSqlQuery(db)
-        is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass) VALUES (?, ?)")
+        is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass, UserType) VALUES (?, ?, 'Customer')")
         if is_valid_query:
             query.addBindValue(log_Username)
             query.addBindValue(log_Password)
             if query.exec():
-                self.stackedWidget.setCurrentIndex(3)
+                self.stackedWidget_3.setCurrentIndex(1)
             else:
                 print(query.lastError().text())
         else:
@@ -2416,8 +2417,7 @@ class Ui_MainWindow(object):
         query.bindValue(":Username", log_Username)
         if not query.exec():
             print("Failed to insert user into Records:", query.lastError().text())
-        self.UserProfile()
-        self.HistoryData()
+
 
     def donation(self):
         query = QSqlQuery("SELECT COUNT(*) FROM Appointments")
@@ -2525,7 +2525,7 @@ class Ui_MainWindow(object):
         q3 = str(self.lastButtonIndex_q3)
         q4 = str(self.lastButtonIndex_q4)
         q5 = str(self.lastButtonIndex_q5)
-        q6 = self.textEdit_6.setPlainText()
+        q6 = self.textEdit_6.toPlainText()
 
         if not db.open():
             print("Failed to connect to database")
@@ -2645,7 +2645,6 @@ class Ui_MainWindow(object):
 
     def UserProfile(self):
         # Query the database for user profile data
-        print(username)
         query = QSqlQuery(db)
         query.prepare(
             "SELECT * FROM UserProfile WHERE Username = ?")
@@ -2691,38 +2690,63 @@ class Ui_MainWindow(object):
 
     def EditProfile(self):
         # Get the new data from the textEdit widgets
-        edit_name = self.textEdit.text()
-        edit_email = self.textEdit_2.text()
-        edit_mobilenumber = self.textEdit_3.text()
-        edit_password = self.textEdit_4.text()
+        edit_name = self.textEdit.toPlainText()
+        edit_email = self.textEdit_2.toPlainText()
+        edit_mobilenumber = self.textEdit_3.toPlainText()
+        edit_password = self.textEdit_4.toPlainText()
 
         # Update the user profile table with the new data
         query = QSqlQuery(db)
         query.prepare(
-            "UPDATE UserProfile SET Name = ?, Email = ?, Phone Number = ?, Password = ?, WHERE Username = ?")
+            "UPDATE UserProfile SET Name = ?, Email = ?, [Phone Number] = ?, Password = ? WHERE Username = ?")
         query.addBindValue(edit_name)
         query.addBindValue(edit_email)
         query.addBindValue(edit_mobilenumber)
         query.addBindValue(edit_password)
+        query.addBindValue(username)
+        print(query)
+        if query.exec():
+            print("Data updated successfully")
+        else:
+            print("Error updating data:", query.lastError().text())
 
-        edit_gender = self.textEdit_5.text()
-        edit_age = self.textEdit_7.text()
-        edit_blood = self.textEdit_8.text()
-        edit_disease = self.textEdit_9.text()
-        edit_diagnosis = self.textEdit_10.text()
-        edit_medication = self.textEdit_11.text()
+        edit_gender = self.textEdit_5.toPlainText()
+        edit_age = self.textEdit_7.toPlainText()
+        edit_blood = self.textEdit_8.toPlainText()
+        edit_disease = self.textEdit_9.toPlainText()
+        edit_diagnosis = self.textEdit_10.toPlainText()
+        edit_medication = self.textEdit_11.toPlainText()
+
+        try:
+            edit_age = int(edit_age)
+        except ValueError:
+            self.pushButton_8.setText("Error: Invalid Age")
+            QTimer.singleShot(3500, lambda: self.pushButton_8.setText("Edit Profile"))
+            return
+
+        if edit_gender not in ('Male', 'Female'):
+            self.pushButton_8.setText("Error: Invalid Gender")
+            QTimer.singleShot(3500, lambda: self.pushButton_8.setText("Edit Profile"))
+            return
+
+        valid_blood_types = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
+        if edit_blood not in valid_blood_types:
+            self.pushButton_8.setText("Error: Invalid Blood Type")
+            QTimer.singleShot(3500, lambda: self.pushButton_8.setText("Edit Profile"))
+            return
+
 
         # Update the record table with the new data
         query = QSqlQuery(db)
         query.prepare(
-            "UPDATE Records SET Email = ?, MobileNumber = ?, Password = ?, Gender = ?, Age = ?, BloodType = ?, Disease = ?, Medication = ?, Diagnosis = ? WHERE Username = ?")
+            "UPDATE Records SET Gender = ?, Age = ?, BloodType = ?, Disease = ?, Medication = ?, Diagnosis = ? WHERE Username = ?")
         query.addBindValue(edit_gender)
         query.addBindValue(edit_age)
         query.addBindValue(edit_blood)
         query.addBindValue(edit_disease)
         query.addBindValue(edit_medication)
         query.addBindValue(edit_diagnosis)
-
+        query.addBindValue(username)
         if query.exec():
             print("Data updated successfully")
         else:
