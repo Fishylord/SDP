@@ -191,7 +191,7 @@ class Ui_MainWindow(object):
         self.frame_20.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.frame_20.setObjectName("frame_20")
         self.pushButton_8 = QtWidgets.QPushButton(self.frame_20)
-        self.pushButton_8.setGeometry(QtCore.QRect(950, 680, 75, 23))
+        self.pushButton_8.setGeometry(QtCore.QRect(870, 630, 150, 50))
         self.pushButton_8.setObjectName("pushButton_8")
         self.label_8 = QtWidgets.QLabel(self.frame_20)
         self.label_8.setGeometry(QtCore.QRect(100, 220, 111, 16))
@@ -2693,10 +2693,7 @@ class Ui_MainWindow(object):
         edit_email = self.textEdit_2.toPlainText()
         edit_mobilenumber = self.textEdit_3.toPlainText()
         edit_password = self.textEdit_4.toPlainText()
-        print(edit_name)
-        print(edit_email)
-        print(edit_mobilenumber)
-        print(edit_password)
+
         # Update the user profile table with the new data
         query = QSqlQuery(db)
         query.prepare(
@@ -2719,10 +2716,12 @@ class Ui_MainWindow(object):
         edit_diagnosis = self.textEdit_10.toPlainText()
         edit_medication = self.textEdit_11.toPlainText()
 
-        if not isinstance(edit_age, int):
+        try:
+            edit_age = int(edit_age)
+        except ValueError:
             self.pushButton_8.setText("Error: Invalid Age")
             QTimer.singleShot(3500, lambda: self.pushButton_8.setText("Edit Profile"))
-            return True
+            return
 
         if edit_gender not in ('Male', 'Female'):
             self.pushButton_8.setText("Error: Invalid Gender")
