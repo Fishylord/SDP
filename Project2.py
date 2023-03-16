@@ -2371,34 +2371,50 @@ class Ui_MainWindow(object):
         log_ConfPassword = self.lineEdit_6.text()
 
         if log_Password != log_ConfPassword:
-                self.pushButton_11.setText("Passwords do not match")
-                return True
+            self.pushButton_11.setText("Passwords do not match")
+            return True
 
         query = QSqlQuery(db)
         is_valid_query = query.prepare("SELECT COUNT(*) FROM Users WHERE Username = ?")
         if is_valid_query:
-                query.addBindValue(log_Username)
-                if query.exec() and query.first():
-                        count = query.value(0)
-                        if count > 0:
-                                self.pushButton_11.setText("Username already exist")
-                                QTimer.singleShot(3500, lambda: self.pushButton_11.setText("Register"))
-                                return True
-                else:
-                        print(query.lastError().text())
-                        return True
+            query.addBindValue(log_Username)
+            if query.exec() and query.first():
+                count = query.value(0)
+                if count > 0:
+                    self.pushButton_11.setText("Username already exist")
+                    QTimer.singleShot(3500, lambda: self.pushButton_11.setText("Register"))
+                    return True
+            else:
+                print(query.lastError().text())
+                return True
 
         query = QSqlQuery(db)
         is_valid_query = query.prepare("INSERT INTO Users (Username, UserPass) VALUES (?, ?)")
         if is_valid_query:
-                query.addBindValue(log_Username)
-                query.addBindValue(log_Password)
-                if query.exec():
-                        self.stackedWidget.setCurrentIndex(3)
-                else:
-                        print(query.lastError().text())
-        else:
+            query.addBindValue(log_Username)
+            query.addBindValue(log_Password)
+            if query.exec():
+                self.stackedWidget.setCurrentIndex(3)
+            else:
                 print(query.lastError().text())
+        else:
+            print(query.lastError().text())
+
+        # Insert username into UserProfile with "Not Filled" values
+        query = QSqlQuery(db)
+        query.prepare(
+            "INSERT INTO UserProfile (Username, Name, Password, Phone Number, Email, Telephone, Address) VALUES (:Username, 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled')")
+        query.bindValue(":Username", log_Username)
+        if not query.exec():
+            print("Failed to insert user into UserProfile:", query.lastError().text())
+
+        # Insert username into Records with "Not Filled" values
+        query = QSqlQuery(db)
+        query.prepare(
+            "INSERT INTO Records (Username, BloodType, Disease, Medication, diagnosis, Age, Gender) VALUES (:Username, 'Not Filled', 'Not Filled', 'Not Filled', 'Not Filled', NULL, 'Not Filled')")
+        query.bindValue(":Username", log_Username)
+        if not query.exec():
+            print("Failed to insert user into Records:", query.lastError().text())
 
     def donation(self):
         query = QSqlQuery("SELECT COUNT(*) FROM Appointments")
